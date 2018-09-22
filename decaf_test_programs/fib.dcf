@@ -1,0 +1,28 @@
+// fibonacci series
+// Input: A positive integer n > 1
+// Output: generate "n" fibonacci numbers starting from 1.
+
+class Program
+{
+    void main ()
+    {
+        int N;
+        callout("printf", "Enter a positive integer: ");
+        callout("scanf", "%d", N); // get the user input
+
+        int prevValue = 0;
+        int currValue = 1;
+        int nextValue = 0;
+        
+        callout("printf", "%d  %d  ", prevValue, currValue); // print the starting value
+        for count=1,N-2
+        {
+            nextValue = prevValue + currValue;
+            callout("printf", "%d  ", nextValue);
+            prevValue = currValue;
+            currValue = nextValue;
+            count = count + 1;
+        }
+        callout("printf", "\n");
+    }
+}

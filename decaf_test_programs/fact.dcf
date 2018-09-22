@@ -1,0 +1,27 @@
+// factorial of a number
+// Input: A positive integer n >= 0
+// Output: print the factorial of the number.
+
+class Program
+{
+    void main()
+    {
+        int N;
+        int factN = 1;
+        callout("print", "Enter a Number >= 0: ");
+        callout("scanf", "%d", N); // get the user input
+
+        if(N == 0)
+        {
+            factN = 1;
+        }
+        else
+        {
+            for i= 1,N
+            {
+                factN = factN * i;
+            }
+        }
+        callout("print", "Factorial of ", N, " is: ", factN);
+    }
+}
