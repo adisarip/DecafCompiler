@@ -8,8 +8,10 @@
 
 %%
 
+"true"  { return TRUE; }
+"false" { return FALSE; }
+
 [a-zA-Z_][a-zA-Z0-9_]*	    {return ID;}
-[0-9]                       {yylval = atoi(yytext); return DIGIT;}
 [0-9][0-9]*                 {yylval = atoi(yytext); return DIGITS;}
 [0-9a-fA-F][0-9a-fA-F]*     {return HEX_DIGIT;}
 
@@ -35,9 +37,6 @@
 "]"     {return ']';}
 "{"     {return '{';}
 "}"     {return '}';}
-
-"true"  { return TRUE; }
-"false" { return FALSE; }
 
 [ \t]	{ /* Ignore whitespaces */ }
 \n		{++lineno; return EOL;}

@@ -8,45 +8,52 @@
 
 %token ID
 %token TRUE FALSE
-%token DIGIT DIGITS HEX_PREFIX HEX_DIGIT HEX_DIGITS
+%token DIGITS HEX_PREFIX HEX_DIGIT HEX_DIGITS
 %token ALPHA ALPHA_NUM
-%token OP_LET OP_GET OP_EEQ OP_NEQ OP_AND OP_OR
 %token EOL
 %left '<' '>' '=' OP_NEQ OP_LET OP_GET OP_EEQ
 %left '+' '-'
 %left '*' '/' '%' OP_AND OP_OR
 %left '!'
-%left '(' '['
-%right ')' ']'
+
+
+%%
 
 /* Parser Rules*/ 
-%%
+
+start	:   /* Nothing */
+        |   start expr EOL { printf(" = %d\n", $2); }
+        ;
 
 expr	:	location
 		| 	literal
-		| 	expr bin_op expr
-		|	'-' expr		{ $$ = -$2; }
-		|	'!'	expr		{ $$ = !$2; }
-		|	'(' expr ')'	{ $$ = ($2); }
+		| 	expr '+' expr
+		|	expr '-' expr	
+		|	expr '*' expr
+		|	expr '/' expr
+		|	expr '%' expr	
+		|	expr '<' expr	
+		|	expr '>' expr	
+		|	expr OP_EEQ expr
+		|	expr OP_GET expr	
+		|	expr OP_LET expr	
+		|	expr OP_NEQ expr	
+		|	expr OP_AND expr
+		|	expr OP_OR expr
+		|	'-' expr
+		|	'!' expr
+		|	'(' expr ')'
 		;
-
-bin_op  	:	arith_op | rel_op | eq_op | cond_op;
-arith_op	: 	'+' | '-' | '*' | '/' | '%' ;
-rel_op  	:	'<' | '>' | OP_LET | OP_GET ;
-eq_op		:	OP_EEQ | OP_NEQ ;
-cond_op		:	OP_AND | OP_OR ;
-
+ 
 literal	        :	int_literal | bool_literal;
 int_literal	    :	decimal_literal | hex_literal;
 decimal_literal	: 	DIGITS;
 hex_literal		: 	HEX_PREFIX HEX_DIGITS;
 bool_literal	:	TRUE | FALSE;
 
-location	:	id
-			|	id   '[' expr ']'
+location	:	ID
+			|	ID   '[' expr ']'
 			;
-
-id	:  ID;
 
 %%
 
