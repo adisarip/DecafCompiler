@@ -8,12 +8,13 @@
 
 %%
 
-"true"  { return TRUE; }
-"false" { return FALSE; }
+"true"      { return TRUE; }
+"false"     { return FALSE; }
+"callout"   { return CALLOUT; }
 
 [a-zA-Z_][a-zA-Z0-9_]*	    {return ID;}
-[0-9][0-9]*                 {yylval = atoi(yytext); return DIGITS;}
-[0-9a-fA-F][0-9a-fA-F]*     {return HEX_DIGIT;}
+[0-9][0-9]*                 {yylval = atoi(yytext); return NUMBER;}
+0x[0-9a-fA-F]+              {return HEX_NUMBER;}
 
 "="     {return '=';}
 "+"     {return '+';}
@@ -29,7 +30,8 @@
 "!="    {return OP_NEQ;}
 "&&"    {return OP_AND;}
 "||"    {return OP_OR;}
-"0x"    {return HEX_PREFIX;}
+"+="    {return OP_PLUS_EQ;}
+"-="    {return OP_MINUS_EQ;}
 "!"     {return '!';}
 "("		{return '(';}
 ")"		{return ')';}
@@ -37,6 +39,13 @@
 "]"     {return ']';}
 "{"     {return '{';}
 "}"     {return '}';}
+
+","     {return ',';}
+";"     {return ';';}
+
+
+[ !#$%&(-[]-~]      {return CHAR;}
+[ !#$%&(-[]-~]*     {return STRING;}
 
 [ \t]	{ /* Ignore whitespaces */ }
 \n		{++lineno; return EOL;}

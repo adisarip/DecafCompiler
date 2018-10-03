@@ -7,14 +7,21 @@
 %}
 
 %token ID
-%token TRUE FALSE
-%token DIGITS HEX_PREFIX HEX_DIGIT HEX_DIGITS
-%token ALPHA ALPHA_NUM
+%token TRUE FALSE CALLOUT
+%token NUMBER HEX_NUMBER
+%token ALPHA ALPHA_NUM CHAR STRING
 %token EOL
-%left '<' '>' '=' OP_NEQ OP_LET OP_GET OP_EEQ
+%token ','
+%right OP_PLUS_EQ OP_MINUS_EQ
+%right '='
+%left OP_OR
+%left OP_AND
+%left OP_EEQ OP_NEQ
+%left '<' OP_LET '>' OP_GET
 %left '+' '-'
-%left '*' '/' '%' OP_AND OP_OR
+%left '*' '/' '%'
 %left '!'
+%right UMINUS
 
 
 %%
@@ -25,35 +32,78 @@ start	:   /* Nothing */
         |   start expr EOL { printf(" = %d\n", $2); }
         ;
 
-expr	:	location
-		| 	literal
-		| 	expr '+' expr
-		|	expr '-' expr	
-		|	expr '*' expr
-		|	expr '/' expr
-		|	expr '%' expr	
-		|	expr '<' expr	
-		|	expr '>' expr	
-		|	expr OP_EEQ expr
-		|	expr OP_GET expr	
-		|	expr OP_LET expr	
-		|	expr OP_NEQ expr	
-		|	expr OP_AND expr
-		|	expr OP_OR expr
-		|	'-' expr
-		|	'!' expr
-		|	'(' expr ')'
-		;
- 
-literal	        :	int_literal | bool_literal;
-int_literal	    :	decimal_literal | hex_literal;
-decimal_literal	: 	DIGITS;
-hex_literal		: 	HEX_PREFIX HEX_DIGITS;
-bool_literal	:	TRUE | FALSE;
+method_call:
+		ID '(' expr_list ')'
+	|	CALLOUT '(' STRING ',' callout_arg_list ')'
+	;
 
-location	:	ID
-			|	ID   '[' expr ']'
-			;
+expr_list:
+		/* epsilon */
+	| expr ',' expr_list
+	;
+
+callout_arg_list:
+		callout_arg
+	|	callout_arg ',' callout_arg_list
+	;
+
+callout_arg:
+		expr
+	|	STRING
+	;
+
+expr:
+		location
+	| 	literal
+	|	method_call
+	|	binary_operation
+	|	unary_operation
+	|	'(' expr ')'
+	;
+
+location:
+		ID
+	|	ID   '[' expr ']'
+	;
+
+literal:
+		int_literal
+	|	bool_literal
+	;
+
+int_literal:
+		decimal_literal
+	|	hex_literal
+	;
+
+decimal_literal	:	NUMBER;
+hex_literal		:	HEX_NUMBER;
+bool_literal:
+		TRUE
+	|	FALSE
+	;
+
+binary_operation:
+		expr '+' expr
+	|	expr '-' expr
+	|	expr '*' expr
+	|	expr '/' expr
+	|	expr '%' expr
+	|	expr '<' expr
+	|	expr '>' expr
+	|	expr OP_EEQ expr
+	|	expr OP_GET expr
+	|	expr OP_LET expr
+	|	expr OP_NEQ expr
+	|	expr OP_AND expr
+	|	expr OP_OR  expr
+	;
+
+unary_operation:
+		'-' expr %prec UMINUS
+	|	'!' expr
+	;
+
 
 %%
 
