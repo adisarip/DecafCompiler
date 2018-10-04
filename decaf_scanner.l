@@ -8,9 +8,20 @@
 
 %%
 
-"true"      { return TRUE; }
-"false"     { return FALSE; }
-"callout"   { return CALLOUT; }
+"true"      {return TRUE;}
+"false"     {return FALSE;}
+"callout"   {return CALLOUT;}
+"int"       {return INT;}
+"boolean"   {return BOOLEAN;}
+"class"     {return CLASS;}
+"Program"   {return PROGRAM;}
+"void"      {return VOID;}
+"if"        {return IF;}
+"else"      {return ELSE;}
+"for"       {return FOR;}
+"break"     {return BREAK;}
+"continue"  {return CONTINUE;}
+"return"    {return RETURN;}
 
 [a-zA-Z_][a-zA-Z0-9_]*	    {return ID;}
 [0-9][0-9]*                 {yylval = atoi(yytext); return NUMBER;}
@@ -39,7 +50,6 @@
 "]"     {return ']';}
 "{"     {return '{';}
 "}"     {return '}';}
-
 ","     {return ',';}
 ";"     {return ';';}
 

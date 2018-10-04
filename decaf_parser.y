@@ -7,11 +7,12 @@
 %}
 
 %token ID
-%token TRUE FALSE CALLOUT
+%token TRUE FALSE CALLOUT INT BOOLEAN CLASS PROGRAM VOID IF ELSE FOR BREAK CONTINUE RETURN
 %token NUMBER HEX_NUMBER
 %token ALPHA ALPHA_NUM CHAR STRING
 %token EOL
 %token ','
+
 %right OP_PLUS_EQ OP_MINUS_EQ
 %right '='
 %left OP_OR
@@ -28,9 +29,106 @@
 
 /* Parser Rules*/ 
 
-start	:   /* Nothing */
-        |   start expr EOL { printf(" = %d\n", $2); }
-        ;
+start:
+		/* Do Nothing */
+    |   start program EOL { printf(" = %d\n", $2); }
+    ;
+
+program:	CLASS PROGRAM '{' field_declaration_list method_declaration_list '}'
+
+
+field_declaration_list:
+		/* epsilon */
+	|	field_declaration_list field_declaration
+	;
+
+field_declaration:
+		INT field_declaration_block_list ';'
+	|	BOOLEAN field_declaration_block_list ';'
+	;
+
+field_declaration_block_list:
+		/* epsilon */
+	|	field_declaration_block
+	|	field_declaration_block_list ',' field_declaration_block
+	;
+
+field_declaration_block:
+		ID
+	|	ID '[' int_literal ']'
+	;
+
+
+method_declaration_list:
+		/* epsilon */
+	|	method_declaration method_declaration_list
+	;
+
+method_declaration:
+		VOID ID '(' parameter_list ')' block_statement
+	|	INT ID '(' parameter_list ')' block_statement
+	|	BOOLEAN ID '(' parameter_list ')' block_statement
+	;
+
+parameter_list:
+		/* epsilon */
+	|	parameter
+	|	parameter_list ',' parameter
+	;
+
+parameter:
+		INT ID
+	|	BOOLEAN ID
+	;
+
+block_statement: '{' variable_declaration_list statement_list '}'
+
+variable_declaration_list:
+		/* epsilon */
+	|	variable_declaration_list variable_declaration
+	;
+
+variable_declaration:
+		INT id_list ';'
+	|	BOOLEAN id_list ';'
+
+id_list:
+		/* epsilon */
+	|	ID
+	|	id_list ',' ID
+	;
+
+statement_list:
+		/* epsilon */
+	|	statement_list statement
+	;
+
+statement:
+		assignment_operation
+	|	method_call_statement
+	|	if_conditional_statement
+	|	for_loop_statement
+	|	block_statement
+	|	return_statement
+	|	BREAK ';'
+	|	CONTINUE ';'
+	;
+
+assignment_operation: location '=' expr ';' ;
+
+if_conditional_statement:
+		IF '(' expr ')' block_statement
+	|	IF '(' expr ')' block_statement ELSE block_statement
+	;
+
+for_loop_statement:	FOR ID '=' expr ',' expr block_statement ;
+
+return_statement:
+		RETURN ';'
+	|	RETURN '(' expr ')' ';'
+	;
+
+method_call_statement: method_call ';' ;
 
 method_call:
 		ID '(' expr_list ')'
@@ -39,12 +137,14 @@ method_call:
 
 expr_list:
 		/* epsilon */
-	| expr ',' expr_list
+	|	expr
+	|	expr_list ',' expr
 	;
 
 callout_arg_list:
-		callout_arg
-	|	callout_arg ',' callout_arg_list
+		/* epsilon */
+	|	callout_arg
+	|	callout_arg_list ',' callout_arg
 	;
 
 callout_arg:
@@ -63,7 +163,7 @@ expr:
 
 location:
 		ID
-	|	ID   '[' expr ']'
+	|	ID '[' expr ']'
 	;
 
 literal:
