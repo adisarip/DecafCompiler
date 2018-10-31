@@ -21,7 +21,7 @@
 %left '<' OP_LET '>' OP_GET
 %left '+' '-'
 %left '*' '/' '%'
-%left '!'
+%right '!'
 %right UMINUS
 
 
