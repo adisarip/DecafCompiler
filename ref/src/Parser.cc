@@ -40,7 +40,7 @@
 #include <stdio.h>
 #include <string>
 #include <vector>
-#include "Ast.hh"
+#include "Modules.hh"
 #include "Scanner.hh"
 #include "Driver.hh"
 
@@ -632,66 +632,60 @@ namespace decaf {
             {
   case 2:
 #line 110 "./src/Parser.yy" // lalr1.cc:870
-    { (yylhs.value.astnode) = NULL; driver.ast.pRoot = NULL;}
+    { (yylhs.value.pAstNode) = NULL; driver.mAstCtx.pRoot = NULL;}
 #line 637 "./src/Parser.cc" // lalr1.cc:870
     break;
 
   case 3:
 #line 111 "./src/Parser.yy" // lalr1.cc:870
-    { (yylhs.value.astnode) = (yystack_[1].value.astnode); driver.ast.pRoot = (yystack_[1].value.astnode); }
+    { (yylhs.value.pAstNode) = (yystack_[1].value.pAstNode); driver.mAstCtx.pRoot = (yystack_[1].value.pAstNode); }
 #line 643 "./src/Parser.cc" // lalr1.cc:870
     break;
 
   case 4:
 #line 115 "./src/Parser.yy" // lalr1.cc:870
-    { (yylhs.value.astnode) = (yystack_[1].value.astnode) ; }
+    { (yylhs.value.pAstNode) = (yystack_[1].value.pAstNode) ; }
 #line 649 "./src/Parser.cc" // lalr1.cc:870
     break;
 
   case 5:
 #line 116 "./src/Parser.yy" // lalr1.cc:870
-    { (yylhs.value.astnode) = new BinaryASTnode("+", (yystack_[2].value.astnode), (yystack_[0].value.astnode)); }
+    { (yylhs.value.pAstNode) = new BinaryAstNode("+", (yystack_[2].value.pAstNode), (yystack_[0].value.pAstNode)); }
 #line 655 "./src/Parser.cc" // lalr1.cc:870
     break;
 
   case 6:
 #line 117 "./src/Parser.yy" // lalr1.cc:870
-    { (yylhs.value.astnode) = new BinaryASTnode("-", (yystack_[2].value.astnode), (yystack_[0].value.astnode)); }
+    { (yylhs.value.pAstNode) = new BinaryAstNode("-", (yystack_[2].value.pAstNode), (yystack_[0].value.pAstNode)); }
 #line 661 "./src/Parser.cc" // lalr1.cc:870
     break;
 
   case 7:
 #line 118 "./src/Parser.yy" // lalr1.cc:870
-    { (yylhs.value.astnode) = new BinaryASTnode("*", (yystack_[2].value.astnode), (yystack_[0].value.astnode)); }
+    { (yylhs.value.pAstNode) = new BinaryAstNode("*", (yystack_[2].value.pAstNode), (yystack_[0].value.pAstNode)); }
 #line 667 "./src/Parser.cc" // lalr1.cc:870
     break;
 
   case 8:
 #line 119 "./src/Parser.yy" // lalr1.cc:870
-    { (yylhs.value.astnode) = new BinaryASTnode("/", (yystack_[2].value.astnode), (yystack_[0].value.astnode)); }
+    { (yylhs.value.pAstNode) = new BinaryAstNode("/", (yystack_[2].value.pAstNode), (yystack_[0].value.pAstNode)); }
 #line 673 "./src/Parser.cc" // lalr1.cc:870
     break;
 
   case 9:
 #line 120 "./src/Parser.yy" // lalr1.cc:870
-    { (yylhs.value.astnode) = new TernaryASTnode((yystack_[4].value.astnode), (yystack_[2].value.astnode), (yystack_[0].value.astnode)); }
+    { (yylhs.value.pAstNode) = new UnaryAstNode("!", (yystack_[0].value.pAstNode)); }
 #line 679 "./src/Parser.cc" // lalr1.cc:870
     break;
 
   case 10:
 #line 121 "./src/Parser.yy" // lalr1.cc:870
-    { (yylhs.value.astnode) = new UnaryASTnode("!", (yystack_[0].value.astnode)); }
+    { (yylhs.value.pAstNode) = new IntegerAstNode((yystack_[0].value.integerVal)); }
 #line 685 "./src/Parser.cc" // lalr1.cc:870
     break;
 
-  case 11:
-#line 122 "./src/Parser.yy" // lalr1.cc:870
-    { (yylhs.value.astnode) = new IntLitASTnode((yystack_[0].value.integerVal)); }
-#line 691 "./src/Parser.cc" // lalr1.cc:870
-    break;
 
-
-#line 695 "./src/Parser.cc" // lalr1.cc:870
+#line 689 "./src/Parser.cc" // lalr1.cc:870
             default:
               break;
             }
@@ -956,17 +950,15 @@ namespace decaf {
   const signed char
   Parser::yypact_[] =
   {
-      14,    -7,    -7,    28,    28,     4,    36,    -7,    22,    -7,
-      28,    28,    28,    28,    28,    -7,    -7,     7,    -6,    -6,
-      -7,    -7,    28,    43
+       1,    -7,    -7,     2,     2,    19,    17,    -7,     9,    -7,
+       2,     2,     2,     2,    -7,    -7,    -6,    -6,    -7,    -7
   };
 
   const unsigned char
   Parser::yydefact_[] =
   {
-       0,     2,    11,     0,     0,     0,     0,    10,     0,     1,
-       0,     0,     0,     0,     0,     3,     4,     0,     5,     6,
-       7,     8,     0,     9
+       0,     2,    10,     0,     0,     0,     0,     9,     0,     1,
+       0,     0,     0,     0,     3,     4,     5,     6,     7,     8
   };
 
   const signed char
@@ -984,45 +976,38 @@ namespace decaf {
   const unsigned char
   Parser::yytable_[] =
   {
-       7,     8,    13,    14,     9,     0,     0,    17,    18,    19,
-      20,    21,    10,    11,    12,    13,    14,     1,     2,    23,
-       0,    22,     0,     0,     3,     0,     4,    10,    11,    12,
-      13,    14,     2,     0,     0,    16,     0,     0,     3,     0,
-       4,    10,    11,    12,    13,    14,     0,    15,    10,    11,
-      12,    13,    14
+       7,     8,    12,    13,     1,     2,     2,    16,    17,    18,
+      19,     3,     3,     4,     4,    10,    11,    12,    13,     9,
+       0,     0,    15,    10,    11,    12,    13,     0,    14
   };
 
   const signed char
   Parser::yycheck_[] =
   {
-       3,     4,     8,     9,     0,    -1,    -1,    10,    11,    12,
-      13,    14,     5,     6,     7,     8,     9,     3,     4,    22,
-      -1,    14,    -1,    -1,    10,    -1,    12,     5,     6,     7,
-       8,     9,     4,    -1,    -1,    13,    -1,    -1,    10,    -1,
-      12,     5,     6,     7,     8,     9,    -1,    11,     5,     6,
-       7,     8,     9
+       3,     4,     8,     9,     3,     4,     4,    10,    11,    12,
+      13,    10,    10,    12,    12,     6,     7,     8,     9,     0,
+      -1,    -1,    13,     6,     7,     8,     9,    -1,    11
   };
 
   const unsigned char
   Parser::yystos_[] =
   {
-       0,     3,     4,    10,    12,    16,    17,    17,    17,     0,
-       5,     6,     7,     8,     9,    11,    13,    17,    17,    17,
-      17,    17,    14,    17
+       0,     3,     4,    10,    12,    15,    16,    16,    16,     0,
+       6,     7,     8,     9,    11,    13,    16,    16,    16,    16
   };
 
   const unsigned char
   Parser::yyr1_[] =
   {
-       0,    15,    16,    16,    17,    17,    17,    17,    17,    17,
-      17,    17
+       0,    14,    15,    15,    16,    16,    16,    16,    16,    16,
+      16
   };
 
   const unsigned char
   Parser::yyr2_[] =
   {
-       0,     2,     1,     2,     3,     3,     3,     3,     3,     5,
-       2,     1
+       0,     2,     1,     2,     3,     3,     3,     3,     3,     2,
+       1
   };
 
 
@@ -1033,8 +1018,7 @@ namespace decaf {
   const Parser::yytname_[] =
   {
   "END", "error", "$undefined", "EOL", "INT_LITERAL", "'?'", "'+'", "'-'",
-  "'*'", "'/'", "'!'", "';'", "'('", "')'", "':'", "$accept", "line",
-  "expr", YY_NULLPTR
+  "'*'", "'/'", "'!'", "';'", "'('", "')'", "$accept", "line", "expr", YY_NULLPTR
   };
 
 #if YYDEBUG
@@ -1042,7 +1026,7 @@ namespace decaf {
   Parser::yyrline_[] =
   {
        0,   110,   110,   111,   115,   116,   117,   118,   119,   120,
-     121,   122
+     121
   };
 
   // Print the state stack on the debug stream.
@@ -1087,7 +1071,7 @@ namespace decaf {
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,    10,     2,     2,     2,     2,     2,     2,
       12,    13,     8,     6,     2,     7,     2,     9,     2,     2,
-       2,     2,     2,     2,     2,     2,     2,     2,    14,    11,
+       2,     2,     2,     2,     2,     2,     2,     2,     2,    11,
        2,     2,     2,     5,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -1122,8 +1106,8 @@ namespace decaf {
 
 
 } // decaf
-#line 1126 "./src/Parser.cc" // lalr1.cc:1181
-#line 125 "./src/Parser.yy" // lalr1.cc:1182
+#line 1110 "./src/Parser.cc" // lalr1.cc:1181
+#line 124 "./src/Parser.yy" // lalr1.cc:1182
 
 
 void decaf::Parser::error(const Parser::location_type& l,

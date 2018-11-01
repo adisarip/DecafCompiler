@@ -134,7 +134,7 @@ namespace decaf {
     #line 58 "./src/Parser.yy" // lalr1.cc:395
 
     int integerVal;
-    class ASTnode* astnode;
+    class AstNode* pAstNode;
 
 #line 140 "./src/Parser.hh" // lalr1.cc:395
     };
@@ -468,12 +468,12 @@ namespace decaf {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 52,     ///< Last index in yytable_.
+      yylast_ = 28,     ///< Last index in yytable_.
       yynnts_ = 3,  ///< Number of nonterminal symbols.
       yyfinal_ = 9, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
-      yyntokens_ = 15  ///< Number of tokens.
+      yyntokens_ = 14  ///< Number of tokens.
     };
 
 

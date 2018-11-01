@@ -1,32 +1,23 @@
 
 #include <iostream>
-#include "Ast.hh"
 #include "PostFixVisitor.hh"
 
 
-void PostFixVisitor::visit(UnaryASTnode& node)
+void PostFixVisitor::visit(UnaryAstNode& node)
 {
     node.getRight()->accept(*this);
     std::cout << node.getUnaryOperator() << " " << std::flush;
 }
 
-void PostFixVisitor::visit(BinaryASTnode& node)
+void PostFixVisitor::visit(BinaryAstNode& node)
 {
     node.getLeft()->accept(*this);
     node.getRight()->accept(*this);
     std::cout << node.getBinOperator() << " " << std::flush;
 }
 
-void PostFixVisitor::visit(TernaryASTnode& node)
+void PostFixVisitor::visit(IntegerAstNode& node) 
 {
-    node.getFirst()->accept(*this);
-    node.getSecond()->accept(*this);
-    node.getThird()->accept(*this);
-    std::cout << "? " << std::flush;
-}
-
-void PostFixVisitor::visit(IntLitASTnode& node) 
-{
-    std::cout << node.getIntLit() << " " << std::flush;
+    std::cout << node.getInteger() << " " << std::flush;
 }
 

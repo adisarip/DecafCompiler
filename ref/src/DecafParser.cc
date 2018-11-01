@@ -3,61 +3,54 @@
 #include <iostream>
 #include <fstream>
 #include "Driver.hh"
-#include "Ast.hh"
+#include "Modules.hh"
 #include "PostFixVisitor.hh"
 
 int main()
 {
-    ASTContext ast;
-    decaf::Driver driver(ast);
-    PostFixVisitor pfv;
-    
-    std::string line;
+    AstContext sAstCtx;
+    decaf::Driver sDriver(sAstCtx);
+    PostFixVisitor sVisitor;
+    std::string sLine;
+
     while(1)
     {
         std::cout << "Input: " << std::flush;
-        getline(std::cin, line);
-        if (!line.empty())
+        getline(std::cin, sLine);
+        if (!sLine.empty())
         {
-            bool result = driver.parse_string(line, "Input");
+            bool result = sDriver.parse_string(sLine, "Input");
 
             if (result)
             {
-                if (ast.pRoot != NULL )
+                if (sAstCtx.pRoot != NULL )
                 {
-                    UnaryASTnode *unode;
-                    BinaryASTnode *bnode;
-                    TernaryASTnode *tnode;
-                    IntLitASTnode *inode;
+                    UnaryAstNode *unode;
+                    BinaryAstNode *bnode;
+                    IntegerAstNode *inode;
 
                     std::cout << "Postfix Form: " << std::endl;
 
-                    unode = dynamic_cast<UnaryASTnode*>(ast.pRoot);
+                    unode = dynamic_cast<UnaryAstNode*>(sAstCtx.pRoot);
                     if (unode != NULL)
                     {
-                        pfv.visit(*unode);
+                        sVisitor.visit(*unode);
                     }
 
-                    bnode = dynamic_cast<BinaryASTnode*>(ast.pRoot);
+                    bnode = dynamic_cast<BinaryAstNode*>(sAstCtx.pRoot);
                     if (bnode != NULL)
                     {
-                        pfv.visit(*bnode);
+                        sVisitor.visit(*bnode);
                     }
 
-                    tnode = dynamic_cast<TernaryASTnode*>(ast.pRoot);
-                    if (tnode != NULL)
-                    {
-                        pfv.visit(*tnode);
-                    }
-
-                    inode = dynamic_cast<IntLitASTnode*>(ast.pRoot);
+                    inode = dynamic_cast<IntegerAstNode*>(sAstCtx.pRoot);
                     if (inode != NULL)
                     {
-                        pfv.visit(*inode);
+                        sVisitor.visit(*inode);
                     }
                     std::cout <<  std::endl; 
                 }
-                ast.clearAST();
+                sAstCtx.clearAST();
             }
         }
 	}

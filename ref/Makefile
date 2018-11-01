@@ -24,9 +24,10 @@ AUTOGEN_FILES = $(SRCDIR)/Parser.cc     \
                 $(SRCDIR)/position.hh   \
                 $(SRCDIR)/stack.hh
 
-SRC_FILES  = $(SRCDIR)/Ast.cc
+SRC_FILES  = $(SRCDIR)/PostFixVisitor.cc
+SRC_FILES += $(SRCDIR)/Expression.cc
+SRC_FILES += $(SRCDIR)/Terminal.cc
 SRC_FILES += $(SRCDIR)/Driver.cc
-SRC_FILES += $(SRCDIR)/PostFixVisitor.cc
 SRC_FILES += $(SRCDIR)/DecafParser.cc
 
 OBJECTS :=  $(OBJDIR)/Parser.o $(OBJDIR)/Scanner.o $(SRC_FILES:$(SRCDIR)/%.cc=$(OBJDIR)/%.o)

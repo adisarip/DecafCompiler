@@ -104,17 +104,17 @@ statement_list:
 	;
 
 statement:
-		assignment_operation
-	|	method_call_statement
+		block_statement
 	|	if_conditional_statement
 	|	for_loop_statement
-	|	block_statement
-	|	return_statement
+	|   assignment_operation ';'
+	|   method_call ';'
+	|	return_statement ';'
 	|	BREAK ';'
 	|	CONTINUE ';'
 	;
 
-assignment_operation: location '=' expr ';' ;
+assignment_operation: location '=' expr ;
 
 if_conditional_statement:
 		IF '(' expr ')' block_statement
@@ -124,11 +124,9 @@ if_conditional_statement:
 for_loop_statement:	FOR ID '=' expr ',' expr block_statement ;
 
 return_statement:
-		RETURN ';'
-	|	RETURN '(' expr ')' ';'
+		RETURN
+	|	RETURN '(' expr ')'
 	;
-
-method_call_statement: method_call ';' ;
 
 method_call:
 		ID '(' expr_list ')'

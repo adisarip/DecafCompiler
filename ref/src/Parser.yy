@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <string>
 #include <vector>
-#include "Ast.hh"
+#include "Modules.hh"
 #include "Scanner.hh"
 #include "Driver.hh"
 
@@ -57,10 +57,10 @@
 %union
 {
     int integerVal;
-    class ASTnode* astnode;
+    class AstNode* pAstNode;
 }
 
-%type <astnode> line expr 
+%type <pAstNode> line expr 
 
 //%destructor { delete $$; } expr
 
@@ -107,19 +107,18 @@
 %%
 
 line:
-        EOL       { $$ = NULL; driver.ast.pRoot = NULL;}
-    |   expr ';'  { $$ = $1; driver.ast.pRoot = $1; }
+        EOL       { $$ = NULL; driver.mAstCtx.pRoot = NULL;}
+    |   expr ';'  { $$ = $1; driver.mAstCtx.pRoot = $1; }
     ;
 
 expr:
         '(' expr ')'           { $$ = $2 ; }
-    |   expr '+' expr          { $$ = new BinaryASTnode("+", $1, $3); }
-    |   expr '-' expr          { $$ = new BinaryASTnode("-", $1, $3); }
-    |   expr '*' expr          { $$ = new BinaryASTnode("*", $1, $3); }
-    |   expr '/' expr          { $$ = new BinaryASTnode("/", $1, $3); }
-    |   expr '?' expr ':' expr { $$ = new TernaryASTnode($1, $3, $5); }
-    |   '!' expr               { $$ = new UnaryASTnode("!", $2); }
-    |   INT_LITERAL            { $$ = new IntLitASTnode($1); }
+    |   expr '+' expr          { $$ = new BinaryAstNode("+", $1, $3); }
+    |   expr '-' expr          { $$ = new BinaryAstNode("-", $1, $3); }
+    |   expr '*' expr          { $$ = new BinaryAstNode("*", $1, $3); }
+    |   expr '/' expr          { $$ = new BinaryAstNode("/", $1, $3); }
+    |   '!' expr               { $$ = new UnaryAstNode("!", $2); }
+    |   INT_LITERAL            { $$ = new IntegerAstNode($1); }
     ;
 
 %%

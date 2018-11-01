@@ -10,10 +10,10 @@
 namespace decaf
 {
 
-Driver::Driver(class ASTContext& _ast)
+Driver::Driver(class AstContext& astCtxParm)
 :trace_scanning(false)
 ,trace_parsing(false)
-,ast(_ast)
+,mAstCtx(astCtxParm)
 {
 }
 
