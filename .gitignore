@@ -1,3 +1,5 @@
 decaf_parser.output
 decaf_parser
 .DS_store
+dparser
+*.o

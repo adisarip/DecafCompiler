@@ -1,7 +1,7 @@
 /* Lexical Analyser / Scanner of the Decaf Programming language */
 
 %{
-    #include "decaf_parser.tab.h"
+    #include "Scanner.hh"
     int lineno = 0;
 %}
 

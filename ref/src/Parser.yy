@@ -6,9 +6,9 @@
 #include <stdio.h>
 #include <string>
 #include <vector>
-#include "ast.h"
-#include "scanner.h"
-#include "driver.h"
+#include "Ast.hh"
+#include "Scanner.hh"
+#include "Driver.hh"
 
 %}
 
@@ -76,15 +76,15 @@
 
 %}
 
-/*
 %token END 0
 %token EOL
 %token <integerVal> INT_LITERAL
 %left '?'
 %left '+' '-'
 %left '*' '/'
-*/
+%right '!'
 
+/*
 %token ID
 %token TRUE FALSE CALLOUT INT BOOLEAN CLASS PROGRAM VOID IF ELSE FOR BREAK CONTINUE RETURN
 %token NUMBER HEX_NUMBER
@@ -102,7 +102,7 @@
 %left '*' '/' '%'
 %right '!'
 %right UMINUS
-
+*/
 
 %%
 
@@ -118,6 +118,7 @@ expr:
     |   expr '*' expr          { $$ = new BinaryASTnode("*", $1, $3); }
     |   expr '/' expr          { $$ = new BinaryASTnode("/", $1, $3); }
     |   expr '?' expr ':' expr { $$ = new TernaryASTnode($1, $3, $5); }
+    |   '!' expr               { $$ = new UnaryASTnode("!", $2); }
     |   INT_LITERAL            { $$ = new IntLitASTnode($1); }
     ;
 

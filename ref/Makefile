@@ -1,28 +1,72 @@
 
+# debug: for printing any variable
+print-%  : ; @echo $* = $($*)
 
-CXX = g++
+
+#############
+# Variables #
+#############
+
+SRCDIR  = ./src
+OBJDIR 	= ./obj
+BINDIR  = ./bin
+TARGET  = dparser
+
+PARSER        = $(SRCDIR)/Parser.cc
+PARSER_FILES  = $(SRCDIR)/Parser.yy
+SCANNER       = $(SRCDIR)/Scanner.cc
+SCANNER_FILES = $(SRCDIR)/Scanner.ll
+
+BISON_AUTOGEN_FILES = parser.hh location.hh position.hh stack.hh
+
+AUTOGEN_FILES =	$(SRCDIR)/Parser.cc	\
+		$(SRCDIR)/Parser.hh	\
+		$(SRCDIR)/Scanner.cc	\
+		$(SRCDIR)/location.hh	\
+		$(SRCDIR)/position.hh	\
+		$(SRCDIR)/stack.hh
+
+SRC_FILES  = $(SRCDIR)/Ast.cc
+SRC_FILES += $(SRCDIR)/Driver.cc
+SRC_FILES += $(SRCDIR)/PostFixVisitor.cc
+SRC_FILES += $(SRCDIR)/DecafParser.cc
+
+OBJECTS :=  $(OBJDIR)/Parser.o $(OBJDIR)/Scanner.o $(SRC_FILES:$(SRCDIR)/%.cc=$(OBJDIR)/%.o)
+
+CXX      = g++
 CXXFLAGS = -W -Wall -Wextra -ansi -g
-INCLUDE = -I/usr/local/opt/flex/include/ -I./
-
-all: decaf_parser
-
-# generate parser and scanner
-parser.cc: parser.yy
-	bison -o parser.cc --defines=parser.h parser.yy
-
-scanner.cc: scanner.ll
-	flex -o scanner.cc scanner.ll
+INCLUDE  = -I$(SRCDIR)/ -I/usr/local/opt/flex/include/
+LDFLAGS  = 
 
 
-# Implicit rule to compile c++ files
-%.o: %.cc
-	$(CXX) $(CXXFLAGS) $(INCLUDE) -c -o $@ $<
+##############################
+# Rules building the targets #
+##############################
+
+all: $(TARGET)
 
 
-# Link executable
-decaf_parser: parser.o scanner.o driver.o ast.o
-	$(CXX) $(LDFLAGS) -o $@ parser.o scanner.o driver.o ast.o
-	rm *.o
+$(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.cc
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
 
-clean: 
-	rm -rf parser.cc parser.h scanner.cc location.hh  position.hh stack.hh *.o decaf_parser
+
+$(PARSER): $(PARSER_FILES)
+	bison -o $(PARSER) --defines=$(SRCDIR)/Parser.hh $(PARSER_FILES)
+	@echo "Parser Built Successfully"
+	
+
+$(SCANNER): $(SCANNER_FILES)
+	flex -o $(SCANNER) $(SCANNER_FILES)
+	@echo "Scanner Built Successfully"
+
+
+$(TARGET): $(PARSER) $(SCANNER) $(OBJECTS)
+	$(CXX) $(LDFLAGS) $(OBJECTS) -o $@
+	mv $(TARGET) $(BINDIR)
+	@echo "$(TARGET) Built Successfully."
+
+clean:
+	@echo "Cleaning all the object files and binaries."
+	@echo "Objects are ... $(OBJECTS)"
+	rm -f core
+	rm -f $(OBJECTS) $(BINDIR)/$(TARGET) $(AUTOGEN_FILES)

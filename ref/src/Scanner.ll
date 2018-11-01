@@ -4,7 +4,7 @@
 %{ /*** C/C++ Declarations ***/
 
 #include <string>
-#include "scanner.h"
+#include "Scanner.hh"
 
 /* import the parser's token type into a local typedef */
 typedef decaf::Parser::token token;

@@ -1,6 +1,6 @@
-#line 1 "scanner.cc"
+#line 1 "./src/Scanner.cc"
 
-#line 3 "scanner.cc"
+#line 3 "./src/Scanner.cc"
 
 #define  YY_INT_ALIGNED short int
 
@@ -488,13 +488,13 @@ static const flex_int16_t yy_rule_linenum[5] =
 #define yymore() yymore_used_but_not_detected
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
-#line 1 "scanner.ll"
+#line 1 "./src/Scanner.ll"
 /* $Id$ -*- mode: c++ -*- */
 /** \file scanner.ll Define the example Flex lexical scanner */
-#line 5 "scanner.ll"
+#line 5 "./src/Scanner.ll"
 
 #include <string>
-#include "scanner.h"
+#include "Scanner.hh"
 
 /* import the parser's token type into a local typedef */
 typedef decaf::Parser::token token;
@@ -508,7 +508,7 @@ typedef decaf::Parser::token_type token_type;
  * on Win32. The C++ scanner uses STL streams instead. */
 #define YY_NO_UNISTD_H
 
-#line 511 "scanner.cc"
+#line 511 "./src/Scanner.cc"
 /*** Flex Declarations and Options ***/
 /* enable c++ scanner class generation */
 /* change the name of the scanner class. results in "decafFlexLexer" */
@@ -519,10 +519,10 @@ typedef decaf::Parser::token_type token_type;
 /* enables the use of start condition stacks */
 /* The following paragraph suffices to track locations accurately. Each time
  * yylex is invoked, the begin position is moved onto the end position. */
-#line 47 "scanner.ll"
+#line 47 "./src/Scanner.ll"
     #define YY_USER_ACTION  yylloc->columns(yyleng);
-#line 524 "scanner.cc"
-#line 525 "scanner.cc"
+#line 524 "./src/Scanner.cc"
+#line 525 "./src/Scanner.cc"
 
 #define INITIAL 0
 
@@ -714,17 +714,17 @@ YY_DECL
 
 	{
 /* %% [7.0] user's declarations go here */
-#line 50 "scanner.ll"
+#line 50 "./src/Scanner.ll"
 
 
-#line 53 "scanner.ll"
+#line 53 "./src/Scanner.ll"
  /* code to place at the beginning of yylex() */
 
     // reset location
     yylloc->step();
 
 
-#line 727 "scanner.cc"
+#line 727 "./src/Scanner.cc"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -801,7 +801,7 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 59 "scanner.ll"
+#line 59 "./src/Scanner.ll"
 {
                 yylval->integerVal = atoi(yytext);
                 return token::INT_LITERAL;
@@ -810,7 +810,7 @@ YY_RULE_SETUP
 /* gobble up white-spaces */
 case 2:
 YY_RULE_SETUP
-#line 66 "scanner.ll"
+#line 66 "./src/Scanner.ll"
 {
                 yylloc->step();
             }
@@ -819,7 +819,7 @@ YY_RULE_SETUP
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 71 "scanner.ll"
+#line 71 "./src/Scanner.ll"
 {
                 yylloc->lines(yyleng);
                 yylloc->step();
@@ -829,17 +829,17 @@ YY_RULE_SETUP
 /* pass all other characters up to bison */
 case 4:
 YY_RULE_SETUP
-#line 78 "scanner.ll"
+#line 78 "./src/Scanner.ll"
 {
                 return static_cast<token_type>(*yytext);
             }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 83 "scanner.ll"
+#line 83 "./src/Scanner.ll"
 ECHO;
 	YY_BREAK
-#line 842 "scanner.cc"
+#line 842 "./src/Scanner.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1958,7 +1958,7 @@ void yyfree (void * ptr )
 
 /* %ok-for-header */
 
-#line 83 "scanner.ll"
+#line 83 "./src/Scanner.ll"
 
 
 namespace decaf {

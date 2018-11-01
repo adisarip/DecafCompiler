@@ -31,14 +31,14 @@
 // version 2.2 of Bison.
 
 /**
- ** \file parser.h
+ ** \file ./src/Parser.hh
  ** Define the decaf::parser class.
  */
 
 // C++ LALR(1) parser skeleton written by Akim Demaille.
 
-#ifndef YY_DECAF_PARSER_H_INCLUDED
-# define YY_DECAF_PARSER_H_INCLUDED
+#ifndef YY_DECAF_SRC_PARSER_HH_INCLUDED
+# define YY_DECAF_SRC_PARSER_HH_INCLUDED
 
 
 # include <cstdlib> // std::abort
@@ -117,7 +117,7 @@
 
 
 namespace decaf {
-#line 121 "parser.h" // lalr1.cc:395
+#line 121 "./src/Parser.hh" // lalr1.cc:395
 
 
 
@@ -131,12 +131,12 @@ namespace decaf {
     /// Symbol semantic values.
     union semantic_type
     {
-    #line 58 "parser.yy" // lalr1.cc:395
+    #line 58 "./src/Parser.yy" // lalr1.cc:395
 
     int integerVal;
     class ASTnode* astnode;
 
-#line 140 "parser.h" // lalr1.cc:395
+#line 140 "./src/Parser.hh" // lalr1.cc:395
     };
 #else
     typedef YYSTYPE semantic_type;
@@ -468,12 +468,12 @@ namespace decaf {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 42,     ///< Last index in yytable_.
+      yylast_ = 52,     ///< Last index in yytable_.
       yynnts_ = 3,  ///< Number of nonterminal symbols.
-      yyfinal_ = 7, ///< Termination state number.
+      yyfinal_ = 9, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
-      yyntokens_ = 14  ///< Number of tokens.
+      yyntokens_ = 15  ///< Number of tokens.
     };
 
 
@@ -484,9 +484,9 @@ namespace decaf {
 
 
 } // decaf
-#line 488 "parser.h" // lalr1.cc:395
+#line 488 "./src/Parser.hh" // lalr1.cc:395
 
 
 
 
-#endif // !YY_DECAF_PARSER_H_INCLUDED
+#endif // !YY_DECAF_SRC_PARSER_HH_INCLUDED

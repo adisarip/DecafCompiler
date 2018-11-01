@@ -34,18 +34,18 @@
 #define yylex   decaflex
 
 // First part of user declarations.
-#line 4 "parser.yy" // lalr1.cc:407
+#line 4 "./src/Parser.yy" // lalr1.cc:407
  /*** C/C++ Declarations ***/
 
 #include <stdio.h>
 #include <string>
 #include <vector>
-#include "ast.h"
-#include "scanner.h"
-#include "driver.h"
+#include "Ast.hh"
+#include "Scanner.hh"
+#include "Driver.hh"
 
 
-#line 49 "parser.cc" // lalr1.cc:407
+#line 49 "./src/Parser.cc" // lalr1.cc:407
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -55,10 +55,10 @@
 #  endif
 # endif
 
-#include "parser.h"
+#include "Parser.hh"
 
 // User implementation prologue.
-#line 69 "parser.yy" // lalr1.cc:415
+#line 69 "./src/Parser.yy" // lalr1.cc:415
 
 
 /* this "connects" the bison parser in the driver to the flex scanner class
@@ -68,7 +68,7 @@
 #define yylex driver.lexer->lex
 
 
-#line 72 "parser.cc" // lalr1.cc:415
+#line 72 "./src/Parser.cc" // lalr1.cc:415
 
 
 #ifndef YY_
@@ -163,7 +163,7 @@
 
 
 namespace decaf {
-#line 167 "parser.cc" // lalr1.cc:491
+#line 167 "./src/Parser.cc" // lalr1.cc:491
 
   /* Return YYSTR after stripping away unnecessary quotes and
      backslashes, so that it's suitable for yyerror.  The heuristic is
@@ -511,13 +511,13 @@ namespace decaf {
 
 
     // User initialization code.
-    #line 42 "parser.yy" // lalr1.cc:750
+    #line 42 "./src/Parser.yy" // lalr1.cc:750
 {
     // initialize the initial location object
     yyla.location.begin.filename = yyla.location.end.filename = &driver.streamname;
 }
 
-#line 521 "parser.cc" // lalr1.cc:750
+#line 521 "./src/Parser.cc" // lalr1.cc:750
 
     /* Initialize the stack.  The initial state will be set in
        yynewstate, since the latter expects the semantical and the
@@ -631,61 +631,67 @@ namespace decaf {
           switch (yyn)
             {
   case 2:
-#line 90 "parser.yy" // lalr1.cc:870
+#line 110 "./src/Parser.yy" // lalr1.cc:870
     { (yylhs.value.astnode) = NULL; driver.ast.pRoot = NULL;}
-#line 637 "parser.cc" // lalr1.cc:870
+#line 637 "./src/Parser.cc" // lalr1.cc:870
     break;
 
   case 3:
-#line 91 "parser.yy" // lalr1.cc:870
+#line 111 "./src/Parser.yy" // lalr1.cc:870
     { (yylhs.value.astnode) = (yystack_[1].value.astnode); driver.ast.pRoot = (yystack_[1].value.astnode); }
-#line 643 "parser.cc" // lalr1.cc:870
+#line 643 "./src/Parser.cc" // lalr1.cc:870
     break;
 
   case 4:
-#line 95 "parser.yy" // lalr1.cc:870
+#line 115 "./src/Parser.yy" // lalr1.cc:870
     { (yylhs.value.astnode) = (yystack_[1].value.astnode) ; }
-#line 649 "parser.cc" // lalr1.cc:870
+#line 649 "./src/Parser.cc" // lalr1.cc:870
     break;
 
   case 5:
-#line 96 "parser.yy" // lalr1.cc:870
+#line 116 "./src/Parser.yy" // lalr1.cc:870
     { (yylhs.value.astnode) = new BinaryASTnode("+", (yystack_[2].value.astnode), (yystack_[0].value.astnode)); }
-#line 655 "parser.cc" // lalr1.cc:870
+#line 655 "./src/Parser.cc" // lalr1.cc:870
     break;
 
   case 6:
-#line 97 "parser.yy" // lalr1.cc:870
+#line 117 "./src/Parser.yy" // lalr1.cc:870
     { (yylhs.value.astnode) = new BinaryASTnode("-", (yystack_[2].value.astnode), (yystack_[0].value.astnode)); }
-#line 661 "parser.cc" // lalr1.cc:870
+#line 661 "./src/Parser.cc" // lalr1.cc:870
     break;
 
   case 7:
-#line 98 "parser.yy" // lalr1.cc:870
+#line 118 "./src/Parser.yy" // lalr1.cc:870
     { (yylhs.value.astnode) = new BinaryASTnode("*", (yystack_[2].value.astnode), (yystack_[0].value.astnode)); }
-#line 667 "parser.cc" // lalr1.cc:870
+#line 667 "./src/Parser.cc" // lalr1.cc:870
     break;
 
   case 8:
-#line 99 "parser.yy" // lalr1.cc:870
+#line 119 "./src/Parser.yy" // lalr1.cc:870
     { (yylhs.value.astnode) = new BinaryASTnode("/", (yystack_[2].value.astnode), (yystack_[0].value.astnode)); }
-#line 673 "parser.cc" // lalr1.cc:870
+#line 673 "./src/Parser.cc" // lalr1.cc:870
     break;
 
   case 9:
-#line 100 "parser.yy" // lalr1.cc:870
+#line 120 "./src/Parser.yy" // lalr1.cc:870
     { (yylhs.value.astnode) = new TernaryASTnode((yystack_[4].value.astnode), (yystack_[2].value.astnode), (yystack_[0].value.astnode)); }
-#line 679 "parser.cc" // lalr1.cc:870
+#line 679 "./src/Parser.cc" // lalr1.cc:870
     break;
 
   case 10:
-#line 101 "parser.yy" // lalr1.cc:870
+#line 121 "./src/Parser.yy" // lalr1.cc:870
+    { (yylhs.value.astnode) = new UnaryASTnode("!", (yystack_[0].value.astnode)); }
+#line 685 "./src/Parser.cc" // lalr1.cc:870
+    break;
+
+  case 11:
+#line 122 "./src/Parser.yy" // lalr1.cc:870
     { (yylhs.value.astnode) = new IntLitASTnode((yystack_[0].value.integerVal)); }
-#line 685 "parser.cc" // lalr1.cc:870
+#line 691 "./src/Parser.cc" // lalr1.cc:870
     break;
 
 
-#line 689 "parser.cc" // lalr1.cc:870
+#line 695 "./src/Parser.cc" // lalr1.cc:870
             default:
               break;
             }
@@ -943,78 +949,80 @@ namespace decaf {
   }
 
 
-  const signed char Parser::yypact_ninf_ = -8;
+  const signed char Parser::yypact_ninf_ = -7;
 
   const signed char Parser::yytable_ninf_ = -1;
 
   const signed char
   Parser::yypact_[] =
   {
-      12,    -8,    -8,    18,     3,    27,    19,    -8,    18,    18,
-      18,    18,    18,    -8,    -8,     5,    -7,    -7,    -8,    -8,
-      18,    33
+      14,    -7,    -7,    28,    28,     4,    36,    -7,    22,    -7,
+      28,    28,    28,    28,    28,    -7,    -7,     7,    -6,    -6,
+      -7,    -7,    28,    43
   };
 
   const unsigned char
   Parser::yydefact_[] =
   {
-       0,     2,    10,     0,     0,     0,     0,     1,     0,     0,
-       0,     0,     0,     3,     4,     0,     5,     6,     7,     8,
-       0,     9
+       0,     2,    11,     0,     0,     0,     0,    10,     0,     1,
+       0,     0,     0,     0,     0,     3,     4,     0,     5,     6,
+       7,     8,     0,     9
   };
 
   const signed char
   Parser::yypgoto_[] =
   {
-      -8,    -8,    -3
+      -7,    -7,    -3
   };
 
   const signed char
   Parser::yydefgoto_[] =
   {
-      -1,     4,     5
+      -1,     5,     6
   };
 
   const unsigned char
   Parser::yytable_[] =
   {
-       6,    11,    12,     7,     0,    15,    16,    17,    18,    19,
-       8,     9,    10,    11,    12,     1,     2,    21,    20,     0,
-       0,     0,     2,     3,     8,     9,    10,    11,    12,     3,
-       0,    14,     8,     9,    10,    11,    12,    13,     8,     9,
-      10,    11,    12
+       7,     8,    13,    14,     9,     0,     0,    17,    18,    19,
+      20,    21,    10,    11,    12,    13,    14,     1,     2,    23,
+       0,    22,     0,     0,     3,     0,     4,    10,    11,    12,
+      13,    14,     2,     0,     0,    16,     0,     0,     3,     0,
+       4,    10,    11,    12,    13,    14,     0,    15,    10,    11,
+      12,    13,    14
   };
 
   const signed char
   Parser::yycheck_[] =
   {
-       3,     8,     9,     0,    -1,     8,     9,    10,    11,    12,
-       5,     6,     7,     8,     9,     3,     4,    20,    13,    -1,
-      -1,    -1,     4,    11,     5,     6,     7,     8,     9,    11,
-      -1,    12,     5,     6,     7,     8,     9,    10,     5,     6,
+       3,     4,     8,     9,     0,    -1,    -1,    10,    11,    12,
+      13,    14,     5,     6,     7,     8,     9,     3,     4,    22,
+      -1,    14,    -1,    -1,    10,    -1,    12,     5,     6,     7,
+       8,     9,     4,    -1,    -1,    13,    -1,    -1,    10,    -1,
+      12,     5,     6,     7,     8,     9,    -1,    11,     5,     6,
        7,     8,     9
   };
 
   const unsigned char
   Parser::yystos_[] =
   {
-       0,     3,     4,    11,    15,    16,    16,     0,     5,     6,
-       7,     8,     9,    10,    12,    16,    16,    16,    16,    16,
-      13,    16
+       0,     3,     4,    10,    12,    16,    17,    17,    17,     0,
+       5,     6,     7,     8,     9,    11,    13,    17,    17,    17,
+      17,    17,    14,    17
   };
 
   const unsigned char
   Parser::yyr1_[] =
   {
-       0,    14,    15,    15,    16,    16,    16,    16,    16,    16,
-      16
+       0,    15,    16,    16,    17,    17,    17,    17,    17,    17,
+      17,    17
   };
 
   const unsigned char
   Parser::yyr2_[] =
   {
        0,     2,     1,     2,     3,     3,     3,     3,     3,     5,
-       1
+       2,     1
   };
 
 
@@ -1025,15 +1033,16 @@ namespace decaf {
   const Parser::yytname_[] =
   {
   "END", "error", "$undefined", "EOL", "INT_LITERAL", "'?'", "'+'", "'-'",
-  "'*'", "'/'", "';'", "'('", "')'", "':'", "$accept", "line", "expr", YY_NULLPTR
+  "'*'", "'/'", "'!'", "';'", "'('", "')'", "':'", "$accept", "line",
+  "expr", YY_NULLPTR
   };
 
 #if YYDEBUG
   const unsigned char
   Parser::yyrline_[] =
   {
-       0,    90,    90,    91,    95,    96,    97,    98,    99,   100,
-     101
+       0,   110,   110,   111,   115,   116,   117,   118,   119,   120,
+     121,   122
   };
 
   // Print the state stack on the debug stream.
@@ -1076,9 +1085,9 @@ namespace decaf {
      0,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-      11,    12,     8,     6,     2,     7,     2,     9,     2,     2,
-       2,     2,     2,     2,     2,     2,     2,     2,    13,    10,
+       2,     2,     2,    10,     2,     2,     2,     2,     2,     2,
+      12,    13,     8,     6,     2,     7,     2,     9,     2,     2,
+       2,     2,     2,     2,     2,     2,     2,     2,    14,    11,
        2,     2,     2,     5,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -1113,8 +1122,8 @@ namespace decaf {
 
 
 } // decaf
-#line 1117 "parser.cc" // lalr1.cc:1181
-#line 104 "parser.yy" // lalr1.cc:1182
+#line 1126 "./src/Parser.cc" // lalr1.cc:1181
+#line 125 "./src/Parser.yy" // lalr1.cc:1182
 
 
 void decaf::Parser::error(const Parser::location_type& l,

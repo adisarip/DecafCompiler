@@ -31,18 +31,18 @@
 // version 2.2 of Bison.
 
 /**
- ** \file location.hh
+ ** \file ./src/location.hh
  ** Define the decaf::location class.
  */
 
-#ifndef YY_DECAF_LOCATION_HH_INCLUDED
-# define YY_DECAF_LOCATION_HH_INCLUDED
+#ifndef YY_DECAF_SRC_LOCATION_HH_INCLUDED
+# define YY_DECAF_SRC_LOCATION_HH_INCLUDED
 
 # include "position.hh"
 
 
 namespace decaf {
-#line 46 "location.hh" // location.cc:331
+#line 46 "./src/location.hh" // location.cc:331
   /// Abstract a location.
   class location
   {
@@ -185,5 +185,5 @@ namespace decaf {
 
 
 } // decaf
-#line 189 "location.hh" // location.cc:331
-#endif // !YY_DECAF_LOCATION_HH_INCLUDED
+#line 189 "./src/location.hh" // location.cc:331
+#endif // !YY_DECAF_SRC_LOCATION_HH_INCLUDED

@@ -13,7 +13,7 @@
     )
 #endif
 
-#include "parser.h"
+#include "Parser.hh"
 
 #ifndef __FLEX_LEXER_H
 #define yyFlexLexer decafFlexLexer
