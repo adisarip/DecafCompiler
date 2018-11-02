@@ -2,14 +2,14 @@
 #ifndef AST_H
 #define AST_H
 
-#include "AstVisitor.hh"
+#include "Visitor.hh"
 
 
 class AstNode
 {
   public:
     virtual ~AstNode() {}
-    virtual void accept(AstVisitor& vParm) = 0;
+    virtual void accept(Visitor& vParm) = 0;
 };
 
 

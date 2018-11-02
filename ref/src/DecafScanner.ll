@@ -25,7 +25,7 @@
 
 [a-zA-Z_][a-zA-Z0-9_]*	    {return ID;}
 [0-9][0-9]*                 {yylval = atoi(yytext); return NUMBER;}
-0x[0-9a-fA-F]+              {return HEX_NUMBER;}
+0x[0-9a-fA-F]+              {yylval = atol(yytext); return HEX_NUMBER;}
 
 "="     {return '=';}
 "+"     {return '+';}

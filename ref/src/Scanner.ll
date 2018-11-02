@@ -55,33 +55,64 @@ typedef decaf::Parser::token_type token_type;
     yylloc->step();
 %}
 
-[0-9]+      {
-                yylval->integerVal = atoi(yytext);
-                return token::INT_LITERAL;
-            }
+[0-9]+ {
+    yylval->integerVal = atoi(yytext);
+    return token::NUMBER;
+}
+
+0x[0-9a-fA-F]+ {
+    yylval->hexVal = atol(yytext);
+    return token::HEX_NUMBER;
+}
+
+"="     {return '=';}
+"+"     {return '+';}
+"-"		{return '-';}
+"*"		{return '*';}
+"/"		{return '/';}
+"%"     {return '%';}
+"<"     {return '<';}
+">"     {return '>';}
+"<="    {return OP_LET;}
+">="    {return OP_GET;}
+"=="    {return OP_EEQ;}
+"!="    {return OP_NEQ;}
+"&&"    {return OP_AND;}
+"||"    {return OP_OR;}
+"+="    {return OP_PLUS_EQ;}
+"-="    {return OP_MINUS_EQ;}
+"!"     {return '!';}
+"("		{return '(';}
+")"		{return ')';}
+"["     {return '[';}
+"]"     {return ']';}
+"{"     {return '{';}
+"}"     {return '}';}
+","     {return ',';}
+";"     {return ';';}
 
 
- /* gobble up white-spaces */
-[ \t\r]+    {
-                yylloc->step();
-            }
+ /* gobble up white-spaces & end-of-lines */
+[ \t\r]+ {
+    yylloc->step();
+}
 
- /* gobble up end-of-lines */
-\n          {
-                yylloc->lines(yyleng);
-                yylloc->step();
-                return token::EOL;
-            }
+\n {
+    yylloc->lines(yyleng);
+    yylloc->step();
+    return token::EOL;
+}
 
  /* pass all other characters up to bison */
-.           {
-                return static_cast<token_type>(*yytext);
-            }
+. {
+    return static_cast<token_type>(*yytext);
+}
 
 
 %% /*** Additional Code ***/
 
-namespace decaf {
+namespace decaf
+{
 
 Scanner::Scanner(std::istream* in,
 		         std::ostream* out)
@@ -98,7 +129,8 @@ void Scanner::set_debug(bool b)
     yy_flex_debug = b;
 }
 
-}
+} /* namespace decaf */
+
 
 /* This implementation of DecafFlexLexer::yylex() is required to fill the
  * vtable of the class DecafFlexLexer. We define the scanner's main yylex

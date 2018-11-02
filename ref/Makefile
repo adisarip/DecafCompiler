@@ -24,7 +24,7 @@ AUTOGEN_FILES = $(SRCDIR)/Parser.cc     \
                 $(SRCDIR)/position.hh   \
                 $(SRCDIR)/stack.hh
 
-SRC_FILES  = $(SRCDIR)/PostFixVisitor.cc
+SRC_FILES  = $(SRCDIR)/AstVisitor.cc
 SRC_FILES += $(SRCDIR)/Expression.cc
 SRC_FILES += $(SRCDIR)/Terminal.cc
 SRC_FILES += $(SRCDIR)/Driver.cc

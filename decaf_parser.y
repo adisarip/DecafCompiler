@@ -114,7 +114,11 @@ statement:
 	|	CONTINUE ';'
 	;
 
-assignment_operation: location '=' expr ;
+ assignment_operation:
+        location '=' expr
+	|   location OP_PLUS_EQ expr
+	|   location OP_MINUS_EQ expr
+	;
 
 if_conditional_statement:
 		IF '(' expr ')' block_statement

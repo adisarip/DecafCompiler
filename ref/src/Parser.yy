@@ -10,6 +10,10 @@
 #include "Scanner.hh"
 #include "Driver.hh"
 
+extern union Node yylval;
+class Program* start = NULL;
+int errors=0;
+
 %}
 
 /*** yacc/bison Declarations ***/
@@ -56,7 +60,9 @@
 
 %union
 {
-    int integerVal;
+    int            integerVal;
+    long int       hexVal;
+    bool           boolValue;
     class AstNode* pAstNode;
 }
 
@@ -78,13 +84,21 @@
 
 %token END 0
 %token EOL
-%token <integerVal> INT_LITERAL
-%left '?'
-%left '+' '-'
-%left '*' '/'
-%right '!'
+%token ID
+%token TRUE FALSE CALLOUT INT BOOLEAN CLASS PROGRAM VOID IF ELSE FOR BREAK CONTINUE RETURN
+%token NUMBER HEX_NUMBER
+%token ALPHA ALPHA_NUM CHAR STRING
 
-/*
+%left OP_OR
+%left OP_AND
+%left OP_EEQ OP_NEQ
+%left '<' OP_LET '>' OP_GET
+%left '+' '-'
+%left '*' '/' '%'
+%right '!'
+%right UMINUS
+
+/***************
 %token ID
 %token TRUE FALSE CALLOUT INT BOOLEAN CLASS PROGRAM VOID IF ELSE FOR BREAK CONTINUE RETURN
 %token NUMBER HEX_NUMBER
@@ -102,7 +116,7 @@
 %left '*' '/' '%'
 %right '!'
 %right UMINUS
-*/
+******************/
 
 %%
 
@@ -112,14 +126,50 @@ line:
     ;
 
 expr:
-        '(' expr ')'           { $$ = $2 ; }
-    |   expr '+' expr          { $$ = new BinaryAstNode("+", $1, $3); }
-    |   expr '-' expr          { $$ = new BinaryAstNode("-", $1, $3); }
-    |   expr '*' expr          { $$ = new BinaryAstNode("*", $1, $3); }
-    |   expr '/' expr          { $$ = new BinaryAstNode("/", $1, $3); }
-    |   '!' expr               { $$ = new UnaryAstNode("!", $2); }
-    |   INT_LITERAL            { $$ = new IntegerAstNode($1); }
+        literal          { $$ = $1; }
+    |   binary_operation { $$ = $1; }
+    |   unary_operation  { $$ = $1; }
+    |   '(' expr ')'     { $$ = $2; }
     ;
+
+literal:
+        int_literal  { $$ = $1; }
+    |   bool_literal { $$ = $1; }
+    ;
+
+int_literal:
+        decimal_literal { $$ = $1; }
+    |   hex_literal     { $$ = $1; }
+    ;
+
+decimal_literal : NUMBER { $$ = new IntegerAstNode(yylval->integerVal) };
+hex_literal : HEX_NUMBER { $$ = new HexAstNode(yylval->hexVal) };
+bool_literal:
+        TRUE  { $$ = new BooleanAstNode(true); }
+    |   FALSE { $$ = new BooleanAstNode(false); }
+    ;
+
+binary_operation:
+        expr '+' expr    { $$ = new BinaryAstNode("+", $1, $3); }
+    |   expr '-' expr    { $$ = new BinaryAstNode("-", $1, $3); }
+    |   expr '*' expr    { $$ = new BinaryAstNode("*", $1, $3); }
+    |   expr '/' expr    { $$ = new BinaryAstNode("/", $1, $3); }
+    |   expr '%' expr    { $$ = new BinaryAstNode("%", $1, $3); }
+    |   expr '<' expr    { $$ = new BinaryAstNode("<", $1, $3); }
+    |   expr '>' expr    { $$ = new BinaryAstNode(">", $1, $3); }
+    |   expr OP_EEQ expr { $$ = new BinaryAstNode("==", $1, $3); }
+    |   expr OP_GET expr { $$ = new BinaryAstNode(">=", $1, $3); }
+    |   expr OP_LET expr { $$ = new BinaryAstNode("<=", $1, $3); }
+    |   expr OP_NEQ expr { $$ = new BinaryAstNode("!=", $1, $3); }
+    |   expr OP_AND expr { $$ = new BinaryAstNode("&&", $1, $3); }
+    |   expr OP_OR  expr { $$ = new BinaryAstNode("||", $1, $3); }
+    ;
+
+unary_operation:
+        '-' expr %prec UMINUS { $$ = new UnaryAstNode("-", $2); }
+    |   '!' expr              { $$ = new UnaryAstNode("!", $2); }
+    ;
+
 
 %%
 

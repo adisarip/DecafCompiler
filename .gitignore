@@ -3,3 +3,4 @@ decaf_parser
 .DS_store
 dparser
 *.o
+cscope.out
