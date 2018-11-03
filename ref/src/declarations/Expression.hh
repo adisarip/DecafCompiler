@@ -24,7 +24,11 @@ class Expression : public AstNode
     {
         return mExprType;
     }
-    void accept(Visitor& vParm);
+    
+    virtual void accept(Visitor& vParm)
+    {
+        vParm.visit(*this);
+    };
 
   protected:
     ExpressionType mExprType;

@@ -12,7 +12,10 @@ using namespace std;
 class MethodCall : public Statement, public Expression
 {
   public:
-    // Constructor Default
+    virtual void accept(Visitor& vParm)
+    {
+        vParm.visit(*this);
+    }
 
   protected:
     string mMethodName;

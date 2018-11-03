@@ -12,6 +12,7 @@ class MethodDeclarationsList : public AstNode
 {
   public:
     void add(class MethodDeclaration* pMethodDeclParm);
+    virtual void accept(Visitor& vParm);
 
   private:
     vector<class MethodDeclaration*> mMethodDeclList;

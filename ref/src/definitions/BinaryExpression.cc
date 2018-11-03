@@ -11,6 +11,7 @@ BinaryExpression::BinaryExpression(std::string binOperatorParm,
 ,mLeftPtr(mLeftPtrParm)
 ,mRightPtr(mRightPtrParm)
 {
+    mExprType = Expression::BINARY;
 }
 
 Expression* BinaryExpression::getLeft()

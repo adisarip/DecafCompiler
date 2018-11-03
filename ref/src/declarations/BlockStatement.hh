@@ -6,6 +6,7 @@
 #include "Ast.hh"
 #include "Visitor.hh"
 #include "StatementsList.hh"
+#include "VariableDeclarationsList.hh"
 using namespace std;
 
 class BlockStatement : public Statement
@@ -13,6 +14,9 @@ class BlockStatement : public Statement
   public:
     BlockStatement(class VariableDeclarationsList* pVarDeclListParm,
                    class StatementsList* pStmtListParm);
+  
+    virtual bool hasReturnValue();
+    virtual void accept(Visitor& vParm);
 
   private:
     class VariableDeclarationsList* mVarDeclListPtr; // list of variables declarations

@@ -11,6 +11,7 @@ class CharacterLiteral : public Literal
 {
   public:
     CharacterLiteral(char charValueParm);
+    virtual void accept(Visitor& vParm);
 
   private:
     char mCharValue;

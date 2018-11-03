@@ -7,34 +7,70 @@ print-%  : ; @echo $* = $($*)
 # Variables #
 #############
 
-SRCDIR  = ./src
-OBJDIR 	= ./obj
-BINDIR  = ./bin
-TARGET  = dparser
+SRCDIR = ./src
+OBJDIR = ./obj
+BINDIR = ./bin
+DECLRS = ./src/Declarations
+DEFINS = ./src/Definitions
+DRIVER = ./src/Driver
+TARGET = dparser
 
-PARSER        = $(SRCDIR)/Parser.cc
-PARSER_FILES  = $(SRCDIR)/Parser.yy
-SCANNER       = $(SRCDIR)/Scanner.cc
-SCANNER_FILES = $(SRCDIR)/Scanner.ll
+PARSER        = $(DRIVER)/Parser.cc
+PARSER_FILES  = $(DRIVER)/Parser.yy
+SCANNER       = $(DRIVER)/Scanner.cc
+SCANNER_FILES = $(DRIVER)/Scanner.ll
 
-AUTOGEN_FILES = $(SRCDIR)/Parser.cc     \
-                $(SRCDIR)/Parser.hh     \
-                $(SRCDIR)/Scanner.cc    \
-                $(SRCDIR)/location.hh   \
-                $(SRCDIR)/position.hh   \
-                $(SRCDIR)/stack.hh
+AUTOGEN_FILES = $(DRIVER)/Parser.cc     \
+                $(DRIVER)/Parser.hh     \
+                $(DRIVER)/Scanner.cc    \
+                $(DRIVER)/location.hh   \
+                $(DRIVER)/position.hh   \
+                $(DRIVER)/stack.hh
 
-SRC_FILES  = $(SRCDIR)/AstVisitor.cc
-SRC_FILES += $(SRCDIR)/Expression.cc
-SRC_FILES += $(SRCDIR)/Terminal.cc
-SRC_FILES += $(SRCDIR)/Driver.cc
-SRC_FILES += $(SRCDIR)/DecafParser.cc
+SRC_FILES  = $(DEFINS)/Visitor.cc
+SRC_FILES += $(DEFINS)/Program.cc
+SRC_FILES += $(DEFINS)/FieldDeclaration.cc
+SRC_FILES += $(DEFINS)/FieldDeclarationsList.cc
+SRC_FILES += $(DEFINS)/MethodDeclaration.cc
+SRC_FILES += $(DEFINS)/MethodDeclarationsList.cc
+SRC_FILES += $(DEFINS)/Variable.cc
+SRC_FILES += $(DEFINS)/VariablesList.cc
+SRC_FILES += $(DEFINS)/VariableLocation.cc
+SRC_FILES += $(DEFINS)/Argument.cc
+SRC_FILES += $(DEFINS)/ArgumentsList.cc
+SRC_FILES += $(DEFINS)/StatementsList.cc
+SRC_FILES += $(DEFINS)/BlockStatement.cc
+SRC_FILES += $(DEFINS)/IfElseStatement.cc
+SRC_FILES += $(DEFINS)/ForStatement.cc
+SRC_FILES += $(DEFINS)/AssignmentStatement.cc
+SRC_FILES += $(DEFINS)/UserDefinedMethodCall.cc
+SRC_FILES += $(DEFINS)/CalloutMethodCall.cc
+SRC_FILES += $(DEFINS)/CalloutArgument.cc
+SRC_FILES += $(DEFINS)/CalloutArgumentsList.cc
+SRC_FILES += $(DEFINS)/ReturnStatement.cc
+SRC_FILES += $(DEFINS)/BreakStatement.cc
+SRC_FILES += $(DEFINS)/ContinueStatement.cc
+SRC_FILES += $(DEFINS)/IntegerLiteral.cc
+SRC_FILES += $(DEFINS)/BooleanLiteral.cc
+SRC_FILES += $(DEFINS)/CharacterLiteral.cc
+SRC_FILES += $(DEFINS)/StringLiteral.cc
+SRC_FILES += $(DEFINS)/HexadecimalLiteral.cc
+SRC_FILES += $(DEFINS)/ExpressionsList.cc
+SRC_FILES += $(DEFINS)/UnaryExpression.cc
+SRC_FILES += $(DEFINS)/BinaryExpression.cc
+SRC_FILES += $(DEFINS)/EnclosedExpression.cc
+SRC_FILES += $(DEFINS)/ExpressionsList.cc
+SRC_FILES += $(DEFINS)/IdentifiersList.cc
+SRC_FILES += $(DEFINS)/VariableDeclaration.cc
+SRC_FILES += $(DEFINS)/VariableDeclarationsList.cc
+SRC_FILES += $(DEFINS)/Driver.cc
+SRC_FILES += $(DEFINS)/DecafParser.cc
 
-OBJECTS :=  $(OBJDIR)/Parser.o $(OBJDIR)/Scanner.o $(SRC_FILES:$(SRCDIR)/%.cc=$(OBJDIR)/%.o)
+OBJECTS :=  $(OBJDIR)/Parser.o $(OBJDIR)/Scanner.o $(SRC_FILES:$(DEFINS)/%.cc=$(OBJDIR)/%.o)
 
 CXX      = g++
 CXXFLAGS = -W -Wall -Wextra -ansi -g
-INCLUDE  = -I$(SRCDIR)/ -I/usr/local/opt/flex/include/
+INCLUDE  = -I./ -I$(SRCDIR)/ -I$(DECLRS)/ -I$(DRIVER)/
 LDFLAGS  = 
 
 
@@ -45,12 +81,12 @@ LDFLAGS  =
 all: $(TARGET)
 
 
-$(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.cc
+$(OBJECTS): $(OBJDIR)/%.o : $(DEFINS)/%.cc
 	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
 
 
 $(PARSER): $(PARSER_FILES)
-	bison -o $(PARSER) --defines=$(SRCDIR)/Parser.hh $(PARSER_FILES)
+	bison -o $(PARSER) --defines=$(DRIVER)/Parser.hh $(PARSER_FILES)
 	@echo "Parser Built Successfully"
 	
 

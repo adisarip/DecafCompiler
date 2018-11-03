@@ -13,6 +13,7 @@ class CalloutArgument : public AstNode
   public:
     CalloutArgument(string stringLiteralParm);
     CalloutArgument(class Expression* pCalloutExprParm);
+    virtual void accept(Visitor& vParm);
 
   private:
     string mStringLiteral; // might not be needed => TODO

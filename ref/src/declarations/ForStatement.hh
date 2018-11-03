@@ -16,6 +16,8 @@ class ForStatement : public Statement
                  class Expression* pInitExprParm,
                  class Expression* pCondExprParm,
                  class BlockStatement* pForBlockParm);
+    virtual bool hasReturnValue();
+    virtual void accept(Visitor& vParm);
 
   private:
     string mInitValue;

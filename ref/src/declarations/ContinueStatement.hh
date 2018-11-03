@@ -10,10 +10,8 @@ using namespace std;
 class ContinueStatement : public Statement
 {
   public:
-    ContinueStatement()
-    {
-        this->mStmtType = Statement::NON_RETURNING;
-    }
+    ContinueStatement();
+    virtual void accept(Visitor& vParm);
 };
 
 #endif /* CONTINUE_STATEMENT_H */

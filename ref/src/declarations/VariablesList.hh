@@ -12,6 +12,8 @@ class VariablesList : public AstNode
 {
   public:
     void add(class Variable* pVariableParm);
+    vector<class Variable*> getVariablesList();
+    virtual void accept(Visitor& vParm);
 
   private:
     vector<class Variable*> mVariableList;

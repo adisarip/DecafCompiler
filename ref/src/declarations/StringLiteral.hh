@@ -11,6 +11,7 @@ class StringLiteral : public Literal
 {
   public:
     StringLiteral(string stringValueParm);
+    virtual void accept(Visitor& vParm);
 
   private:
     string mStringValue;

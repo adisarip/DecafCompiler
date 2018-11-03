@@ -7,23 +7,26 @@
 #include "Visitor.hh"
 using namespace std;
 
-enum DeclarationType
-{
-    NORMAL_DECLARATION = 1,
-    ARRAY_DECLARATION  = 2
-};
 
 class Variable : public AstNode
 {
   public:
+
+    enum DeclarationType
+    {
+        NORMAL_DECLARATION = 1,
+        ARRAY_DECLARATION  = 2
+    };
+
     Variable(string variableNameParm);
     Variable(string variableNameParm,
-             unsigned int arraySizeParm);
+             long int arraySizeParm);
+    virtual void accept(Visitor& vParm);
 
   private:
     string mVariableName;
+    int mArraySize; // if its an array
     DeclarationType mDeclType;
-    unsigned int mArraySize; // if its an array
 };
 
 #endif /* VARIABLE_H */

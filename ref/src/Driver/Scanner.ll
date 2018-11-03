@@ -55,8 +55,29 @@ typedef decaf::Parser::token_type token_type;
     yylloc->step();
 %}
 
+
+"true"      {return token::TRUE;}
+"false"     {return token::FALSE;}
+"callout"   {return token::CALLOUT;}
+"int"       {return token::INT;}
+"boolean"   {return token::BOOLEAN;}
+"class"     {return token::CLASS;}
+"Program"   {return token::PROGRAM;}
+"void"      {return token::VOID;}
+"if"        {return token::IF;}
+"else"      {return token::ELSE;}
+"for"       {return token::FOR;}
+"break"     {return token::BREAK;}
+"continue"  {return token::CONTINUE;}
+"return"    {return token::RETURN;}
+
+[a-zA-Z_][a-zA-Z0-9_]* {
+    
+    return token::ID;
+}
+
 [0-9]+ {
-    yylval->integerVal = atoi(yytext);
+    yylval->iValue = atoi(yytext);
     return token::NUMBER;
 }
 
@@ -91,6 +112,14 @@ typedef decaf::Parser::token_type token_type;
 ","     {return ',';}
 ";"     {return ';';}
 
+
+[ !#$%&(-[]-~] {
+    return CHAR;
+}
+
+[ !#$%&(-[]-~]* {
+    return STRING;
+}
 
  /* gobble up white-spaces & end-of-lines */
 [ \t\r]+ {

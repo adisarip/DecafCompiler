@@ -13,6 +13,8 @@ class ReturnStatement : public Statement
 {
   public:
     ReturnStatement(class Expression* pReturnExprParm);
+    virtual bool hasReturnValue();
+    virtual void accept(Visitor& vParm);
 
   private:
     class Expression* mReturnExprPtr; // list of statements

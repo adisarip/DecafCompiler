@@ -18,7 +18,7 @@ class UnaryExpression : public Expression
 
     Expression* getRight();
     std::string getUnaryOperator();
-    void accept(Visitor& vParm);
+    virtual void accept(Visitor& vParm);
 
   private:
     // left node and right node can be of any type. 

@@ -12,6 +12,7 @@ class IntegerLiteral : public Literal
   public:
     IntegerLiteral(int intValueParm);
     int getValue();
+    virtual void accept(Visitor& vParm);
 
   private:
     int mIntValue;

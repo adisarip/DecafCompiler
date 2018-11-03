@@ -13,6 +13,7 @@ class IdentifiersList : public AstNode
   public:
     void add(string IdParm);
     vector<string> getIdList();
+    virtual void accept(Visitor& vParm);
 
   private:
     vector<string> mIdList;

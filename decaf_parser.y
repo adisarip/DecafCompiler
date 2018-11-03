@@ -4,6 +4,7 @@
 
 %{
 	#include <stdio.h>
+	extern union Node yylval;
 %}
 
 %token ID
@@ -34,7 +35,7 @@ start:
     |   start program EOL { printf(" = %d\n", $2); }
     ;
 
-program:	CLASS PROGRAM '{' field_declaration_list method_declaration_list '}'
+program: CLASS PROGRAM '{' field_declaration_list method_declaration_list '}'
 
 
 field_declaration_list:
@@ -43,17 +44,17 @@ field_declaration_list:
 	;
 
 field_declaration:
-		INT field_declaration_block_list ';'
-	|	BOOLEAN field_declaration_block_list ';'
+		INT field_declaration_variables_list ';'
+	|	BOOLEAN field_declaration_variables_list ';'
 	;
 
-field_declaration_block_list:
+field_declaration_variables_list:
 		/* epsilon */
-	|	field_declaration_block
-	|	field_declaration_block_list ',' field_declaration_block
+	|	field_declaration_variable
+	|	field_declaration_variables_list ',' field_declaration_variable
 	;
 
-field_declaration_block:
+field_declaration_variable:
 		ID
 	|	ID '[' int_literal ']'
 	;
@@ -151,7 +152,7 @@ callout_arg_list:
 
 callout_arg:
 		expr
-	|	STRING
+	|	string_literal
 	;
 
 expr:
@@ -171,6 +172,7 @@ location:
 literal:
 		int_literal
 	|	bool_literal
+	|	char_literal
 	;
 
 int_literal:
@@ -178,8 +180,10 @@ int_literal:
 	|	hex_literal
 	;
 
-decimal_literal	:	NUMBER;
-hex_literal		:	HEX_NUMBER;
+decimal_literal: NUMBER;
+hex_literal:	 HEX_NUMBER;
+char_literal:    CHAR;
+string_literal:  STRING;
 bool_literal:
 		TRUE
 	|	FALSE

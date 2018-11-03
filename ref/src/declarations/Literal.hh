@@ -14,10 +14,16 @@ class Literal : public Expression
 
     enum LiteralType
     {
-        INTEGER   = 1,
-        BOOLEAN   = 2,
-        CHARACTER = 3,
-        STRING    = 4
+        INTEGER     = 1,
+        BOOLEAN     = 2,
+        CHARACTER   = 3,
+        STRING      = 4,
+        HEXADECIMAL = 5
+    };
+
+    virtual void accept(Visitor& vParm)
+    {
+        vParm.visit(*this);
     };
 
   protected:

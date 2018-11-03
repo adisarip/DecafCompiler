@@ -10,10 +10,8 @@ using namespace std;
 class BreakStatement : public Statement
 {
   public:
-    BreakStatement()
-    {
-        this->mStmtType = Statement::NON_RETURNING;
-    }
+    BreakStatement();
+    virtual void accept(Visitor& vParm);
 };
 
 #endif /* BREAK_STATEMENT_H */

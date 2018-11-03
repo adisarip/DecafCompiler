@@ -15,6 +15,8 @@ class FieldDeclaration : public AstNode
     FieldDeclaration(string dataTypeParm,
                      class VariablesList* pVariablesListParm);
     
+    virtual void accept(Visitor& vParm);
+    
   private:
     string mDataType;
     vector<class Variable*> mVariablesList;

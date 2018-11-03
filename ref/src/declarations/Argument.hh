@@ -12,8 +12,9 @@ class Argument : public AstNode
   public:
     Argument(string argNameParm,
              string argTypeParm);
-    void getArgName();
-    void getArgType();
+    string getArgName();
+    string getArgType();
+    virtual void accept(Visitor& vParm);
 
   private:
     string mArgName;

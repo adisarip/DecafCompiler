@@ -11,7 +11,7 @@ class EnclosedExpression : public Expression
 {
   public:
     EnclosedExpression(class Expression* pExprParm);
-    void accept(Visitor& vParm);
+    virtual void accept(Visitor& vParm);
 
   private:
     class Expression* mExprPtr;

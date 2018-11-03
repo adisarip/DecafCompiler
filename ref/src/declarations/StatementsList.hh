@@ -12,9 +12,11 @@ class StatementsList : public AstNode
 {
   public:
     void add(class Statement* pStmtParm);
+    virtual bool hasReturnValue();
+    virtual void accept(Visitor& vParm);
 
   private:
-    vector<class Statement*> mStmtListPtr;
+    vector<class Statement*> mStmtPtrList;
 };
 
 #endif /* STATEMENT_LIST_H */

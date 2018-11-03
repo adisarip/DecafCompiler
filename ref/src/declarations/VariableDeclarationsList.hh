@@ -12,6 +12,7 @@ class VariableDeclarationsList : public AstNode
 {
   public:
     void add(class VariableDeclaration* pVariableDeclParm);
+    virtual void accept(Visitor& vParm);
 
   private:
     vector<class VariableDeclaration*> mVariableDeclList;

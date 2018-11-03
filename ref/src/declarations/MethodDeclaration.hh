@@ -17,6 +17,8 @@ class MethodDeclaration : public AstNode
                       class ArgumentsList* pArgsListParm,
                       class BlockStatement* pBlockStmtParm);
 
+    virtual void accept(Visitor& vParm);
+
   private:
     string mReturnType; // return type of the function
     string mMethodName; // Name of the function

@@ -13,9 +13,9 @@ class VariableDeclaration : public AstNode
 {
   public:
     VariableDeclaration(string declarationTypeParm,
-                      class IdentifiersList* pIdListParm);
-    
+                        class IdentifiersList* pIdListParm);
     void add(string variableParm);
+    virtual void accept(Visitor& vParm);
 
   private:
     string mDeclarationType; // INT or BOOLEAN

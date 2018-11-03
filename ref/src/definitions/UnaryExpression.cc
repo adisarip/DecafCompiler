@@ -8,6 +8,7 @@ UnaryExpression::UnaryExpression(std::string unaryOperatorParm,
 :mUnaryOperator(unaryOperatorParm)
 ,mRightPtr(mRightPtrParm)
 {
+    mExprType = Expression::UNARY;
 }
 
 Expression* UnaryExpression::getRight()

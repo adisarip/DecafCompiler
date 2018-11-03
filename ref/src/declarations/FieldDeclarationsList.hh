@@ -12,6 +12,7 @@ class FieldDeclarationsList : public AstNode
 {
   public:
     void add(class FieldDeclaration* pFieldDeclParm);
+    virtual void accept(Visitor& vParm);
     
   private:
     vector<class FieldDeclaration*> mFieldDeclList;

@@ -13,11 +13,13 @@ class AssignmentStatement : public Statement
 {
   public:
     AssignmentStatement(string assignmentTypeParm,
-                        class Location* pLocationParm,
+                        class VariableLocation* pLocationParm,
                         class Expression* pAssignmentExprParm);
+    
+    virtual void accept(Visitor& vParm);
 
   private:
-    string mAssignmentType; // = OR += OR -=
+    string mAssignmentOp; // = OR += OR -=
     class VariableLocation* mLocationPtr; // location to which assignment is done
     class Expression* mAssignmentExprPtr; // expression assigned to location
 };

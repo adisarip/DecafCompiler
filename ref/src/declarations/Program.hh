@@ -15,6 +15,8 @@ class Program : public AstNode
     Program(string programNameParm,
             FieldDeclarationsList* pFieldsListParm,
             MethodDeclarationsList* pMethodsListParm);
+
+    virtual void accept(Visitor& vParm);
     
   private:
     string mProgamName;

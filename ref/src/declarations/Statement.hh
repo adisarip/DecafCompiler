@@ -23,6 +23,17 @@ class Statement : public AstNode
     {
     }
 
+    // tell whether if the statement returns a value
+    virtual bool hasReturnValue()
+    {
+        return false; // default
+    }
+
+    virtual void accept(Visitor& vParm)
+    {
+        vParm.visit(*this);
+    }
+
   protected:
     StatementType mStmtType; // for the derived classes to access
 };

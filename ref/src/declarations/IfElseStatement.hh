@@ -16,6 +16,8 @@ class IfElseStatement : public Statement
     IfElseStatement(class Expression* pCondExprParm,
                     class BlockStatement* pIfBlockParm,
                     class BlockStatement* pElseBlockParm);
+    virtual bool hasReturnValue();
+    virtual void accept(Visitor& vParm);
 
   private:
     class Expression* mCondExprPtr;

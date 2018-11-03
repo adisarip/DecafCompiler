@@ -1,23 +1,31 @@
-#ifndef ASSIGNMENT_STATEMENT_H
-#define ASSIGNMENT_STATEMENT_H
+#ifndef VARIABLE_LOCATION_H
+#define VARIABLE_LOCATION_H
 
-#include <vector>
+#include <string>
 #include "Ast.hh"
 #include "Visitor.hh"
 #include "Expression.hh"
 using namespace std;
 
-class AssignmentStatement : public Expression
+class VariableLocation : public Expression
 {
   public:
-    AssignmentStatement(string assignmentTypeParm,
-                        class Location* pLocationParm,
-                        class Expression* pAssignmentExprParm);
+
+    enum LocationType
+    {
+        VARIABLE = 1,
+        ARRAY    = 2
+    };
+
+    VariableLocation(string variableNameParm);
+    VariableLocation(string variableNameParm,
+                     class Expression* pArrayIndexParm);
+    virtual void accept(Visitor& vParm);
 
   private:
-    string mAssignmentType; // = OR += OR -=
-    class VariableLocation* mLocationPtr; // location to which assignment is done
-    class Expression* mAssignmentExprPtr; // expression assigned to location
+    LocationType mLocationType; // INT or ARRAY
+    string mVariableName;
+    class Expression* mArrayIndexPtr; // expression pointed to array index
 };
 
-#endif /* ASSIGNMENT_STATEMENT_H */
+#endif /* VARIABLE_LOCATION_H */
