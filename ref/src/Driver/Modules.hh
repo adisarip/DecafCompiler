@@ -53,8 +53,9 @@
 union Node
 {
     int                             iValue;
-    long int                        liValue;
-    char*                           pStrValue;
+    long int                        hexValue;
+    char                            cValue;
+    std::string*                    pStrValue;
     class Program*                  pProgram;
     class FieldDeclaration*         pField;
     class FieldDeclarationsList*    pFieldList;

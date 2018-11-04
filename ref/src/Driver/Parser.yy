@@ -25,8 +25,6 @@ int errors=0;
  * versions. */
 %debug
 
-/* start symbol is named "start" */
-%start line
 
 /* write out a header file containing the token defines */
 %defines
@@ -56,22 +54,6 @@ int errors=0;
 /* verbose error messages */
 %error-verbose
 
-/*** BEGIN EXAMPLE - Change the example grammar's tokens below ***/
-
-%union
-{
-    int            integerVal;
-    long int       hexVal;
-    bool           boolValue;
-    class AstNode* pAstNode;
-}
-
-%type <pAstNode> line expr 
-
-//%destructor { delete $$; } expr
-
- /*** END EXAMPLE - Change the example grammar's tokens above ***/
-
 %{
 
 /* this "connects" the bison parser in the driver to the flex scanner class
@@ -82,25 +64,20 @@ int errors=0;
 
 %}
 
-%token CLASS
-%token CALLOUT RETURN
-%token BREAK CONTINUE
-%token IF ELSE FOR
-%token <pStrValue> BOOLEAN CHAR STRING HEX_NUMBER ID VOID
-%token <number> INTEGER
-%token OB CB OSB CSB OP CP
-%token <pStrValue> COND_AND COND_OR NOT
-%token <pStrValue> ADD SUB MUL DIV MOD
-%token <pStrValue> LT GT LE GE
-%token <pStrValue> EQUAL NOT_EQUAL
-%token <pStrValue> EQ ADDEQ SUBEQ
+%start program
 
+%token CLASS CALLOUT EOL
+%token IF ELSE FOR BREAK CONTINUE RETURN
+%token TRUE FALSE
+%token <iValue> NUMBER
+%token <hexValue> HEX_NUMBER
+%token <cValue> CHAR
+%token <pStrValue> INT BOOLEAN ID VOID
+%token <pStrValue> ALPHA ALPHA_NUM STRING
+%token ','
 
-%token ID
-%token TRUE FALSE INT VOID
-%token NUMBER 
-%token ALPHA ALPHA_NUM
-
+%right OP_PLUS_EQ OP_MINUS_EQ
+%right '='
 %left OP_OR
 %left OP_AND
 %left OP_EEQ OP_NEQ
@@ -111,14 +88,43 @@ int errors=0;
 %right UMINUS
 
 
+%type <pProgram> program
+%type <pFieldList> field_declaration_list
+%type <pField> field_declaration
+%type <pFieldVarList> field_declaration_variables_list
+%type <pFieldVar> field_declaration_variable
+%type <pMDeclList> method_declaration_list
+%type <pMDecl> method_declaration
+%type <pArgList> parameter_list
+%type <pArg> parameter
+%type <pVarDeclList> variable_declaration_list
+%type <pVarDecl> variable_declaration
+%type <pIdList> id_list
+%type <pStmtList> statement_list
+%type <pStmt> statement
+%type <pBlockStmt> block_statement
+%type <pCondStmt> if_conditional_statement
+%type <pLoopStmt> for_loop_statement
+%type <pReturnStmt> return_statement
+%type <pAssgnStmt> assignment_operation
+%type <pLocation> location
+%type <pMCall> method_call
+%type <pCallArgList> callout_arg_list
+%type <pCallArg> callout_arg
+%type <pExprList> expr_list
+%type <pExpr> expr
+%type <pLit> literal
+%type <pIntLit> int_literal
+%type <pHexLit> hex_literal
+%type <pBoolLit> bool_literal
+%type <pCharLit> char_literal
+%type <pUExpr> unary_operation
+%type <pBExpr> binary_operation
+
+
 %%
 
 /* Parser Rules*/ 
-
-start:
-		/* Do Nothing */
-    |   start program EOL { printf(" = %d\n", $2); }
-    ;
 
 program:
     CLASS ID '{' field_declaration_list method_declaration_list '}' {
@@ -147,9 +153,9 @@ field_declaration_variables_list:
 	;
 
 field_declaration_variable:
-		ID                         { $$ = new Variable(string($1)); }
-	|	ID '[' decimal_literal ']' { $$ = new Variable(string($1), $3->getValue()); }
-    |	ID '[' hex_literal ']'     { $$ = new Variable(string($1), $3->getHexValue()); }
+		ID                     { $$ = new Variable(string($1)); }
+	|	ID '[' int_literal ']' { $$ = new Variable(string($1), $3->getValue()); }
+    |	ID '[' hex_literal ']' { $$ = new Variable(string($1), $3->getHexValue()); }
 	;
 
 
@@ -183,7 +189,7 @@ parameter:
 
 block_statement:
     '{' variable_declaration_list statement_list '}'  {
-        $$ = new BlockStatement($1, $2);
+        $$ = new BlockStatement($2, $3);
     };
 
 variable_declaration_list:
@@ -284,21 +290,17 @@ location:
 
 literal:
 		int_literal  { $$ = $1; }
+    |	hex_literal  { $$ = $1; }
 	|	bool_literal { $$ = $1; }
 	|	char_literal { $$ = $1; }
 	;
 
-int_literal:
-		decimal_literal { $$ = $1; }
-	|	hex_literal     { $$ = $1; }
-	;
-
 bool_literal:
-		TRUE                { $$ = new BooleanLiteral("true"); }
-	|	FALSE               { $$ = new BooleanLiteral("false") };
-decimal_literal: NUMBER     { $$ = new IntegerLiteral($1); };
-hex_literal:	 HEX_NUMBER { $$ = new HexadecimalLiteral($1); };
-char_literal:    CHAR       { $$ = new CharacterLiteral($1); };
+		TRUE             { $$ = new BooleanLiteral("true"); }
+	|	FALSE            { $$ = new BooleanLiteral("false") };
+int_literal:  NUMBER     { $$ = new IntegerLiteral($1); };
+hex_literal:  HEX_NUMBER { $$ = new HexadecimalLiteral($1); };
+char_literal: CHAR       { $$ = new CharacterLiteral($1); };
 
 
 binary_operation:

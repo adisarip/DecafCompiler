@@ -31,12 +31,12 @@
 // version 2.2 of Bison.
 
 /**
- ** \file ./src/position.hh
+ ** \file ./src/Driver/position.hh
  ** Define the decaf::position class.
  */
 
-#ifndef YY_DECAF_SRC_POSITION_HH_INCLUDED
-# define YY_DECAF_SRC_POSITION_HH_INCLUDED
+#ifndef YY_DECAF_SRC_DRIVER_POSITION_HH_INCLUDED
+# define YY_DECAF_SRC_DRIVER_POSITION_HH_INCLUDED
 
 # include <algorithm> // std::max
 # include <iostream>
@@ -52,7 +52,7 @@
 
 
 namespace decaf {
-#line 56 "./src/position.hh" // location.cc:331
+#line 56 "./src/Driver/position.hh" // location.cc:331
   /// Abstract a position.
   class position
   {
@@ -173,5 +173,5 @@ namespace decaf {
 
 
 } // decaf
-#line 177 "./src/position.hh" // location.cc:331
-#endif // !YY_DECAF_SRC_POSITION_HH_INCLUDED
+#line 177 "./src/Driver/position.hh" // location.cc:331
+#endif // !YY_DECAF_SRC_DRIVER_POSITION_HH_INCLUDED

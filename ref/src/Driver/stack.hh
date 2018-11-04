@@ -31,18 +31,18 @@
 // version 2.2 of Bison.
 
 /**
- ** \file ./src/stack.hh
+ ** \file ./src/Driver/stack.hh
  ** Define the decaf::stack class.
  */
 
-#ifndef YY_DECAF_SRC_STACK_HH_INCLUDED
-# define YY_DECAF_SRC_STACK_HH_INCLUDED
+#ifndef YY_DECAF_SRC_DRIVER_STACK_HH_INCLUDED
+# define YY_DECAF_SRC_DRIVER_STACK_HH_INCLUDED
 
 # include <vector>
 
 
 namespace decaf {
-#line 46 "./src/stack.hh" // stack.hh:151
+#line 46 "./src/Driver/stack.hh" // stack.hh:151
   /// A stack with random access from its top.
   template <class T, class S = std::vector<T> >
   class stack
@@ -152,6 +152,6 @@ namespace decaf {
 
 
 } // decaf
-#line 156 "./src/stack.hh" // stack.hh:151
+#line 156 "./src/Driver/stack.hh" // stack.hh:151
 
-#endif // !YY_DECAF_SRC_STACK_HH_INCLUDED
+#endif // !YY_DECAF_SRC_DRIVER_STACK_HH_INCLUDED

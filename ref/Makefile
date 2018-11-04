@@ -27,46 +27,51 @@ AUTOGEN_FILES = $(DRIVER)/Parser.cc     \
                 $(DRIVER)/position.hh   \
                 $(DRIVER)/stack.hh
 
-SRC_FILES  = $(DEFINS)/Visitor.cc
-SRC_FILES += $(DEFINS)/Program.cc
-SRC_FILES += $(DEFINS)/FieldDeclaration.cc
-SRC_FILES += $(DEFINS)/FieldDeclarationsList.cc
-SRC_FILES += $(DEFINS)/MethodDeclaration.cc
-SRC_FILES += $(DEFINS)/MethodDeclarationsList.cc
-SRC_FILES += $(DEFINS)/Variable.cc
-SRC_FILES += $(DEFINS)/VariablesList.cc
-SRC_FILES += $(DEFINS)/VariableLocation.cc
-SRC_FILES += $(DEFINS)/Argument.cc
-SRC_FILES += $(DEFINS)/ArgumentsList.cc
-SRC_FILES += $(DEFINS)/StatementsList.cc
-SRC_FILES += $(DEFINS)/BlockStatement.cc
-SRC_FILES += $(DEFINS)/IfElseStatement.cc
-SRC_FILES += $(DEFINS)/ForStatement.cc
-SRC_FILES += $(DEFINS)/AssignmentStatement.cc
-SRC_FILES += $(DEFINS)/UserDefinedMethodCall.cc
-SRC_FILES += $(DEFINS)/CalloutMethodCall.cc
-SRC_FILES += $(DEFINS)/CalloutArgument.cc
-SRC_FILES += $(DEFINS)/CalloutArgumentsList.cc
-SRC_FILES += $(DEFINS)/ReturnStatement.cc
-SRC_FILES += $(DEFINS)/BreakStatement.cc
-SRC_FILES += $(DEFINS)/ContinueStatement.cc
-SRC_FILES += $(DEFINS)/IntegerLiteral.cc
-SRC_FILES += $(DEFINS)/BooleanLiteral.cc
-SRC_FILES += $(DEFINS)/CharacterLiteral.cc
-SRC_FILES += $(DEFINS)/StringLiteral.cc
-SRC_FILES += $(DEFINS)/HexadecimalLiteral.cc
-SRC_FILES += $(DEFINS)/ExpressionsList.cc
-SRC_FILES += $(DEFINS)/UnaryExpression.cc
-SRC_FILES += $(DEFINS)/BinaryExpression.cc
-SRC_FILES += $(DEFINS)/EnclosedExpression.cc
-SRC_FILES += $(DEFINS)/ExpressionsList.cc
-SRC_FILES += $(DEFINS)/IdentifiersList.cc
-SRC_FILES += $(DEFINS)/VariableDeclaration.cc
-SRC_FILES += $(DEFINS)/VariableDeclarationsList.cc
-SRC_FILES += $(DEFINS)/Driver.cc
-SRC_FILES += $(DEFINS)/DecafParser.cc
+DRIVER_SRC  = $(DRIVER)/Visitor.cc
+DRIVER_SRC += $(DRIVER)/Driver.cc
+DRIVER_SRC += $(DRIVER)/DecafParser.cc
 
-OBJECTS :=  $(OBJDIR)/Parser.o $(OBJDIR)/Scanner.o $(SRC_FILES:$(DEFINS)/%.cc=$(OBJDIR)/%.o)
+
+DECAF_SRC  = $(DEFINS)/Program.cc
+DECAF_SRC += $(DEFINS)/FieldDeclaration.cc
+DECAF_SRC += $(DEFINS)/FieldDeclarationsList.cc
+DECAF_SRC += $(DEFINS)/MethodDeclaration.cc
+DECAF_SRC += $(DEFINS)/MethodDeclarationsList.cc
+DECAF_SRC += $(DEFINS)/Variable.cc
+DECAF_SRC += $(DEFINS)/VariablesList.cc
+DECAF_SRC += $(DEFINS)/VariableLocation.cc
+DECAF_SRC += $(DEFINS)/Argument.cc
+DECAF_SRC += $(DEFINS)/ArgumentsList.cc
+DECAF_SRC += $(DEFINS)/StatementsList.cc
+DECAF_SRC += $(DEFINS)/BlockStatement.cc
+DECAF_SRC += $(DEFINS)/IfElseStatement.cc
+DECAF_SRC += $(DEFINS)/ForStatement.cc
+DECAF_SRC += $(DEFINS)/AssignmentStatement.cc
+DECAF_SRC += $(DEFINS)/UserDefinedMethodCall.cc
+DECAF_SRC += $(DEFINS)/CalloutMethodCall.cc
+DECAF_SRC += $(DEFINS)/CalloutArgument.cc
+DECAF_SRC += $(DEFINS)/CalloutArgumentsList.cc
+DECAF_SRC += $(DEFINS)/ReturnStatement.cc
+DECAF_SRC += $(DEFINS)/BreakStatement.cc
+DECAF_SRC += $(DEFINS)/ContinueStatement.cc
+DECAF_SRC += $(DEFINS)/IntegerLiteral.cc
+DECAF_SRC += $(DEFINS)/BooleanLiteral.cc
+DECAF_SRC += $(DEFINS)/CharacterLiteral.cc
+DECAF_SRC += $(DEFINS)/StringLiteral.cc
+DECAF_SRC += $(DEFINS)/HexadecimalLiteral.cc
+DECAF_SRC += $(DEFINS)/ExpressionsList.cc
+DECAF_SRC += $(DEFINS)/UnaryExpression.cc
+DECAF_SRC += $(DEFINS)/BinaryExpression.cc
+DECAF_SRC += $(DEFINS)/EnclosedExpression.cc
+DECAF_SRC += $(DEFINS)/IdentifiersList.cc
+DECAF_SRC += $(DEFINS)/VariableDeclaration.cc
+DECAF_SRC += $(DEFINS)/VariableDeclarationsList.cc
+
+
+PARSER_OBJ  := $(OBJDIR)/Parser.o
+SCANNER_OBJ := $(OBJDIR)/Scanner.o
+DRIVER_OBJECTS :=  $(DRIVER_SRC:$(DRIVER)/%.cc=$(OBJDIR)/%.o)
+SRC_OBJECTS    := $(DECAF_SRC:$(DEFINS)/%.cc=$(OBJDIR)/%.o)
 
 CXX      = g++
 CXXFLAGS = -W -Wall -Wextra -ansi -g
@@ -78,11 +83,20 @@ LDFLAGS  =
 # Rules building the targets #
 ##############################
 
-all: $(TARGET)
+all: $(PARSER) $(SCANNER) $(TARGET)
 
 
-$(OBJECTS): $(OBJDIR)/%.o : $(DEFINS)/%.cc
-	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
+$(DRIVER_OBJECTS): $(OBJDIR)/%.o : $(DRIVER)/%.cc
+	@echo $(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
+
+$(SRC_OBJECTS): $(OBJDIR)/%.o : $(DEFINS)/%.cc
+	@echo $(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
+
+$(PARSER_OBJ):
+	@echo $(CXX) $(CXXFLAGS) $(INCLUDE) -c $(PARSER) -o $@
+
+$(SCANNER_OBJ):
+	@echo $(CXX) $(CXXFLAGS) $(INCLUDE) -c $(SCANNER) -o $@
 
 
 $(PARSER): $(PARSER_FILES)
@@ -95,12 +109,12 @@ $(SCANNER): $(SCANNER_FILES)
 	@echo "Scanner Built Successfully"
 
 
-$(TARGET): $(PARSER) $(SCANNER) $(OBJECTS)
-	$(CXX) $(LDFLAGS) $(OBJECTS) -o $@
+$(TARGET): $(PARSER_OBJ) $(SCANNER_OBJ) $(DRIVER_OBJECTS) $(SRC_OBJECTS)
+	$(CXX) $(LDFLAGS) $(PARSER_OBJ) $(SCANNER_OBJ) $(DRIVER_OBJECTS) $(SRC_OBJECTS) -o $@
 	mv $(TARGET) $(BINDIR)
 	@echo "$(TARGET) Built Successfully."
 
 clean:
 	@echo "Cleaning all the object files and binaries."
 	rm -f core
-	rm -f $(OBJECTS) $(BINDIR)/$(TARGET) $(AUTOGEN_FILES)
+	rm -f $(DRIVER_OBJECTS) $(SRC_OBJECTS) $(BINDIR)/$(TARGET) $(AUTOGEN_FILES)

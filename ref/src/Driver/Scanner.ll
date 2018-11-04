@@ -56,23 +56,23 @@ typedef decaf::Parser::token_type token_type;
 %}
 
 
-"true"      {return token::TRUE;}
-"false"     {return token::FALSE;}
-"callout"   {return token::CALLOUT;}
-"int"       {return token::INT;}
-"boolean"   {return token::BOOLEAN;}
-"class"     {return token::CLASS;}
-"Program"   {return token::PROGRAM;}
-"void"      {return token::VOID;}
-"if"        {return token::IF;}
-"else"      {return token::ELSE;}
-"for"       {return token::FOR;}
-"break"     {return token::BREAK;}
-"continue"  {return token::CONTINUE;}
-"return"    {return token::RETURN;}
+"true"      {yylval->pStrValue = new std::string(yytext); return token::TRUE;}
+"false"     {yylval->pStrValue = new std::string(yytext); return token::FALSE;}
+"callout"   {yylval->pStrValue = new std::string(yytext); return token::CALLOUT;}
+"int"       {yylval->pStrValue = new std::string(yytext); return token::INT;}
+"boolean"   {yylval->pStrValue = new std::string(yytext); return token::BOOLEAN;}
+"class"     {yylval->pStrValue = new std::string(yytext); return token::CLASS;}
+"Program"   {yylval->pStrValue = new std::string(yytext); return token::PROGRAM;}
+"void"      {yylval->pStrValue = new std::string(yytext); return token::VOID;}
+"if"        {yylval->pStrValue = new std::string(yytext); return token::IF;}
+"else"      {yylval->pStrValue = new std::string(yytext); return token::ELSE;}
+"for"       {yylval->pStrValue = new std::string(yytext); return token::FOR;}
+"break"     {yylval->pStrValue = new std::string(yytext); return token::BREAK;}
+"continue"  {yylval->pStrValue = new std::string(yytext); return token::CONTINUE;}
+"return"    {yylval->pStrValue = new std::string(yytext); return token::RETURN;}
 
 [a-zA-Z_][a-zA-Z0-9_]* {
-    
+    yylval->pStrValue = new std::string(yytext);
     return token::ID;
 }
 
@@ -82,7 +82,7 @@ typedef decaf::Parser::token_type token_type;
 }
 
 0x[0-9a-fA-F]+ {
-    yylval->hexVal = atol(yytext);
+    yylval->hexValue = atol(yytext);
     return token::HEX_NUMBER;
 }
 
@@ -94,14 +94,14 @@ typedef decaf::Parser::token_type token_type;
 "%"     {return '%';}
 "<"     {return '<';}
 ">"     {return '>';}
-"<="    {return OP_LET;}
-">="    {return OP_GET;}
-"=="    {return OP_EEQ;}
-"!="    {return OP_NEQ;}
-"&&"    {return OP_AND;}
-"||"    {return OP_OR;}
-"+="    {return OP_PLUS_EQ;}
-"-="    {return OP_MINUS_EQ;}
+"<="    {return token::OP_LET;}
+">="    {return token::OP_GET;}
+"=="    {return token::OP_EEQ;}
+"!="    {return token::OP_NEQ;}
+"&&"    {return token::OP_AND;}
+"||"    {return token::OP_OR;}
+"+="    {return token::OP_PLUS_EQ;}
+"-="    {return token::OP_MINUS_EQ;}
 "!"     {return '!';}
 "("		{return '(';}
 ")"		{return ')';}
@@ -114,10 +114,12 @@ typedef decaf::Parser::token_type token_type;
 
 
 [ !#$%&(-[]-~] {
+    yylval->cValue = yytext;
     return CHAR;
 }
 
 [ !#$%&(-[]-~]* {
+    yylval->pStrValue = new std::string(yytext);
     return STRING;
 }
 

@@ -31,14 +31,14 @@
 // version 2.2 of Bison.
 
 /**
- ** \file ./src/Parser.hh
+ ** \file ./src/Driver/Parser.hh
  ** Define the decaf::parser class.
  */
 
 // C++ LALR(1) parser skeleton written by Akim Demaille.
 
-#ifndef YY_DECAF_SRC_PARSER_HH_INCLUDED
-# define YY_DECAF_SRC_PARSER_HH_INCLUDED
+#ifndef YY_DECAF_SRC_DRIVER_PARSER_HH_INCLUDED
+# define YY_DECAF_SRC_DRIVER_PARSER_HH_INCLUDED
 
 
 # include <cstdlib> // std::abort
@@ -117,7 +117,7 @@
 
 
 namespace decaf {
-#line 121 "./src/Parser.hh" // lalr1.cc:395
+#line 121 "./src/Driver/Parser.hh" // lalr1.cc:395
 
 
 
@@ -129,15 +129,7 @@ namespace decaf {
   public:
 #ifndef YYSTYPE
     /// Symbol semantic values.
-    union semantic_type
-    {
-    #line 58 "./src/Parser.yy" // lalr1.cc:395
 
-    int integerVal;
-    class AstNode* pAstNode;
-
-#line 140 "./src/Parser.hh" // lalr1.cc:395
-    };
 #else
     typedef YYSTYPE semantic_type;
 #endif
@@ -156,9 +148,36 @@ namespace decaf {
     {
       enum yytokentype
       {
-        END = 0,
-        EOL = 258,
-        INT_LITERAL = 259
+        CLASS = 258,
+        CALLOUT = 259,
+        EOL = 260,
+        IF = 261,
+        ELSE = 262,
+        FOR = 263,
+        BREAK = 264,
+        CONTINUE = 265,
+        RETURN = 266,
+        TRUE = 267,
+        FALSE = 268,
+        NUMBER = 269,
+        HEX_NUMBER = 270,
+        CHAR = 271,
+        INT = 272,
+        BOOLEAN = 273,
+        ID = 274,
+        VOID = 275,
+        ALPHA = 276,
+        ALPHA_NUM = 277,
+        STRING = 278,
+        OP_PLUS_EQ = 279,
+        OP_MINUS_EQ = 280,
+        OP_OR = 281,
+        OP_AND = 282,
+        OP_EEQ = 283,
+        OP_NEQ = 284,
+        OP_LET = 285,
+        OP_GET = 286,
+        UMINUS = 287
       };
     };
 
@@ -328,7 +347,7 @@ namespace decaf {
     // Tables.
   // YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
   // STATE-NUM.
-  static const signed char yypact_[];
+  static const short yypact_[];
 
   // YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
   // Performed when YYTABLE does not specify something else to do.  Zero
@@ -336,17 +355,17 @@ namespace decaf {
   static const unsigned char yydefact_[];
 
   // YYPGOTO[NTERM-NUM].
-  static const signed char yypgoto_[];
+  static const short yypgoto_[];
 
   // YYDEFGOTO[NTERM-NUM].
-  static const signed char yydefgoto_[];
+  static const short yydefgoto_[];
 
   // YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
   // positive, shift that token.  If negative, reduce the rule whose
   // number is the opposite.  If YYTABLE_NINF, syntax error.
   static const unsigned char yytable_[];
 
-  static const signed char yycheck_[];
+  static const unsigned char yycheck_[];
 
   // YYSTOS[STATE-NUM] -- The (internal number of the) accessing
   // symbol of state STATE-NUM.
@@ -367,7 +386,7 @@ namespace decaf {
     static const char* const yytname_[];
 #if YYDEBUG
   // YYRLINE[YYN] -- Source line where rule number YYN was defined.
-  static const unsigned char yyrline_[];
+  static const unsigned short yyrline_[];
     /// Report on the debug stream that the rule \a r is going to be reduced.
     virtual void yy_reduce_print_ (int r);
     /// Print the state stack on the debug stream.
@@ -468,12 +487,12 @@ namespace decaf {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 28,     ///< Last index in yytable_.
-      yynnts_ = 3,  ///< Number of nonterminal symbols.
-      yyfinal_ = 9, ///< Termination state number.
+      yylast_ = 284,     ///< Last index in yytable_.
+      yynnts_ = 33,  ///< Number of nonterminal symbols.
+      yyfinal_ = 4, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
-      yyntokens_ = 14  ///< Number of tokens.
+      yyntokens_ = 50  ///< Number of tokens.
     };
 
 
@@ -484,9 +503,9 @@ namespace decaf {
 
 
 } // decaf
-#line 488 "./src/Parser.hh" // lalr1.cc:395
+#line 507 "./src/Driver/Parser.hh" // lalr1.cc:395
 
 
 
 
-#endif // !YY_DECAF_SRC_PARSER_HH_INCLUDED
+#endif // !YY_DECAF_SRC_DRIVER_PARSER_HH_INCLUDED
