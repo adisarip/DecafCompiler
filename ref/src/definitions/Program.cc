@@ -7,7 +7,7 @@ using namespace std;
 Program::Program(string programNameParm,
                  FieldDeclarationsList* pFieldsListParm,
                  MethodDeclarationsList* pMethodsListParm)
-:mProgamName()
+:mProgamName(programNameParm)
 ,mFieldsDeclListPtr(pFieldsListParm)
 ,mMethodsDeclListPtr(pMethodsListParm)
 {

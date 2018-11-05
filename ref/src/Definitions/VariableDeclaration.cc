@@ -9,7 +9,7 @@ VariableDeclaration::VariableDeclaration(string declarationTypeParm,
                                          class IdentifiersList* pIdListParm)
 :mDeclarationType(declarationTypeParm)
 {
-    vector<string> sVarList;
+    vector<string> sVarList = pIdListParm->getIdList();
     for (auto& s : sVarList)
     {
         add(s);

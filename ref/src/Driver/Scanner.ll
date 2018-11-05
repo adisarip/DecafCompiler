@@ -62,7 +62,6 @@ typedef decaf::Parser::token_type token_type;
 "int"       {yylval->pStrValue = new std::string(yytext); return token::INT;}
 "boolean"   {yylval->pStrValue = new std::string(yytext); return token::BOOLEAN;}
 "class"     {yylval->pStrValue = new std::string(yytext); return token::CLASS;}
-"Program"   {yylval->pStrValue = new std::string(yytext); return token::PROGRAM;}
 "void"      {yylval->pStrValue = new std::string(yytext); return token::VOID;}
 "if"        {yylval->pStrValue = new std::string(yytext); return token::IF;}
 "else"      {yylval->pStrValue = new std::string(yytext); return token::ELSE;}

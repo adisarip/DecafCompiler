@@ -12,6 +12,7 @@ OBJDIR = ./obj
 BINDIR = ./bin
 DECLRS = ./src/Declarations
 DEFINS = ./src/Definitions
+VISITR = ./src/Visitors
 DRIVER = ./src/Driver
 TARGET = dparser
 
@@ -27,8 +28,7 @@ AUTOGEN_FILES = $(DRIVER)/Parser.cc     \
                 $(DRIVER)/position.hh   \
                 $(DRIVER)/stack.hh
 
-DRIVER_SRC  = $(DRIVER)/Visitor.cc
-DRIVER_SRC += $(DRIVER)/Driver.cc
+DRIVER_SRC  = $(DRIVER)/Driver.cc
 DRIVER_SRC += $(DRIVER)/DecafParser.cc
 
 
@@ -74,8 +74,8 @@ DRIVER_OBJECTS :=  $(DRIVER_SRC:$(DRIVER)/%.cc=$(OBJDIR)/%.o)
 SRC_OBJECTS    := $(DECAF_SRC:$(DEFINS)/%.cc=$(OBJDIR)/%.o)
 
 CXX      = g++
-CXXFLAGS = -W -Wall -Wextra -ansi -g
-INCLUDE  = -I./ -I$(SRCDIR)/ -I$(DECLRS)/ -I$(DRIVER)/
+CXXFLAGS = -W -Wall -Wextra -ansi -g -std=c++11
+INCLUDE  = -I./ -I$(VISITR)/ -I$(DECLRS)/ -I$(DRIVER)/
 LDFLAGS  = 
 
 
@@ -87,16 +87,16 @@ all: $(PARSER) $(SCANNER) $(TARGET)
 
 
 $(DRIVER_OBJECTS): $(OBJDIR)/%.o : $(DRIVER)/%.cc
-	@echo $(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
 
 $(SRC_OBJECTS): $(OBJDIR)/%.o : $(DEFINS)/%.cc
-	@echo $(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
 
 $(PARSER_OBJ):
-	@echo $(CXX) $(CXXFLAGS) $(INCLUDE) -c $(PARSER) -o $@
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $(PARSER) -o $@
 
 $(SCANNER_OBJ):
-	@echo $(CXX) $(CXXFLAGS) $(INCLUDE) -c $(SCANNER) -o $@
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $(SCANNER) -o $@
 
 
 $(PARSER): $(PARSER_FILES)
@@ -109,8 +109,8 @@ $(SCANNER): $(SCANNER_FILES)
 	@echo "Scanner Built Successfully"
 
 
-$(TARGET): $(PARSER_OBJ) $(SCANNER_OBJ) $(DRIVER_OBJECTS) $(SRC_OBJECTS)
-	$(CXX) $(LDFLAGS) $(PARSER_OBJ) $(SCANNER_OBJ) $(DRIVER_OBJECTS) $(SRC_OBJECTS) -o $@
+$(TARGET): $(SRC_OBJECTS) $(DRIVER_OBJECTS) $(PARSER_OBJ) $(SCANNER_OBJ) 
+	$(CXX) $(LDFLAGS) $(SRC_OBJECTS) $(DRIVER_OBJECTS) $(PARSER_OBJ) $(SCANNER_OBJ)  -o $@
 	mv $(TARGET) $(BINDIR)
 	@echo "$(TARGET) Built Successfully."
 

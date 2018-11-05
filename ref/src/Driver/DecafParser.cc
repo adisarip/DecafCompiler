@@ -25,25 +25,25 @@ int main()
             {
                 if (sAstCtx.pRoot != NULL )
                 {
-                    UnaryAstNode *unode;
-                    BinaryAstNode *bnode;
-                    IntegerAstNode *inode;
+                    UnaryExpression *unode;
+                    BinaryExpression *bnode;
+                    IntegerLiteral *inode;
 
                     std::cout << "Postfix Form: " << std::endl;
 
-                    unode = dynamic_cast<UnaryAstNode*>(sAstCtx.pRoot);
+                    unode = dynamic_cast<UnaryExpression*>(sAstCtx.pRoot);
                     if (unode != NULL)
                     {
                         sVisitor.visit(*unode);
                     }
 
-                    bnode = dynamic_cast<BinaryAstNode*>(sAstCtx.pRoot);
+                    bnode = dynamic_cast<BinaryExpression*>(sAstCtx.pRoot);
                     if (bnode != NULL)
                     {
                         sVisitor.visit(*bnode);
                     }
 
-                    inode = dynamic_cast<IntegerAstNode*>(sAstCtx.pRoot);
+                    inode = dynamic_cast<IntegerLiteral*>(sAstCtx.pRoot);
                     if (inode != NULL)
                     {
                         sVisitor.visit(*inode);

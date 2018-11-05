@@ -7,10 +7,10 @@
 class PostFixVisitor: public Visitor
 {
   public:
-    virtual void visit(UnaryAstNode& node);
-    virtual void visit(BinaryAstNode& node);
-    virtual void visit(IntegerAstNode& node);
-    virtual void visit(BooleanAstNode& node);
+    virtual void visit(UnaryExpression& node);
+    virtual void visit(BinaryExpression& node);
+    virtual void visit(IntegerLiteral& node);
+    virtual void visit(BooleanLiteral& node);
 };
 
 #endif /* POSTFIXVISITOR_H */

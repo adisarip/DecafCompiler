@@ -40,25 +40,13 @@
 #include <stdio.h>
 #include <string>
 #include <vector>
-#include "Modules.hh"
-#include "Scanner.hh"
-#include "Driver.hh"
 
 extern union Node yylval;
 class Program* start = NULL;
 int errors=0;
 
-#line 57 "./src/Driver/Parser.yy" // lalr1.cc:407
 
-
-/* this "connects" the bison parser in the driver to the flex scanner class
- * object. it defines the yylex() function call to pull the next token from the
- * current lexer object of the driver context. */
-#undef yylex
-#define yylex driver.lexer->lex
-
-
-#line 62 "./src/Driver/Parser.cc" // lalr1.cc:407
+#line 50 "./src/Driver/Parser.cc" // lalr1.cc:407
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -71,8 +59,21 @@ int errors=0;
 #include "Parser.hh"
 
 // User implementation prologue.
+#line 153 "./src/Driver/Parser.yy" // lalr1.cc:415
 
-#line 76 "./src/Driver/Parser.cc" // lalr1.cc:415
+
+#include "Driver.hh"
+#include "Scanner.hh"
+#include "Modules.hh"
+
+/* this "connects" the bison parser in the driver to the flex scanner class
+ * object. it defines the yylex() function call to pull the next token from the
+ * current lexer object of the driver context. */
+#undef yylex
+#define yylex driver.lexer->lex
+
+
+#line 77 "./src/Driver/Parser.cc" // lalr1.cc:415
 
 
 #ifndef YY_
@@ -167,7 +168,7 @@ int errors=0;
 
 
 namespace decaf {
-#line 171 "./src/Driver/Parser.cc" // lalr1.cc:491
+#line 172 "./src/Driver/Parser.cc" // lalr1.cc:491
 
   /* Return YYSTR after stripping away unnecessary quotes and
      backslashes, so that it's suitable for yyerror.  The heuristic is
@@ -515,13 +516,13 @@ namespace decaf {
 
 
     // User initialization code.
-    #line 44 "./src/Driver/Parser.yy" // lalr1.cc:750
+    #line 41 "./src/Driver/Parser.yy" // lalr1.cc:750
 {
     // initialize the initial location object
     yyla.location.begin.filename = yyla.location.end.filename = &driver.streamname;
 }
 
-#line 525 "./src/Driver/Parser.cc" // lalr1.cc:750
+#line 526 "./src/Driver/Parser.cc" // lalr1.cc:750
 
     /* Initialize the stack.  The initial state will be set in
        yynewstate, since the latter expects the semantical and the
@@ -635,565 +636,565 @@ namespace decaf {
           switch (yyn)
             {
   case 2:
-#line 130 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 173 "./src/Driver/Parser.yy" // lalr1.cc:870
     {
-        (yylhs.value.pProgram) = new Program(string((yystack_[4].value.pStrValue)), (yystack_[2].value.pFieldList), (yystack_[1].value.pMDeclList));
+        (yylhs.value.pProgram) = new Program(*(yystack_[4].value.pStrValue), (yystack_[2].value.pFieldList), (yystack_[1].value.pMDeclList));
     }
-#line 643 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 644 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 3:
-#line 136 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 179 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pFieldList) = new FieldDeclarationsList(); }
-#line 649 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 650 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 4:
-#line 137 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 180 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pFieldList)->add((yystack_[0].value.pField)); }
-#line 655 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 656 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 5:
-#line 141 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 184 "./src/Driver/Parser.yy" // lalr1.cc:870
     {
             (yylhs.value.pField) = new FieldDeclaration("int", (yystack_[1].value.pFieldVarList));
         }
-#line 663 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 664 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 6:
-#line 144 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 187 "./src/Driver/Parser.yy" // lalr1.cc:870
     {
             (yylhs.value.pField) = new FieldDeclaration("boolean", (yystack_[1].value.pFieldVarList));
         }
-#line 671 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 672 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 7:
-#line 150 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 193 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pFieldVarList) = new VariablesList(); }
-#line 677 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 678 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 8:
-#line 151 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 194 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pFieldVarList)->add((yystack_[0].value.pFieldVar)); }
-#line 683 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 684 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 9:
-#line 152 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 195 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pFieldVarList)->add((yystack_[0].value.pFieldVar)); }
-#line 689 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 690 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 10:
-#line 156 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 199 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pFieldVar) = new Variable(string((yystack_[0].value.pStrValue))); }
-#line 695 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 696 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 11:
-#line 157 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 200 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pFieldVar) = new Variable(string((yystack_[3].value.pStrValue)), (yystack_[1].value.pIntLit)->getValue()); }
-#line 701 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 702 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 12:
-#line 158 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 201 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pFieldVar) = new Variable(string((yystack_[3].value.pStrValue)), (yystack_[1].value.pHexLit)->getHexValue()); }
-#line 707 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 708 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 13:
-#line 163 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 206 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pMDeclList) = new MethodDeclarationsList(); }
-#line 713 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 714 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 14:
-#line 164 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 207 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pMDeclList)->add((yystack_[1].value.pMDecl)); }
-#line 719 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 720 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 15:
-#line 168 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 211 "./src/Driver/Parser.yy" // lalr1.cc:870
     {
             (yylhs.value.pMDecl) = new MethodDeclaration("void", string((yystack_[4].value.pStrValue)), (yystack_[2].value.pArgList), (yystack_[0].value.pBlockStmt));
         }
-#line 727 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 728 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 16:
-#line 171 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 214 "./src/Driver/Parser.yy" // lalr1.cc:870
     {
             (yylhs.value.pMDecl) = new MethodDeclaration("int", string((yystack_[4].value.pStrValue)), (yystack_[2].value.pArgList), (yystack_[0].value.pBlockStmt));
         }
-#line 735 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 736 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 17:
-#line 174 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 217 "./src/Driver/Parser.yy" // lalr1.cc:870
     {
             MethodDeclaration("boolean", string((yystack_[4].value.pStrValue)), (yystack_[2].value.pArgList), (yystack_[0].value.pBlockStmt));
         }
-#line 743 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 744 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 18:
-#line 180 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 223 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pArgList) = new ArgumentsList();  }
-#line 749 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 750 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 19:
-#line 181 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 224 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pArgList)->add((yystack_[0].value.pArg)); }
-#line 755 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 756 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 20:
-#line 182 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 225 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pArgList)->add((yystack_[0].value.pArg)); }
-#line 761 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 762 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 21:
-#line 186 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 229 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pArg) = new Argument("int", string((yystack_[0].value.pStrValue))); }
-#line 767 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 768 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 22:
-#line 187 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 230 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pArg) = new Argument("boolean", string((yystack_[0].value.pStrValue))); }
-#line 773 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 774 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 23:
-#line 191 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 234 "./src/Driver/Parser.yy" // lalr1.cc:870
     {
         (yylhs.value.pBlockStmt) = new BlockStatement((yystack_[2].value.pVarDeclList), (yystack_[1].value.pStmtList));
     }
-#line 781 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 782 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 24:
-#line 196 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 239 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pVarDeclList) = new VariableDeclarationsList(); }
-#line 787 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 788 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 25:
-#line 197 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 240 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pVarDeclList)->add((yystack_[0].value.pVarDecl)); }
-#line 793 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 794 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 26:
-#line 201 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 244 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pVarDecl) = new VariableDeclaration("int", (yystack_[1].value.pIdList)); }
-#line 799 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 800 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 27:
-#line 202 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 245 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pVarDecl) = new VariableDeclaration("boolean", (yystack_[1].value.pIdList)); }
-#line 805 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 806 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 28:
-#line 205 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 248 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pIdList) = new IdentifiersList(); }
-#line 811 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 812 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 29:
-#line 206 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 249 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pIdList)->add(string((yystack_[0].value.pStrValue))); }
-#line 817 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 818 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 30:
-#line 207 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 250 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pIdList)->add(string((yystack_[0].value.pStrValue))); }
-#line 823 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 824 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 31:
-#line 211 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 254 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pStmtList) = new StatementsList(); }
-#line 829 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 830 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 32:
-#line 212 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 255 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pStmtList)->add((yystack_[0].value.pStmt)); }
-#line 835 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 836 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 33:
-#line 216 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 259 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pStmt) = (yystack_[0].value.pBlockStmt); }
-#line 841 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 842 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 34:
-#line 217 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 260 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pStmt) = (yystack_[0].value.pCondStmt); }
-#line 847 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 848 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 35:
-#line 218 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 261 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pStmt) = (yystack_[0].value.pLoopStmt); }
-#line 853 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 854 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 36:
-#line 219 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 262 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pStmt) = (yystack_[1].value.pAssgnStmt); }
-#line 859 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 860 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 37:
-#line 220 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 263 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pStmt) = (yystack_[1].value.pMCall); }
-#line 865 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 866 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 38:
-#line 221 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 264 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pStmt) = (yystack_[1].value.pReturnStmt); }
-#line 871 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 872 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 39:
-#line 222 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 265 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pStmt) = new BreakStatement(); }
-#line 877 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 878 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 40:
-#line 223 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 266 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pStmt) = new ContinueStatement(); }
-#line 883 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 884 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 41:
-#line 227 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 270 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pAssgnStmt) = new AssignmentStatement("=", (yystack_[2].value.pLocation), (yystack_[0].value.pExpr)); }
-#line 889 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 890 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 42:
-#line 228 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 271 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pAssgnStmt) = new AssignmentStatement("+=", (yystack_[2].value.pLocation), (yystack_[0].value.pExpr)); }
-#line 895 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 896 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 43:
-#line 229 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 272 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pAssgnStmt) = new AssignmentStatement("-=", (yystack_[2].value.pLocation), (yystack_[0].value.pExpr)); }
-#line 901 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 902 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 44:
-#line 233 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 276 "./src/Driver/Parser.yy" // lalr1.cc:870
     {
             (yylhs.value.pCondStmt) = new IfElseStatement((yystack_[2].value.pExpr), (yystack_[0].value.pBlockStmt), NULL);
         }
-#line 909 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 910 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 45:
-#line 236 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 279 "./src/Driver/Parser.yy" // lalr1.cc:870
     {
             (yylhs.value.pCondStmt) = new IfElseStatement((yystack_[4].value.pExpr), (yystack_[2].value.pBlockStmt), (yystack_[0].value.pBlockStmt));
     }
-#line 917 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 918 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 46:
-#line 242 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 285 "./src/Driver/Parser.yy" // lalr1.cc:870
     {
             (yylhs.value.pLoopStmt) = new ForStatement(string((yystack_[5].value.pStrValue)), (yystack_[3].value.pExpr), (yystack_[1].value.pExpr), (yystack_[0].value.pBlockStmt));
         }
-#line 925 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 926 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 47:
-#line 247 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 290 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pReturnStmt) = new ReturnStatement(NULL); }
-#line 931 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 932 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 48:
-#line 248 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 291 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pReturnStmt) = new ReturnStatement((yystack_[1].value.pExpr)); }
-#line 937 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 938 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 49:
-#line 252 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 295 "./src/Driver/Parser.yy" // lalr1.cc:870
     {
             (yylhs.value.pMCall) = new UserDefinedMethodCall(string((yystack_[3].value.pStrValue)), (yystack_[1].value.pExprList));
         }
-#line 945 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 946 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 50:
-#line 255 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 298 "./src/Driver/Parser.yy" // lalr1.cc:870
     {
             (yylhs.value.pMCall) = new CalloutMethodCall(string((yystack_[3].value.pStrValue)), (yystack_[1].value.pCallArgList));
         }
-#line 953 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 954 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 51:
-#line 261 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 304 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pExprList) = new ExpressionsList(); }
-#line 959 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 960 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 52:
-#line 262 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 305 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pExprList)->add((yystack_[0].value.pExpr)); }
-#line 965 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 966 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 53:
-#line 263 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 306 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pExprList)->add((yystack_[0].value.pExpr)); }
-#line 971 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 972 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 54:
-#line 267 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 310 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pCallArgList) = new CalloutArgumentsList();}
-#line 977 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 978 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 55:
-#line 268 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 311 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pCallArgList)->add((yystack_[0].value.pCallArg)); }
-#line 983 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 984 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 56:
-#line 269 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 312 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pCallArgList)->add((yystack_[0].value.pCallArg)); }
-#line 989 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 990 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 57:
-#line 273 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 316 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pCallArg) = new CalloutArgument((yystack_[0].value.pExpr)); }
-#line 995 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 996 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 58:
-#line 274 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 317 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pCallArg) = new CalloutArgument(string((yystack_[0].value.pStrValue))); }
-#line 1001 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1002 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 59:
-#line 278 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 321 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pExpr) = (yystack_[0].value.pLocation); }
-#line 1007 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1008 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 60:
-#line 279 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 322 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pExpr) = (yystack_[0].value.pLit); }
-#line 1013 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1014 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 61:
-#line 280 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 323 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pExpr) = (yystack_[0].value.pMCall); }
-#line 1019 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1020 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 62:
-#line 281 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 324 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pExpr) = (yystack_[0].value.pBExpr); }
-#line 1025 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1026 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 63:
-#line 282 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 325 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pExpr) = (yystack_[0].value.pUExpr); }
-#line 1031 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1032 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 64:
-#line 283 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 326 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pExpr) = new EnclosedExpression((yystack_[1].value.pExpr)); }
-#line 1037 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1038 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 65:
-#line 287 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 330 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pLocation) = new VariableLocation(string((yystack_[0].value.pStrValue))); }
-#line 1043 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1044 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 66:
-#line 288 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 331 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pLocation) = new VariableLocation(string((yystack_[3].value.pStrValue)), (yystack_[1].value.pExpr)); }
-#line 1049 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1050 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 67:
-#line 292 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 335 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pLit) = (yystack_[0].value.pIntLit); }
-#line 1055 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1056 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 68:
-#line 293 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 336 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pLit) = (yystack_[0].value.pHexLit); }
-#line 1061 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1062 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 69:
-#line 294 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 337 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pLit) = (yystack_[0].value.pBoolLit); }
-#line 1067 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1068 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 70:
-#line 295 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 338 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pLit) = (yystack_[0].value.pCharLit); }
-#line 1073 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1074 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 71:
-#line 299 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 342 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pBoolLit) = new BooleanLiteral("true"); }
-#line 1079 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1080 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 72:
-#line 300 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 343 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pBoolLit) = new BooleanLiteral("false") }
-#line 1085 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1086 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 73:
-#line 301 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 344 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pIntLit) = new IntegerLiteral((yystack_[0].value.iValue)); }
-#line 1091 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1092 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 74:
-#line 302 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 345 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pHexLit) = new HexadecimalLiteral((yystack_[0].value.hexValue)); }
-#line 1097 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1098 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 75:
-#line 303 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 346 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pCharLit) = new CharacterLiteral((yystack_[0].value.cValue)); }
-#line 1103 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1104 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 76:
-#line 307 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 350 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pBExpr) = new BinaryExpression("+", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
-#line 1109 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1110 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 77:
-#line 308 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 351 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pBExpr) = new BinaryExpression("-", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
-#line 1115 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1116 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 78:
-#line 309 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 352 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pBExpr) = new BinaryExpression("*", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
-#line 1121 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1122 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 79:
-#line 310 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 353 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pBExpr) = new BinaryExpression("/", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
-#line 1127 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1128 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 80:
-#line 311 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 354 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pBExpr) = new BinaryExpression("%", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
-#line 1133 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1134 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 81:
-#line 312 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 355 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pBExpr) = new BinaryExpression("<", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
-#line 1139 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1140 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 82:
-#line 313 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 356 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pBExpr) = new BinaryExpression(">", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
-#line 1145 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1146 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 83:
-#line 314 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 357 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pBExpr) = new BinaryExpression("==", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
-#line 1151 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1152 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 84:
-#line 315 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 358 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pBExpr) = new BinaryExpression(">=", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
-#line 1157 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1158 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 85:
-#line 316 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 359 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pBExpr) = new BinaryExpression("<=", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
-#line 1163 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1164 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 86:
-#line 317 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 360 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pBExpr) = new BinaryExpression("!=", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
-#line 1169 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1170 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 87:
-#line 318 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 361 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pBExpr) = new BinaryExpression("&&", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
-#line 1175 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1176 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 88:
-#line 319 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 362 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pBExpr) = new BinaryExpression("||", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
-#line 1181 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1182 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 89:
-#line 323 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 366 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pUExpr) = new UnaryExpression("-", (yystack_[0].value.pExpr)); }
-#line 1187 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1188 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
   case 90:
-#line 324 "./src/Driver/Parser.yy" // lalr1.cc:870
+#line 367 "./src/Driver/Parser.yy" // lalr1.cc:870
     { (yylhs.value.pUExpr) = new UnaryExpression("!", (yystack_[0].value.pExpr)); }
-#line 1193 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1194 "./src/Driver/Parser.cc" // lalr1.cc:870
     break;
 
 
-#line 1197 "./src/Driver/Parser.cc" // lalr1.cc:870
+#line 1198 "./src/Driver/Parser.cc" // lalr1.cc:870
             default:
               break;
             }
@@ -1670,16 +1671,16 @@ namespace decaf {
   const unsigned short
   Parser::yyrline_[] =
   {
-       0,   130,   130,   136,   137,   141,   144,   150,   151,   152,
-     156,   157,   158,   163,   164,   168,   171,   174,   180,   181,
-     182,   186,   187,   191,   196,   197,   201,   202,   205,   206,
-     207,   211,   212,   216,   217,   218,   219,   220,   221,   222,
-     223,   227,   228,   229,   233,   236,   242,   247,   248,   252,
-     255,   261,   262,   263,   267,   268,   269,   273,   274,   278,
-     279,   280,   281,   282,   283,   287,   288,   292,   293,   294,
-     295,   299,   300,   301,   302,   303,   307,   308,   309,   310,
-     311,   312,   313,   314,   315,   316,   317,   318,   319,   323,
-     324
+       0,   173,   173,   179,   180,   184,   187,   193,   194,   195,
+     199,   200,   201,   206,   207,   211,   214,   217,   223,   224,
+     225,   229,   230,   234,   239,   240,   244,   245,   248,   249,
+     250,   254,   255,   259,   260,   261,   262,   263,   264,   265,
+     266,   270,   271,   272,   276,   279,   285,   290,   291,   295,
+     298,   304,   305,   306,   310,   311,   312,   316,   317,   321,
+     322,   323,   324,   325,   326,   330,   331,   335,   336,   337,
+     338,   342,   343,   344,   345,   346,   350,   351,   352,   353,
+     354,   355,   356,   357,   358,   359,   360,   361,   362,   366,
+     367
   };
 
   // Print the state stack on the debug stream.
@@ -1762,8 +1763,8 @@ namespace decaf {
 
 
 } // decaf
-#line 1766 "./src/Driver/Parser.cc" // lalr1.cc:1181
-#line 326 "./src/Driver/Parser.yy" // lalr1.cc:1182
+#line 1767 "./src/Driver/Parser.cc" // lalr1.cc:1181
+#line 369 "./src/Driver/Parser.yy" // lalr1.cc:1182
 
 
 void decaf::Parser::error(const Parser::location_type& l,

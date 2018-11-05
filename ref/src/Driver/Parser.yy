@@ -6,9 +6,6 @@
 #include <stdio.h>
 #include <string>
 #include <vector>
-#include "Modules.hh"
-#include "Scanner.hh"
-#include "Driver.hh"
 
 extern union Node yylval;
 class Program* start = NULL;
@@ -54,15 +51,46 @@ int errors=0;
 /* verbose error messages */
 %error-verbose
 
-%{
-
-/* this "connects" the bison parser in the driver to the flex scanner class
- * object. it defines the yylex() function call to pull the next token from the
- * current lexer object of the driver context. */
-#undef yylex
-#define yylex driver.lexer->lex
-
-%}
+%union
+{
+    int                             iValue;
+    long int                        hexValue;
+    char                            cValue;
+    std::string*                    pStrValue;
+    class Program*                  pProgram;
+    class FieldDeclaration*         pField;
+    class FieldDeclarationsList*    pFieldList;
+    class Variable*                 pFieldVar;
+    class VariablesList*            pFieldVarList;
+    class MethodDeclaration*        pMDecl;
+    class MethodDeclarationsList*   pMDeclList;
+    class Argument*                 pArg; // parameter
+    class ArgumentsList*            pArgList; // parameter_list
+    class VariableDeclaration*      pVarDecl;
+    class VariableDeclarationsList* pVarDeclList;
+    class IdentifiersList*          pIdList;
+    class Statement*                pStmt;
+    class StatementsList*           pStmtList;
+    class BlockStatement*           pBlockStmt;
+    class IfElseStatement*          pCondStmt;
+    class ForStatement*             pLoopStmt;
+    class AssignmentStatement*      pAssgnStmt;
+    class ReturnStatement*          pReturnStmt;
+    class VariableLocation*         pLocation;
+    class Expression*               pExpr;
+    class ExpressionsList*          pExprList;
+    class BinaryExpression*         pBExpr;
+    class UnaryExpression*          pUExpr;
+    class MethodCall*               pMCall;
+    class CalloutArgument*          pCallArg;
+    class CalloutArgumentsList*     pCallArgList;
+    class Literal*                  pLit;
+    class IntegerLiteral*           pIntLit;
+    class BooleanLiteral*           pBoolLit;
+    class HexadecimalLiteral*       pHexLit;
+    class CharacterLiteral*         pCharLit;
+    class StringLiteral*            pStringLit;
+}
 
 %start program
 
@@ -122,13 +150,28 @@ int errors=0;
 %type <pBExpr> binary_operation
 
 
+%{
+
+#include "Driver.hh"
+#include "Scanner.hh"
+#include "Modules.hh"
+
+/* this "connects" the bison parser in the driver to the flex scanner class
+ * object. it defines the yylex() function call to pull the next token from the
+ * current lexer object of the driver context. */
+#undef yylex
+#define yylex driver.lexer->lex
+
+%}
+
+
 %%
 
 /* Parser Rules*/ 
 
 program:
     CLASS ID '{' field_declaration_list method_declaration_list '}' {
-        $$ = new Program(string($2), $4, $5);
+        $$ = new Program(*$2, $4, $5);
     };
 
 

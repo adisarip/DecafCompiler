@@ -129,7 +129,50 @@ namespace decaf {
   public:
 #ifndef YYSTYPE
     /// Symbol semantic values.
+    union semantic_type
+    {
+    #line 55 "./src/Driver/Parser.yy" // lalr1.cc:395
 
+    int                             iValue;
+    long int                        hexValue;
+    char                            cValue;
+    std::string*                    pStrValue;
+    class Program*                  pProgram;
+    class FieldDeclaration*         pField;
+    class FieldDeclarationsList*    pFieldList;
+    class Variable*                 pFieldVar;
+    class VariablesList*            pFieldVarList;
+    class MethodDeclaration*        pMDecl;
+    class MethodDeclarationsList*   pMDeclList;
+    class Argument*                 pArg; // parameter
+    class ArgumentsList*            pArgList; // parameter_list
+    class VariableDeclaration*      pVarDecl;
+    class VariableDeclarationsList* pVarDeclList;
+    class IdentifiersList*          pIdList;
+    class Statement*                pStmt;
+    class StatementsList*           pStmtList;
+    class BlockStatement*           pBlockStmt;
+    class IfElseStatement*          pCondStmt;
+    class ForStatement*             pLoopStmt;
+    class AssignmentStatement*      pAssgnStmt;
+    class ReturnStatement*          pReturnStmt;
+    class VariableLocation*         pLocation;
+    class Expression*               pExpr;
+    class ExpressionsList*          pExprList;
+    class BinaryExpression*         pBExpr;
+    class UnaryExpression*          pUExpr;
+    class MethodCall*               pMCall;
+    class CalloutArgument*          pCallArg;
+    class CalloutArgumentsList*     pCallArgList;
+    class Literal*                  pLit;
+    class IntegerLiteral*           pIntLit;
+    class BooleanLiteral*           pBoolLit;
+    class HexadecimalLiteral*       pHexLit;
+    class CharacterLiteral*         pCharLit;
+    class StringLiteral*            pStringLit;
+
+#line 175 "./src/Driver/Parser.hh" // lalr1.cc:395
+    };
 #else
     typedef YYSTYPE semantic_type;
 #endif
@@ -503,7 +546,7 @@ namespace decaf {
 
 
 } // decaf
-#line 507 "./src/Driver/Parser.hh" // lalr1.cc:395
+#line 550 "./src/Driver/Parser.hh" // lalr1.cc:395
 
 
 

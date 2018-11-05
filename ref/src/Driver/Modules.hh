@@ -4,16 +4,11 @@
 #ifndef MODULES_H
 #define MODULES_H
 
-#ifndef YYSTYPE_IS_DECLARED
-#define YYSTYPE_IS_DECLARED 1
 
 #include "Ast.hh"
-#include "Modules.hh"
 #include "Program.hh"
 #include "FieldDeclaration.hh"
 #include "FieldDeclarationsList.hh"
-#include "FieldDeclarationBlock.hh"
-#include "FieldDeclarationBlocksList.hh"
 #include "MethodDeclaration.hh"
 #include "MethodDeclarationsList.hh"
 #include "Argument.hh"
@@ -49,7 +44,7 @@
 #include "VariableDeclarationsList.hh"
 #include "VariableLocation.hh"
 
-
+/*
 union Node
 {
     int                             iValue;
@@ -92,7 +87,7 @@ union Node
 };
 
 typedef union Node YYSTYPE;
+*/
 
 
-#endif /* YYSTYPE_IS_DECLARED */
 #endif /* MODULES_H */

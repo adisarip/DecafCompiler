@@ -9,6 +9,16 @@ BooleanLiteral::BooleanLiteral(string boolValueParm)
     mLiteralType = Literal::BOOLEAN;
 }
 
+bool BooleanLiteral::getValue()
+{
+    bool sBoolValue = false;
+    if (mBoolValue == "true")
+    {
+        sBoolValue = true;
+    }
+    return sBoolValue;
+}
+
 void BooleanLiteral::accept(Visitor& vParm)
 {
     vParm.visit(*this);
