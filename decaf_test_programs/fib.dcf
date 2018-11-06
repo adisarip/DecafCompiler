@@ -1,6 +1,3 @@
-// fibonacci series
-// Input: A positive integer n > 1
-// Output: generate "n" fibonacci numbers starting from 1.
 
 class Program
 {
