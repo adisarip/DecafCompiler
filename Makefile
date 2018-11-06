@@ -14,7 +14,7 @@ DECLRS = ./src/Declarations
 DEFINS = ./src/Definitions
 VISITR = ./src/Visitors
 DRIVER = ./src/Driver
-TARGET = dparser
+TARGET = decaf
 
 PARSER        = $(DRIVER)/Parser.cc
 PARSER_FILES  = $(DRIVER)/Parser.yy

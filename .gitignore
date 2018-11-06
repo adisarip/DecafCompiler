@@ -1,6 +1,6 @@
 decaf_parser.output
 decaf_parser
 .DS_store
-dparser
+decaf
 *.o
 cscope.out
