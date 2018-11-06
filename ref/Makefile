@@ -57,7 +57,6 @@ DECAF_SRC += $(DEFINS)/ContinueStatement.cc
 DECAF_SRC += $(DEFINS)/IntegerLiteral.cc
 DECAF_SRC += $(DEFINS)/BooleanLiteral.cc
 DECAF_SRC += $(DEFINS)/CharacterLiteral.cc
-DECAF_SRC += $(DEFINS)/StringLiteral.cc
 DECAF_SRC += $(DEFINS)/HexadecimalLiteral.cc
 DECAF_SRC += $(DEFINS)/ExpressionsList.cc
 DECAF_SRC += $(DEFINS)/UnaryExpression.cc

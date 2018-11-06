@@ -25,10 +25,12 @@ class Expression : public AstNode
         return mExprType;
     }
     
+    /*
     virtual void accept(Visitor& vParm)
     {
         vParm.visit(*this);
     };
+    */
 
   protected:
     ExpressionType mExprType;

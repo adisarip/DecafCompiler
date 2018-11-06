@@ -12,6 +12,7 @@ int main()
     decaf::Driver sDriver(sAstCtx);
     AstVisitor sVisitor;
     std::string sLine;
+    Program* pProg;
 
     while(1)
     {
@@ -20,35 +21,14 @@ int main()
         if (!sLine.empty())
         {
             bool result = sDriver.parse_string(sLine, "Input");
-
             if (result)
             {
                 if (sAstCtx.pRoot != NULL )
                 {
-                    UnaryExpression *unode;
-                    BinaryExpression *bnode;
-                    IntegerLiteral *inode;
-
-                    std::cout << "Postfix Form: " << std::endl;
-
-                    unode = dynamic_cast<UnaryExpression*>(sAstCtx.pRoot);
-                    if (unode != NULL)
-                    {
-                        sVisitor.visit(*unode);
-                    }
-
-                    bnode = dynamic_cast<BinaryExpression*>(sAstCtx.pRoot);
-                    if (bnode != NULL)
-                    {
-                        sVisitor.visit(*bnode);
-                    }
-
-                    inode = dynamic_cast<IntegerLiteral*>(sAstCtx.pRoot);
-                    if (inode != NULL)
-                    {
-                        sVisitor.visit(*inode);
-                    }
-                    std::cout <<  std::endl; 
+                    std::cout << "Traversing the AST: " << std::endl;
+                    pProg = dynamic_cast<Program*>(sAstCtx.pRoot);
+                    pProg->accept(sVisitor);
+                    std::cout << "Traverse AST Complete !!!" << std::endl; 
                 }
                 sAstCtx.clearAST();
             }

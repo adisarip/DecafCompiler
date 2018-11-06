@@ -3,6 +3,7 @@
 #define AST_VISITOR_H
 
 #include "Modules.hh"
+#include "Visitor.hh"
 
 class AstVisitor: public Visitor
 {
@@ -26,7 +27,6 @@ class AstVisitor: public Visitor
     virtual void visit(CalloutMethodCall& nodeParm);
     virtual void visit(CalloutArgument& nodeParm);
     virtual void visit(CalloutArgumentsList& nodeParm);
-    virtual void visit(Expression& nodeParm);
     virtual void visit(ExpressionsList& nodeParm);
     virtual void visit(UnaryExpression& nodeParm);
     virtual void visit(BinaryExpression& nodeParm);
@@ -36,7 +36,6 @@ class AstVisitor: public Visitor
     virtual void visit(BooleanLiteral& nodeParm);
     virtual void visit(HexadecimalLiteral& nodeParm);
     virtual void visit(CharacterLiteral& nodeParm);
-    virtual void visit(StringLiteral& nodeParm);
     virtual void visit(IdentifiersList& nodeParm);
     virtual void visit(Variable& nodeParm);
     virtual void visit(VariablesList& nodeParm);

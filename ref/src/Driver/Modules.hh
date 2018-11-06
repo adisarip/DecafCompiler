@@ -4,6 +4,7 @@
 #ifndef MODULES_H
 #define MODULES_H
 
+#include <string>
 
 #include "Ast.hh"
 #include "Program.hh"
@@ -37,7 +38,6 @@
 #include "BooleanLiteral.hh"
 #include "HexadecimalLiteral.hh"
 #include "CharacterLiteral.hh"
-#include "StringLiteral.hh"
 #include "IdentifiersList.hh"
 #include "Variable.hh"
 #include "VariablesList.hh"
@@ -45,8 +45,8 @@
 #include "VariableDeclarationsList.hh"
 #include "VariableLocation.hh"
 
-/*
-union Node
+
+union Nodes
 {
     int                             iValue;
     long int                        hexValue;
@@ -84,11 +84,12 @@ union Node
     class BooleanLiteral*           pBoolLit;
     class HexadecimalLiteral*       pHexLit;
     class CharacterLiteral*         pCharLit;
-    class StringLiteral*            pStringLit;
 };
 
-typedef union Node YYSTYPE;
-*/
+
+#ifndef YYSTYPE
+#define YYSTYPE Nodes
+#endif
 
 
 #endif /* MODULES_H */

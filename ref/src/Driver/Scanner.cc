@@ -565,11 +565,11 @@ static const flex_int16_t yy_chk[255] =
 
 static const flex_int16_t yy_rule_linenum[47] =
     {   0,
-       60,   61,   62,   63,   64,   65,   66,   67,   68,   69,
-       70,   71,   72,   74,   79,   84,   89,   90,   91,   92,
-       93,   94,   95,   96,   97,   98,   99,  100,  101,  102,
-      103,  104,  105,  106,  107,  108,  109,  110,  111,  112,
-      113,  116,  121,  127,  131,  138
+       63,   64,   65,   66,   67,   68,   69,   70,   71,   72,
+       73,   74,   75,   77,   82,   87,   92,   93,   94,   95,
+       96,   97,   98,   99,  100,  101,  102,  103,  104,  105,
+      106,  107,  108,  109,  110,  111,  112,  113,  114,  115,
+      116,  119,  124,  130,  134,  141
     } ;
 
 /* The intent behind this definition is that it'll catch
@@ -585,11 +585,14 @@ static const flex_int16_t yy_rule_linenum[47] =
 #line 5 "./src/Driver/Scanner.ll"
 
 #include <string>
+#include "Modules.hh"
 #include "Scanner.hh"
 
+extern union Node yylval;
+
 /* import the parser's token type into a local typedef */
-typedef Parser::token token;
-typedef Parser::token_type token_type;
+typedef decaf::Parser::token token;
+typedef decaf::Parser::token_type token_type;
 
 /* By default yylex returns int, we use token_type. Unfortunately yyterminate
  * by default returns 0, which is not of token_type. */
@@ -599,7 +602,7 @@ typedef Parser::token_type token_type;
  * on Win32. The C++ scanner uses STL streams instead. */
 #define YY_NO_UNISTD_H
 
-#line 602 "./src/Driver/Scanner.cc"
+#line 605 "./src/Driver/Scanner.cc"
 /*** Flex Declarations and Options ***/
 /* enable c++ scanner class generation */
 /* change the name of the scanner class. results in "decafFlexLexer" */
@@ -610,10 +613,10 @@ typedef Parser::token_type token_type;
 /* enables the use of start condition stacks */
 /* The following paragraph suffices to track locations accurately. Each time
  * yylex is invoked, the begin position is moved onto the end position. */
-#line 47 "./src/Driver/Scanner.ll"
+#line 50 "./src/Driver/Scanner.ll"
     #define YY_USER_ACTION  yylloc->columns(yyleng);
-#line 615 "./src/Driver/Scanner.cc"
-#line 616 "./src/Driver/Scanner.cc"
+#line 618 "./src/Driver/Scanner.cc"
+#line 619 "./src/Driver/Scanner.cc"
 
 #define INITIAL 0
 
@@ -805,10 +808,10 @@ YY_DECL
 
 	{
 /* %% [7.0] user's declarations go here */
-#line 50 "./src/Driver/Scanner.ll"
-
-
 #line 53 "./src/Driver/Scanner.ll"
+
+
+#line 56 "./src/Driver/Scanner.ll"
  /* code to place at the beginning of yylex() */
 
     // reset location
@@ -816,7 +819,7 @@ YY_DECL
 
 
 
-#line 819 "./src/Driver/Scanner.cc"
+#line 822 "./src/Driver/Scanner.cc"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -893,72 +896,72 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 60 "./src/Driver/Scanner.ll"
+#line 63 "./src/Driver/Scanner.ll"
 {yylval->pStrValue = new std::string(yytext); return token::TRUE;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 61 "./src/Driver/Scanner.ll"
+#line 64 "./src/Driver/Scanner.ll"
 {yylval->pStrValue = new std::string(yytext); return token::FALSE;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 62 "./src/Driver/Scanner.ll"
+#line 65 "./src/Driver/Scanner.ll"
 {yylval->pStrValue = new std::string(yytext); return token::CALLOUT;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 63 "./src/Driver/Scanner.ll"
+#line 66 "./src/Driver/Scanner.ll"
 {yylval->pStrValue = new std::string(yytext); return token::INT;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 64 "./src/Driver/Scanner.ll"
+#line 67 "./src/Driver/Scanner.ll"
 {yylval->pStrValue = new std::string(yytext); return token::BOOLEAN;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 65 "./src/Driver/Scanner.ll"
+#line 68 "./src/Driver/Scanner.ll"
 {yylval->pStrValue = new std::string(yytext); return token::CLASS;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 66 "./src/Driver/Scanner.ll"
+#line 69 "./src/Driver/Scanner.ll"
 {yylval->pStrValue = new std::string(yytext); return token::VOID;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 67 "./src/Driver/Scanner.ll"
+#line 70 "./src/Driver/Scanner.ll"
 {yylval->pStrValue = new std::string(yytext); return token::IF;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 68 "./src/Driver/Scanner.ll"
+#line 71 "./src/Driver/Scanner.ll"
 {yylval->pStrValue = new std::string(yytext); return token::ELSE;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 69 "./src/Driver/Scanner.ll"
+#line 72 "./src/Driver/Scanner.ll"
 {yylval->pStrValue = new std::string(yytext); return token::FOR;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 70 "./src/Driver/Scanner.ll"
+#line 73 "./src/Driver/Scanner.ll"
 {yylval->pStrValue = new std::string(yytext); return token::BREAK;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 71 "./src/Driver/Scanner.ll"
+#line 74 "./src/Driver/Scanner.ll"
 {yylval->pStrValue = new std::string(yytext); return token::CONTINUE;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 72 "./src/Driver/Scanner.ll"
+#line 75 "./src/Driver/Scanner.ll"
 {yylval->pStrValue = new std::string(yytext); return token::RETURN;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 74 "./src/Driver/Scanner.ll"
+#line 77 "./src/Driver/Scanner.ll"
 {
     yylval->pStrValue = new std::string(yytext);
     return token::ID;
@@ -966,7 +969,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 79 "./src/Driver/Scanner.ll"
+#line 82 "./src/Driver/Scanner.ll"
 {
     yylval->iValue = atoi(yytext);
     return token::NUMBER;
@@ -974,7 +977,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 84 "./src/Driver/Scanner.ll"
+#line 87 "./src/Driver/Scanner.ll"
 {
     yylval->hexValue = atol(yytext);
     return token::HEX_NUMBER;
@@ -982,149 +985,149 @@ YY_RULE_SETUP
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 89 "./src/Driver/Scanner.ll"
-{return '=';}
+#line 92 "./src/Driver/Scanner.ll"
+{yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 90 "./src/Driver/Scanner.ll"
-{return '+';}
+#line 93 "./src/Driver/Scanner.ll"
+{yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 91 "./src/Driver/Scanner.ll"
-{return '-';}
+#line 94 "./src/Driver/Scanner.ll"
+{yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 92 "./src/Driver/Scanner.ll"
-{return '*';}
+#line 95 "./src/Driver/Scanner.ll"
+{yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 93 "./src/Driver/Scanner.ll"
-{return '/';}
+#line 96 "./src/Driver/Scanner.ll"
+{yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 94 "./src/Driver/Scanner.ll"
-{return '%';}
+#line 97 "./src/Driver/Scanner.ll"
+{yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 95 "./src/Driver/Scanner.ll"
-{return '<';}
+#line 98 "./src/Driver/Scanner.ll"
+{yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 96 "./src/Driver/Scanner.ll"
-{return '>';}
+#line 99 "./src/Driver/Scanner.ll"
+{yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 97 "./src/Driver/Scanner.ll"
-{return token::OP_LET;}
+#line 100 "./src/Driver/Scanner.ll"
+{yylval->pStrValue = new std::string(yytext); return token::OP_LET;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 98 "./src/Driver/Scanner.ll"
-{return token::OP_GET;}
+#line 101 "./src/Driver/Scanner.ll"
+{yylval->pStrValue = new std::string(yytext); return token::OP_GET;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 99 "./src/Driver/Scanner.ll"
-{return token::OP_EEQ;}
+#line 102 "./src/Driver/Scanner.ll"
+{yylval->pStrValue = new std::string(yytext); return token::OP_EEQ;}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 100 "./src/Driver/Scanner.ll"
-{return token::OP_NEQ;}
+#line 103 "./src/Driver/Scanner.ll"
+{yylval->pStrValue = new std::string(yytext); return token::OP_NEQ;}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 101 "./src/Driver/Scanner.ll"
-{return token::OP_AND;}
+#line 104 "./src/Driver/Scanner.ll"
+{yylval->pStrValue = new std::string(yytext); return token::OP_AND;}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 102 "./src/Driver/Scanner.ll"
-{return token::OP_OR;}
+#line 105 "./src/Driver/Scanner.ll"
+{yylval->pStrValue = new std::string(yytext); return token::OP_OR;}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 103 "./src/Driver/Scanner.ll"
-{return token::OP_PLUS_EQ;}
+#line 106 "./src/Driver/Scanner.ll"
+{yylval->pStrValue = new std::string(yytext); return token::OP_PLUS_EQ;}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 104 "./src/Driver/Scanner.ll"
-{return token::OP_MINUS_EQ;}
+#line 107 "./src/Driver/Scanner.ll"
+{yylval->pStrValue = new std::string(yytext); return token::OP_MINUS_EQ;}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 105 "./src/Driver/Scanner.ll"
-{return '!';}
+#line 108 "./src/Driver/Scanner.ll"
+{yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 106 "./src/Driver/Scanner.ll"
-{return '(';}
+#line 109 "./src/Driver/Scanner.ll"
+{yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 107 "./src/Driver/Scanner.ll"
-{return ')';}
+#line 110 "./src/Driver/Scanner.ll"
+{yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 108 "./src/Driver/Scanner.ll"
-{return '[';}
+#line 111 "./src/Driver/Scanner.ll"
+{yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 109 "./src/Driver/Scanner.ll"
-{return ']';}
+#line 112 "./src/Driver/Scanner.ll"
+{yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 110 "./src/Driver/Scanner.ll"
-{return '{';}
+#line 113 "./src/Driver/Scanner.ll"
+{yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 111 "./src/Driver/Scanner.ll"
-{return '}';}
+#line 114 "./src/Driver/Scanner.ll"
+{yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 112 "./src/Driver/Scanner.ll"
-{return ',';}
+#line 115 "./src/Driver/Scanner.ll"
+{yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 113 "./src/Driver/Scanner.ll"
-{return ';';}
+#line 116 "./src/Driver/Scanner.ll"
+{yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 116 "./src/Driver/Scanner.ll"
+#line 119 "./src/Driver/Scanner.ll"
 {
-    yylval->cValue = yytext;
-    return CHAR;
+    yylval->cValue = *yytext;
+    return token::CHAR;
 }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 121 "./src/Driver/Scanner.ll"
+#line 124 "./src/Driver/Scanner.ll"
 {
     yylval->pStrValue = new std::string(yytext);
-    return STRING;
+    return token::STRING;
 }
 	YY_BREAK
 /* gobble up white-spaces & end-of-lines */
 case 44:
 YY_RULE_SETUP
-#line 127 "./src/Driver/Scanner.ll"
+#line 130 "./src/Driver/Scanner.ll"
 {
     yylloc->step();
 }
@@ -1132,7 +1135,7 @@ YY_RULE_SETUP
 case 45:
 /* rule 45 can match eol */
 YY_RULE_SETUP
-#line 131 "./src/Driver/Scanner.ll"
+#line 134 "./src/Driver/Scanner.ll"
 {
     yylloc->lines(yyleng);
     yylloc->step();
@@ -1142,17 +1145,17 @@ YY_RULE_SETUP
 /* pass all other characters up to bison */
 case 46:
 YY_RULE_SETUP
-#line 138 "./src/Driver/Scanner.ll"
+#line 141 "./src/Driver/Scanner.ll"
 {
     return static_cast<token_type>(*yytext);
 }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 143 "./src/Driver/Scanner.ll"
+#line 146 "./src/Driver/Scanner.ll"
 ECHO;
 	YY_BREAK
-#line 1155 "./src/Driver/Scanner.cc"
+#line 1158 "./src/Driver/Scanner.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2271,9 +2274,11 @@ void yyfree (void * ptr )
 
 /* %ok-for-header */
 
-#line 143 "./src/Driver/Scanner.ll"
+#line 146 "./src/Driver/Scanner.ll"
 
 
+namespace decaf
+{
 
 Scanner::Scanner(std::istream* in,
 		         std::ostream* out)
@@ -2288,6 +2293,8 @@ Scanner::~Scanner()
 void Scanner::set_debug(bool b)
 {
     yy_flex_debug = b;
+}
+
 }
 
 

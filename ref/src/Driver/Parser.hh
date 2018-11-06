@@ -39,6 +39,12 @@
 
 #ifndef YY_DECAF_SRC_DRIVER_PARSER_HH_INCLUDED
 # define YY_DECAF_SRC_DRIVER_PARSER_HH_INCLUDED
+// //                    "%code requires" blocks.
+#line 55 "./src/Driver/Parser.yy" // lalr1.cc:395
+
+    #include "Modules.hh"
+
+#line 48 "./src/Driver/Parser.hh" // lalr1.cc:395
 
 
 # include <cstdlib> // std::abort
@@ -117,7 +123,7 @@
 
 
 namespace decaf {
-#line 121 "./src/Driver/Parser.hh" // lalr1.cc:395
+#line 127 "./src/Driver/Parser.hh" // lalr1.cc:395
 
 
 
@@ -129,50 +135,7 @@ namespace decaf {
   public:
 #ifndef YYSTYPE
     /// Symbol semantic values.
-    union semantic_type
-    {
-    #line 55 "./src/Driver/Parser.yy" // lalr1.cc:395
 
-    int                             iValue;
-    long int                        hexValue;
-    char                            cValue;
-    std::string*                    pStrValue;
-    class Program*                  pProgram;
-    class FieldDeclaration*         pField;
-    class FieldDeclarationsList*    pFieldList;
-    class Variable*                 pFieldVar;
-    class VariablesList*            pFieldVarList;
-    class MethodDeclaration*        pMDecl;
-    class MethodDeclarationsList*   pMDeclList;
-    class Argument*                 pArg; // parameter
-    class ArgumentsList*            pArgList; // parameter_list
-    class VariableDeclaration*      pVarDecl;
-    class VariableDeclarationsList* pVarDeclList;
-    class IdentifiersList*          pIdList;
-    class Statement*                pStmt;
-    class StatementsList*           pStmtList;
-    class BlockStatement*           pBlockStmt;
-    class IfElseStatement*          pCondStmt;
-    class ForStatement*             pLoopStmt;
-    class AssignmentStatement*      pAssgnStmt;
-    class ReturnStatement*          pReturnStmt;
-    class VariableLocation*         pLocation;
-    class Expression*               pExpr;
-    class ExpressionsList*          pExprList;
-    class BinaryExpression*         pBExpr;
-    class UnaryExpression*          pUExpr;
-    class MethodCall*               pMCall;
-    class CalloutArgument*          pCallArg;
-    class CalloutArgumentsList*     pCallArgList;
-    class Literal*                  pLit;
-    class IntegerLiteral*           pIntLit;
-    class BooleanLiteral*           pBoolLit;
-    class HexadecimalLiteral*       pHexLit;
-    class CharacterLiteral*         pCharLit;
-    class StringLiteral*            pStringLit;
-
-#line 175 "./src/Driver/Parser.hh" // lalr1.cc:395
-    };
 #else
     typedef YYSTYPE semantic_type;
 #endif
@@ -194,33 +157,34 @@ namespace decaf {
         CLASS = 258,
         CALLOUT = 259,
         EOL = 260,
-        IF = 261,
-        ELSE = 262,
-        FOR = 263,
-        BREAK = 264,
-        CONTINUE = 265,
-        RETURN = 266,
-        TRUE = 267,
-        FALSE = 268,
-        NUMBER = 269,
-        HEX_NUMBER = 270,
-        CHAR = 271,
-        INT = 272,
-        BOOLEAN = 273,
-        ID = 274,
-        VOID = 275,
-        ALPHA = 276,
-        ALPHA_NUM = 277,
-        STRING = 278,
-        OP_PLUS_EQ = 279,
-        OP_MINUS_EQ = 280,
-        OP_OR = 281,
-        OP_AND = 282,
-        OP_EEQ = 283,
-        OP_NEQ = 284,
-        OP_LET = 285,
-        OP_GET = 286,
-        UMINUS = 287
+        END = 261,
+        IF = 262,
+        ELSE = 263,
+        FOR = 264,
+        BREAK = 265,
+        CONTINUE = 266,
+        RETURN = 267,
+        TRUE = 268,
+        FALSE = 269,
+        NUMBER = 270,
+        HEX_NUMBER = 271,
+        CHAR = 272,
+        INT = 273,
+        BOOLEAN = 274,
+        ID = 275,
+        VOID = 276,
+        ALPHA = 277,
+        ALPHA_NUM = 278,
+        STRING = 279,
+        OP_PLUS_EQ = 280,
+        OP_MINUS_EQ = 281,
+        OP_OR = 282,
+        OP_AND = 283,
+        OP_EEQ = 284,
+        OP_NEQ = 285,
+        OP_LET = 286,
+        OP_GET = 287,
+        UMINUS = 288
       };
     };
 
@@ -408,7 +372,7 @@ namespace decaf {
   // number is the opposite.  If YYTABLE_NINF, syntax error.
   static const unsigned char yytable_[];
 
-  static const unsigned char yycheck_[];
+  static const short yycheck_[];
 
   // YYSTOS[STATE-NUM] -- The (internal number of the) accessing
   // symbol of state STATE-NUM.
@@ -530,12 +494,12 @@ namespace decaf {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 284,     ///< Last index in yytable_.
+      yylast_ = 287,     ///< Last index in yytable_.
       yynnts_ = 33,  ///< Number of nonterminal symbols.
       yyfinal_ = 4, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
-      yyntokens_ = 50  ///< Number of tokens.
+      yyntokens_ = 51  ///< Number of tokens.
     };
 
 
@@ -546,7 +510,7 @@ namespace decaf {
 
 
 } // decaf
-#line 550 "./src/Driver/Parser.hh" // lalr1.cc:395
+#line 514 "./src/Driver/Parser.hh" // lalr1.cc:395
 
 
 

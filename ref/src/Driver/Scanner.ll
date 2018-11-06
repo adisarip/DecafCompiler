@@ -4,11 +4,14 @@
 %{ /*** C/C++ Declarations ***/
 
 #include <string>
+#include "Modules.hh"
 #include "Scanner.hh"
 
+extern union Node yylval;
+
 /* import the parser's token type into a local typedef */
-typedef Parser::token token;
-typedef Parser::token_type token_type;
+typedef decaf::Parser::token token;
+typedef decaf::Parser::token_type token_type;
 
 /* By default yylex returns int, we use token_type. Unfortunately yyterminate
  * by default returns 0, which is not of token_type. */
@@ -85,41 +88,41 @@ typedef Parser::token_type token_type;
     return token::HEX_NUMBER;
 }
 
-"="     {return '=';}
-"+"     {return '+';}
-"-"		{return '-';}
-"*"		{return '*';}
-"/"		{return '/';}
-"%"     {return '%';}
-"<"     {return '<';}
-">"     {return '>';}
-"<="    {return token::OP_LET;}
-">="    {return token::OP_GET;}
-"=="    {return token::OP_EEQ;}
-"!="    {return token::OP_NEQ;}
-"&&"    {return token::OP_AND;}
-"||"    {return token::OP_OR;}
-"+="    {return token::OP_PLUS_EQ;}
-"-="    {return token::OP_MINUS_EQ;}
-"!"     {return '!';}
-"("		{return '(';}
-")"		{return ')';}
-"["     {return '[';}
-"]"     {return ']';}
-"{"     {return '{';}
-"}"     {return '}';}
-","     {return ',';}
-";"     {return ';';}
+"="     {yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
+"+"     {yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
+"-"		{yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
+"*"		{yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
+"/"		{yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
+"%"     {yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
+"<"     {yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
+">"     {yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
+"<="    {yylval->pStrValue = new std::string(yytext); return token::OP_LET;}
+">="    {yylval->pStrValue = new std::string(yytext); return token::OP_GET;}
+"=="    {yylval->pStrValue = new std::string(yytext); return token::OP_EEQ;}
+"!="    {yylval->pStrValue = new std::string(yytext); return token::OP_NEQ;}
+"&&"    {yylval->pStrValue = new std::string(yytext); return token::OP_AND;}
+"||"    {yylval->pStrValue = new std::string(yytext); return token::OP_OR;}
+"+="    {yylval->pStrValue = new std::string(yytext); return token::OP_PLUS_EQ;}
+"-="    {yylval->pStrValue = new std::string(yytext); return token::OP_MINUS_EQ;}
+"!"     {yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
+"("		{yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
+")"		{yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
+"["     {yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
+"]"     {yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
+"{"     {yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
+"}"     {yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
+","     {yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
+";"     {yylval->cValue = *yytext; return static_cast<token_type>(*yytext);}
 
 
 [ !#$%&(-[]-~] {
-    yylval->cValue = yytext;
-    return CHAR;
+    yylval->cValue = *yytext;
+    return token::CHAR;
 }
 
 [ !#$%&(-[]-~]* {
     yylval->pStrValue = new std::string(yytext);
-    return STRING;
+    return token::STRING;
 }
 
  /* gobble up white-spaces & end-of-lines */
@@ -141,6 +144,8 @@ typedef Parser::token_type token_type;
 
 %% /*** Additional Code ***/
 
+namespace decaf
+{
 
 Scanner::Scanner(std::istream* in,
 		         std::ostream* out)
@@ -155,6 +160,8 @@ Scanner::~Scanner()
 void Scanner::set_debug(bool b)
 {
     yy_flex_debug = b;
+}
+
 }
 
 

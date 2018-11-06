@@ -4,8 +4,8 @@
 #include <fstream>
 #include <sstream>
 
-#include "Driver.hh"
 #include "Scanner.hh"
+#include "Driver.hh"
 
 namespace decaf
 {

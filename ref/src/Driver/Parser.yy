@@ -2,12 +2,12 @@
 /** \file parser.yy Contains the example Bison parser source */
 
 %{ /*** C/C++ Declarations ***/
-
 #include <stdio.h>
 #include <string>
 #include <vector>
 
-extern union Node yylval;
+extern union Nodes yylval;
+
 class Program* start = NULL;
 int errors=0;
 
@@ -51,50 +51,14 @@ int errors=0;
 /* verbose error messages */
 %error-verbose
 
-%union
+%code requires
 {
-    int                             iValue;
-    long int                        hexValue;
-    char                            cValue;
-    std::string*                    pStrValue;
-    class Program*                  pProgram;
-    class FieldDeclaration*         pField;
-    class FieldDeclarationsList*    pFieldList;
-    class Variable*                 pFieldVar;
-    class VariablesList*            pFieldVarList;
-    class MethodDeclaration*        pMDecl;
-    class MethodDeclarationsList*   pMDeclList;
-    class Argument*                 pArg; // parameter
-    class ArgumentsList*            pArgList; // parameter_list
-    class VariableDeclaration*      pVarDecl;
-    class VariableDeclarationsList* pVarDeclList;
-    class IdentifiersList*          pIdList;
-    class Statement*                pStmt;
-    class StatementsList*           pStmtList;
-    class BlockStatement*           pBlockStmt;
-    class IfElseStatement*          pCondStmt;
-    class ForStatement*             pLoopStmt;
-    class AssignmentStatement*      pAssgnStmt;
-    class ReturnStatement*          pReturnStmt;
-    class VariableLocation*         pLocation;
-    class Expression*               pExpr;
-    class ExpressionsList*          pExprList;
-    class BinaryExpression*         pBExpr;
-    class UnaryExpression*          pUExpr;
-    class MethodCall*               pMCall;
-    class CalloutArgument*          pCallArg;
-    class CalloutArgumentsList*     pCallArgList;
-    class Literal*                  pLit;
-    class IntegerLiteral*           pIntLit;
-    class BooleanLiteral*           pBoolLit;
-    class HexadecimalLiteral*       pHexLit;
-    class CharacterLiteral*         pCharLit;
-    class StringLiteral*            pStringLit;
+    #include "Modules.hh"
 }
 
 %start program
 
-%token CLASS CALLOUT EOL
+%token CLASS CALLOUT EOL END
 %token IF ELSE FOR BREAK CONTINUE RETURN
 %token TRUE FALSE
 %token <iValue> NUMBER
@@ -216,7 +180,7 @@ method_declaration:
             $$ = new MethodDeclaration("int", *$2, $4, $6);
         }
 	|	BOOLEAN ID '(' parameter_list ')' block_statement {
-            MethodDeclaration("boolean", $2, $4, $6);
+            MethodDeclaration("boolean", *$2, $4, $6);
         }
 	;
 
@@ -328,7 +292,7 @@ expr:
 	;
 
 location:
-		ID              { $$ = new VariableLocation($1); }
+		ID              { $$ = new VariableLocation(*$1); }
 	|	ID '[' expr ']' { $$ = new VariableLocation(*$1, $3); }
 	;
 
@@ -341,7 +305,7 @@ literal:
 
 bool_literal:
 		TRUE             { $$ = new BooleanLiteral("true"); }
-	|	FALSE            { $$ = new BooleanLiteral("false") };
+	|	FALSE            { $$ = new BooleanLiteral("false"); };
 int_literal:  NUMBER     { $$ = new IntegerLiteral($1); };
 hex_literal:  HEX_NUMBER { $$ = new HexadecimalLiteral($1); };
 char_literal: CHAR       { $$ = new CharacterLiteral($1); };
