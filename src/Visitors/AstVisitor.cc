@@ -218,13 +218,13 @@ void AstVisitor::visit(ReturnStatement& nodeParm)
 
 void AstVisitor::visit(BreakStatement& nodeParm)
 {
-    cout << "BREAK:" << endl;
+    cout << "BREAK: " << nodeParm.hasReturnValue() << endl;
 }
 
 
 void AstVisitor::visit(ContinueStatement& nodeParm)
 {
-    cout << "CONTINUE:" << endl;
+    cout << "CONTINUE:" << nodeParm.hasReturnValue() << endl;
 }
 
 
