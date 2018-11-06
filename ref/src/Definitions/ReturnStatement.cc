@@ -17,6 +17,12 @@ bool ReturnStatement::hasReturnValue()
 }
 
 
+Expression* ReturnStatement::getReturnExprPtr()
+{
+    return mReturnExprPtr;
+}
+
+
 void ReturnStatement::accept(Visitor& vParm)
 {
     vParm.visit(*this);

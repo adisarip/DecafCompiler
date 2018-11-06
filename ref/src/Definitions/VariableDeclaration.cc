@@ -17,6 +17,18 @@ VariableDeclaration::VariableDeclaration(string declarationTypeParm,
 }
 
 
+string VariableDeclaration::getDeclarationType()
+{
+    return mDeclarationType;
+}
+
+
+vector<string> VariableDeclaration::getVariablesList()
+{
+    return mVariablesList;
+}
+
+
 void VariableDeclaration::add(string variableParm)
 {
     mVariablesList.push_back(variableParm);

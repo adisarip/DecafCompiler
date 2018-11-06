@@ -4,8 +4,8 @@
 using namespace std;
 
 
-CalloutArgument::CalloutArgument(string stringLiteralParm)
-:mStringLiteral(stringLiteralParm)
+CalloutArgument::CalloutArgument(string calloutArgStringParm)
+:mCalloutArgString(calloutArgStringParm)
 {
 }
 
@@ -14,6 +14,19 @@ CalloutArgument::CalloutArgument(class Expression* pCalloutExprParm)
 :mCalloutExprPtr(pCalloutExprParm)
 {
 }
+
+
+string CalloutArgument::getCalloutArgString()
+{
+    return mCalloutArgString;
+}
+
+
+Expression* CalloutArgument::getCalloutExprPtr()
+{
+    return mCalloutExprPtr;
+}
+
 
 void CalloutArgument::accept(Visitor& vParm)
 {

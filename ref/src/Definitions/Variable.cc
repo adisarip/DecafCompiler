@@ -20,6 +20,25 @@ Variable::Variable(string variableNameParm,
 }
 
 
+Variable::DeclarationType
+Variable::getDeclarationType()
+{
+    return mDeclType;
+}
+
+
+string Variable::getVariableName()
+{
+    return mVariableName;
+}
+
+
+int Variable::getArraySize()
+{
+    return mArraySize;
+}
+
+
 void Variable::accept(Visitor& vParm)
 {
     vParm.visit(*this);

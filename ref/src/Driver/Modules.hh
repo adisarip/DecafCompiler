@@ -28,6 +28,7 @@
 #include "CalloutArgument.hh"
 #include "CalloutArgumentsList.hh"
 #include "Expression.hh"
+#include "ExpressionsList.hh"
 #include "UnaryExpression.hh"
 #include "BinaryExpression.hh"
 #include "EnclosedExpression.hh"

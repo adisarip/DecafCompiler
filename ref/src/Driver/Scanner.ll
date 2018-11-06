@@ -7,8 +7,8 @@
 #include "Scanner.hh"
 
 /* import the parser's token type into a local typedef */
-typedef decaf::Parser::token token;
-typedef decaf::Parser::token_type token_type;
+typedef Parser::token token;
+typedef Parser::token_type token_type;
 
 /* By default yylex returns int, we use token_type. Unfortunately yyterminate
  * by default returns 0, which is not of token_type. */
@@ -141,8 +141,6 @@ typedef decaf::Parser::token_type token_type;
 
 %% /*** Additional Code ***/
 
-namespace decaf
-{
 
 Scanner::Scanner(std::istream* in,
 		         std::ostream* out)
@@ -158,8 +156,6 @@ void Scanner::set_debug(bool b)
 {
     yy_flex_debug = b;
 }
-
-} /* namespace decaf */
 
 
 /* This implementation of DecafFlexLexer::yylex() is required to fill the

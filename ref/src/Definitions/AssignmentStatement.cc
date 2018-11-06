@@ -14,6 +14,25 @@ AssignmentStatement::AssignmentStatement(string assignmentOpParm,
     mStmtType = Statement::NON_RETURNING;
 }
 
+
+string AssignmentStatement::getAssignmentOp()
+{
+    return mAssignmentOp;
+}
+
+
+VariableLocation* AssignmentStatement::getLocationPtr()
+{
+    return mLocationPtr;
+}
+
+
+Expression* AssignmentStatement::getAssignmentExprPtr()
+{
+    return mAssignmentExprPtr;
+}
+
+
 void AssignmentStatement::accept(Visitor& vParm)
 {
     vParm.visit(*this);

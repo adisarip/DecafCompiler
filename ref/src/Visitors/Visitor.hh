@@ -6,8 +6,6 @@
 class Program;
 class FieldDeclaration;
 class FieldDeclarationsList;
-class FieldDeclarationBlock;
-class FieldDeclarationBlocksList;
 class MethodDeclaration;
 class MethodDeclarationsList;
 class Argument;
@@ -51,13 +49,10 @@ class Visitor
     virtual void visit(Program& nodeParm) = 0;
     virtual void visit(FieldDeclaration& nodeParm) = 0;
     virtual void visit(FieldDeclarationsList& nodeParm) = 0;
-    virtual void visit(FieldDeclarationBlock& nodeParm) = 0;
-    virtual void visit(FieldDeclarationBlocksList& nodeParm) = 0;
     virtual void visit(MethodDeclaration& nodeParm) = 0;
     virtual void visit(MethodDeclarationsList& nodeParm) = 0;
     virtual void visit(Argument& nodeParm) = 0;
     virtual void visit(ArgumentsList& nodeParm) = 0;
-    virtual void visit(Statement& nodeParm) = 0;
     virtual void visit(StatementsList& nodeParm) = 0;
     virtual void visit(BlockStatement& nodeParm) = 0;
     virtual void visit(AssignmentStatement& nodeParm) = 0;
@@ -66,7 +61,6 @@ class Visitor
     virtual void visit(ReturnStatement& nodeParm) = 0;
     virtual void visit(BreakStatement& nodeParm) = 0;
     virtual void visit(ContinueStatement& nodeParm) = 0;
-    virtual void visit(MethodCall& nodeParm) = 0;
     virtual void visit(UserDefinedMethodCall& nodeParm) = 0;
     virtual void visit(CalloutMethodCall& nodeParm) = 0;
     virtual void visit(CalloutArgument& nodeParm) = 0;

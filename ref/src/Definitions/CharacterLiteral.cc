@@ -9,6 +9,13 @@ CharacterLiteral::CharacterLiteral(char charValueParm)
     mLiteralType = Literal::CHARACTER;
 }
 
+
+char CharacterLiteral::getCharValue()
+{
+    return mCharValue;
+}
+
+
 void CharacterLiteral::accept(Visitor& vParm)
 {
     vParm.visit(*this);

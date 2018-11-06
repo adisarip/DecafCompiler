@@ -172,6 +172,7 @@ int errors=0;
 program:
     CLASS ID '{' field_declaration_list method_declaration_list '}' {
         $$ = new Program(*$2, $4, $5);
+        driver.mAstCtx.pRoot = $$;
     };
 
 
@@ -196,9 +197,9 @@ field_declaration_variables_list:
 	;
 
 field_declaration_variable:
-		ID                     { $$ = new Variable(string($1)); }
-	|	ID '[' int_literal ']' { $$ = new Variable(string($1), $3->getValue()); }
-    |	ID '[' hex_literal ']' { $$ = new Variable(string($1), $3->getHexValue()); }
+		ID                     { $$ = new Variable(*$1); }
+	|	ID '[' int_literal ']' { $$ = new Variable(*$1, $3->getValue()); }
+    |	ID '[' hex_literal ']' { $$ = new Variable(*$1, $3->getHexValue()); }
 	;
 
 
@@ -209,13 +210,13 @@ method_declaration_list:
 
 method_declaration:
 		VOID ID '(' parameter_list ')' block_statement {
-            $$ = new MethodDeclaration("void", string($2), $4, $6);
+            $$ = new MethodDeclaration("void", *$2, $4, $6);
         }
 	|	INT ID '(' parameter_list ')' block_statement {
-            $$ = new MethodDeclaration("int", string($2), $4, $6);
+            $$ = new MethodDeclaration("int", *$2, $4, $6);
         }
 	|	BOOLEAN ID '(' parameter_list ')' block_statement {
-            MethodDeclaration("boolean", string($2), $4, $6);
+            MethodDeclaration("boolean", $2, $4, $6);
         }
 	;
 
@@ -226,8 +227,8 @@ parameter_list:
 	;
 
 parameter:
-		INT ID     { $$ = new Argument("int", string($2)); }
-	|	BOOLEAN ID { $$ = new Argument("boolean", string($2)); }
+		INT ID     { $$ = new Argument("int", *$2); }
+	|	BOOLEAN ID { $$ = new Argument("boolean", *$2); }
 	;
 
 block_statement:
@@ -246,8 +247,8 @@ variable_declaration:
 
 id_list:
 	{ $$ = new IdentifiersList(); }
-	|	ID  { $$->add(string($1)); }
-	|	id_list ',' ID  { $$->add(string($3)); }
+	|	ID  { $$->add(*$1); }
+	|	id_list ',' ID  { $$->add(*$3); }
 	;
 
 statement_list:
@@ -283,7 +284,7 @@ if_conditional_statement:
 
 for_loop_statement:
         FOR ID '=' expr ',' expr block_statement {
-            $$ = new ForStatement(string($2), $4, $6, $7);
+            $$ = new ForStatement(*$2, $4, $6, $7);
         };
 
 return_statement:
@@ -293,10 +294,10 @@ return_statement:
 
 method_call:
 		ID '(' expr_list ')'  {
-            $$ = new UserDefinedMethodCall(string($1), $3);
+            $$ = new UserDefinedMethodCall(*$1, $3);
         }
 	|	CALLOUT '(' STRING ',' callout_arg_list ')'  {
-            $$ = new CalloutMethodCall(string($3), $5);
+            $$ = new CalloutMethodCall(*$3, $5);
         }
 	;
 
@@ -314,7 +315,7 @@ callout_arg_list:
 
 callout_arg:
 		expr   { $$ = new CalloutArgument($1); }
-	|	STRING { $$ = new CalloutArgument(string($1)); }
+	|	STRING { $$ = new CalloutArgument(*$1); }
 	;
 
 expr:
@@ -327,8 +328,8 @@ expr:
 	;
 
 location:
-		ID              { $$ = new VariableLocation(string($1)); }
-	|	ID '[' expr ']' { $$ = new VariableLocation(string($1), $3); }
+		ID              { $$ = new VariableLocation($1); }
+	|	ID '[' expr ']' { $$ = new VariableLocation(*$1, $3); }
 	;
 
 literal:

@@ -4,13 +4,13 @@
 #include <fstream>
 #include "Driver.hh"
 #include "Modules.hh"
-#include "PostFixVisitor.hh"
+#include "AstVisitor.hh"
 
 int main()
 {
     AstContext sAstCtx;
     decaf::Driver sDriver(sAstCtx);
-    PostFixVisitor sVisitor;
+    AstVisitor sVisitor;
     std::string sLine;
 
     while(1)

@@ -17,6 +17,30 @@ ForStatement::ForStatement(string initValueParm,
 }
 
 
+string ForStatement::getInitValue()
+{
+    return mInitValue;
+}
+
+
+Expression* ForStatement::getInitExprPtr()
+{
+    return mInitExprPtr;
+}
+
+
+Expression* ForStatement::getCondExprPtr()
+{
+    return mCondExprPtr;
+}
+
+
+BlockStatement* ForStatement::getForBlockPtr()
+{
+    return mForBlockPtr;
+}
+
+
 bool ForStatement::hasReturnValue()
 {
     return mForBlockPtr->hasReturnValue();

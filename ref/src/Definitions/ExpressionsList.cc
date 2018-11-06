@@ -10,7 +10,8 @@ void ExpressionsList::add(class Expression* pExprParm)
 }
 
 
-vector<class Expression*> ExpressionsList::getExpressionsList()
+vector<class Expression*>
+ExpressionsList::getExpressionsList()
 {
     return mExprList;
 }

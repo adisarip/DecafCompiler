@@ -588,8 +588,8 @@ static const flex_int16_t yy_rule_linenum[47] =
 #include "Scanner.hh"
 
 /* import the parser's token type into a local typedef */
-typedef decaf::Parser::token token;
-typedef decaf::Parser::token_type token_type;
+typedef Parser::token token;
+typedef Parser::token_type token_type;
 
 /* By default yylex returns int, we use token_type. Unfortunately yyterminate
  * by default returns 0, which is not of token_type. */
@@ -2274,8 +2274,6 @@ void yyfree (void * ptr )
 #line 143 "./src/Driver/Scanner.ll"
 
 
-namespace decaf
-{
 
 Scanner::Scanner(std::istream* in,
 		         std::ostream* out)
@@ -2291,8 +2289,6 @@ void Scanner::set_debug(bool b)
 {
     yy_flex_debug = b;
 }
-
-} /* namespace decaf */
 
 
 /* This implementation of DecafFlexLexer::yylex() is required to fill the

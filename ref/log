@@ -1,0 +1,663 @@
+./src/Driver/Parser.yy: In member function 'virtual int decaf::Parser::parse()':
+./src/Driver/Parser.yy:174:140: error: no matching function for call to 'Program::Program(std::__cxx11::string&, decaf::FieldDeclarationsList*&, decaf::MethodDeclarationsList*&)'
+         $$ = new Program(*$2, $4, $5);
+                                                                                                                                            ^
+In file included from ./src/Driver/Modules.hh:9,
+                 from ./src/Driver/Parser.yy:157:
+./src/Declarations/Program.hh:15:5: note: candidate: 'Program::Program(std::__cxx11::string, FieldDeclarationsList*, MethodDeclarationsList*)'
+     Program(string programNameParm,
+     ^~~~~~~
+./src/Declarations/Program.hh:15:5: note:   no known conversion for argument 2 from 'decaf::FieldDeclarationsList*' to 'FieldDeclarationsList*'
+./src/Declarations/Program.hh:12:7: note: candidate: 'Program::Program(const Program&)'
+ class Program : public AstNode
+       ^~~~~~~
+./src/Declarations/Program.hh:12:7: note:   candidate expects 1 argument, 3 provided
+./src/Declarations/Program.hh:12:7: note: candidate: 'Program::Program(Program&&)'
+./src/Declarations/Program.hh:12:7: note:   candidate expects 1 argument, 3 provided
+./src/Driver/Parser.yy:180:60: error: invalid use of incomplete type 'class decaf::FieldDeclarationsList'
+  { $$ = new FieldDeclarationsList(); }
+                                                            ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:62:11: note: forward declaration of 'class decaf::FieldDeclarationsList'
+     class FieldDeclarationsList*    pFieldList;
+           ^~~~~~~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:181:31: error: invalid use of incomplete type 'class decaf::FieldDeclarationsList'
+  | field_declaration_list field_declaration { $$->add($2); }
+                               ^~
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:62:11: note: forward declaration of 'class decaf::FieldDeclarationsList'
+     class FieldDeclarationsList*    pFieldList;
+           ^~~~~~~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:186:97: error: invalid use of incomplete type 'class decaf::FieldDeclaration'
+             $$ = new FieldDeclaration("int", $2);
+                                                                                                 ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:61:11: note: forward declaration of 'class decaf::FieldDeclaration'
+     class FieldDeclaration*         pField;
+           ^~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:189:101: error: invalid use of incomplete type 'class decaf::FieldDeclaration'
+             $$ = new FieldDeclaration("boolean", $2);
+                                                                                                     ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:61:11: note: forward declaration of 'class decaf::FieldDeclaration'
+     class FieldDeclaration*         pField;
+           ^~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:194:55: error: invalid use of incomplete type 'class decaf::VariablesList'
+  { $$ = new VariablesList(); }
+                                                       ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:64:11: note: forward declaration of 'class decaf::VariablesList'
+     class VariablesList*            pFieldVarList;
+           ^~~~~~~~~~~~~
+./src/Driver/Parser.yy:195:34: error: invalid use of incomplete type 'class decaf::VariablesList'
+  | field_declaration_variable  { $$->add($1); }
+                                  ^~
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:64:11: note: forward declaration of 'class decaf::VariablesList'
+     class VariablesList*            pFieldVarList;
+           ^~~~~~~~~~~~~
+./src/Driver/Parser.yy:196:34: error: invalid use of incomplete type 'class decaf::VariablesList'
+  | field_declaration_variables_list ',' field_declaration_variable { $$->add($3); }
+                                  ^~
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:64:11: note: forward declaration of 'class decaf::VariablesList'
+     class VariablesList*            pFieldVarList;
+           ^~~~~~~~~~~~~
+./src/Driver/Parser.yy:200:76: error: invalid use of incomplete type 'class decaf::Variable'
+   ID                     { $$ = new Variable(*$1); }
+                                                                            ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:63:11: note: forward declaration of 'class decaf::Variable'
+     class Variable*                 pFieldVar;
+           ^~~~~~~~
+./src/Driver/Parser.yy:201:105: error: invalid use of incomplete type 'class decaf::IntegerLiteral'
+  | ID '[' int_literal ']' { $$ = new Variable(*$1, $3->getValue()); }
+                                                                                                         ^ 
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:88:11: note: forward declaration of 'class decaf::IntegerLiteral'
+     class IntegerLiteral*           pIntLit;
+           ^~~~~~~~~~~~~~
+./src/Driver/Parser.yy:201:117: error: invalid use of incomplete type 'class decaf::Variable'
+  | ID '[' int_literal ']' { $$ = new Variable(*$1, $3->getValue()); }
+                                                                                                                     ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:63:11: note: forward declaration of 'class decaf::Variable'
+     class Variable*                 pFieldVar;
+           ^~~~~~~~
+./src/Driver/Parser.yy:202:105: error: invalid use of incomplete type 'class decaf::HexadecimalLiteral'
+     | ID '[' hex_literal ']' { $$ = new Variable(*$1, $3->getHexValue()); }
+                                                                                                         ^ 
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:90:11: note: forward declaration of 'class decaf::HexadecimalLiteral'
+     class HexadecimalLiteral*       pHexLit;
+           ^~~~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:202:120: error: invalid use of incomplete type 'class decaf::Variable'
+     | ID '[' hex_literal ']' { $$ = new Variable(*$1, $3->getHexValue()); }
+                                                                                                                        ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:63:11: note: forward declaration of 'class decaf::Variable'
+     class Variable*                 pFieldVar;
+           ^~~~~~~~
+./src/Driver/Parser.yy:207:61: error: invalid use of incomplete type 'class decaf::MethodDeclarationsList'
+  { $$ = new MethodDeclarationsList(); }
+                                                             ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:66:11: note: forward declaration of 'class decaf::MethodDeclarationsList'
+     class MethodDeclarationsList*   pMDeclList;
+           ^~~~~~~~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:208:31: error: invalid use of incomplete type 'class decaf::MethodDeclarationsList'
+  | method_declaration method_declaration_list { $$->add($1); }
+                               ^~
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:66:11: note: forward declaration of 'class decaf::MethodDeclarationsList'
+     class MethodDeclarationsList*   pMDeclList;
+           ^~~~~~~~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:213:158: error: invalid use of incomplete type 'class decaf::MethodDeclaration'
+             $$ = new MethodDeclaration("void", *$2, $4, $6);
+                                                                                                                                                              ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:65:11: note: forward declaration of 'class decaf::MethodDeclaration'
+     class MethodDeclaration*        pMDecl;
+           ^~~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:216:157: error: invalid use of incomplete type 'class decaf::MethodDeclaration'
+             $$ = new MethodDeclaration("int", *$2, $4, $6);
+                                                                                                                                                             ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:65:11: note: forward declaration of 'class decaf::MethodDeclaration'
+     class MethodDeclaration*        pMDecl;
+           ^~~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:219:133: error: invalid use of incomplete type 'class decaf::MethodDeclaration'
+             MethodDeclaration("boolean", $2, $4, $6);
+                                                                                                                                     ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:65:11: note: forward declaration of 'class decaf::MethodDeclaration'
+     class MethodDeclaration*        pMDecl;
+           ^~~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:224:50: error: invalid use of incomplete type 'class decaf::ArgumentsList'
+  { $$ = new ArgumentsList();  }
+                                                  ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:68:11: note: forward declaration of 'class decaf::ArgumentsList'
+     class ArgumentsList*            pArgList; // parameter_list
+           ^~~~~~~~~~~~~
+./src/Driver/Parser.yy:225:29: error: invalid use of incomplete type 'class decaf::ArgumentsList'
+  | parameter  { $$->add($1); }
+                             ^~
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:68:11: note: forward declaration of 'class decaf::ArgumentsList'
+     class ArgumentsList*            pArgList; // parameter_list
+           ^~~~~~~~~~~~~
+./src/Driver/Parser.yy:226:29: error: invalid use of incomplete type 'class decaf::ArgumentsList'
+  | parameter_list ',' parameter  { $$->add($3); }
+                             ^~
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:68:11: note: forward declaration of 'class decaf::ArgumentsList'
+     class ArgumentsList*            pArgList; // parameter_list
+           ^~~~~~~~~~~~~
+./src/Driver/Parser.yy:230:78: error: invalid use of incomplete type 'class decaf::Argument'
+   INT ID     { $$ = new Argument("int", *$2); }
+                                                                              ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:67:11: note: forward declaration of 'class decaf::Argument'
+     class Argument*                 pArg; // parameter
+           ^~~~~~~~
+./src/Driver/Parser.yy:231:82: error: invalid use of incomplete type 'class decaf::Argument'
+  | BOOLEAN ID { $$ = new Argument("boolean", *$2); }
+                                                                                  ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:67:11: note: forward declaration of 'class decaf::Argument'
+     class Argument*                 pArg; // parameter
+           ^~~~~~~~
+./src/Driver/Parser.yy:236:118: error: invalid use of incomplete type 'class decaf::BlockStatement'
+         $$ = new BlockStatement($2, $3);
+                                                                                                                      ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:74:11: note: forward declaration of 'class decaf::BlockStatement'
+     class BlockStatement*           pBlockStmt;
+           ^~~~~~~~~~~~~~
+./src/Driver/Parser.yy:240:65: error: invalid use of incomplete type 'class decaf::VariableDeclarationsList'
+  { $$ = new VariableDeclarationsList(); }
+                                                                 ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:70:11: note: forward declaration of 'class decaf::VariableDeclarationsList'
+     class VariableDeclarationsList* pVarDeclList;
+           ^~~~~~~~~~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:241:33: error: invalid use of incomplete type 'class decaf::VariableDeclarationsList'
+  | variable_declaration_list variable_declaration { $$->add($2); }
+                                 ^~
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:70:11: note: forward declaration of 'class decaf::VariableDeclarationsList'
+     class VariableDeclarationsList* pVarDeclList;
+           ^~~~~~~~~~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:245:90: error: invalid use of incomplete type 'class decaf::VariableDeclaration'
+   INT id_list ';'     { $$ = new VariableDeclaration("int", $2); }
+                                                                                          ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:69:11: note: forward declaration of 'class decaf::VariableDeclaration'
+     class VariableDeclaration*      pVarDecl;
+           ^~~~~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:246:94: error: invalid use of incomplete type 'class decaf::VariableDeclaration'
+  | BOOLEAN id_list ';' { $$ = new VariableDeclaration("boolean", $2); }
+                                                                                              ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:69:11: note: forward declaration of 'class decaf::VariableDeclaration'
+     class VariableDeclaration*      pVarDecl;
+           ^~~~~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:249:51: error: invalid use of incomplete type 'class decaf::IdentifiersList'
+  { $$ = new IdentifiersList(); }
+                                                   ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:71:11: note: forward declaration of 'class decaf::IdentifiersList'
+     class IdentifiersList*          pIdList;
+           ^~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:250:28: error: invalid use of incomplete type 'class decaf::IdentifiersList'
+  | ID  { $$->add(*$1); }
+                            ^ 
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:71:11: note: forward declaration of 'class decaf::IdentifiersList'
+     class IdentifiersList*          pIdList;
+           ^~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:251:28: error: invalid use of incomplete type 'class decaf::IdentifiersList'
+  | id_list ',' ID  { $$->add(*$3); }
+                            ^~
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:71:11: note: forward declaration of 'class decaf::IdentifiersList'
+     class IdentifiersList*          pIdList;
+           ^~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:255:52: error: invalid use of incomplete type 'class decaf::StatementsList'
+  { $$ = new StatementsList(); }
+                                                    ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:73:11: note: forward declaration of 'class decaf::StatementsList'
+     class StatementsList*           pStmtList;
+           ^~~~~~~~~~~~~~
+./src/Driver/Parser.yy:256:30: error: invalid use of incomplete type 'class decaf::StatementsList'
+  | statement_list statement { $$->add($2); }
+                              ^~
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:73:11: note: forward declaration of 'class decaf::StatementsList'
+     class StatementsList*           pStmtList;
+           ^~~~~~~~~~~~~~
+./src/Driver/Parser.yy:260:58: error: cannot convert 'decaf::BlockStatement*' to 'decaf::Statement*' in assignment
+   block_statement          { $$ = $1; }
+                                                          ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:74:11: note: class type 'decaf::BlockStatement' is incomplete
+     class BlockStatement*           pBlockStmt;
+           ^~~~~~~~~~~~~~
+./src/Driver/Parser.yy:261:57: error: cannot convert 'decaf::IfElseStatement*' to 'decaf::Statement*' in assignment
+  | if_conditional_statement { $$ = $1; }
+                                                         ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:75:11: note: class type 'decaf::IfElseStatement' is incomplete
+     class IfElseStatement*          pCondStmt;
+           ^~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:262:57: error: cannot convert 'decaf::ForStatement*' to 'decaf::Statement*' in assignment
+  | for_loop_statement       { $$ = $1; }
+                                                         ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:76:11: note: class type 'decaf::ForStatement' is incomplete
+     class ForStatement*             pLoopStmt;
+           ^~~~~~~~~~~~
+./src/Driver/Parser.yy:263:58: error: cannot convert 'decaf::AssignmentStatement*' to 'decaf::Statement*' in assignment
+  |   assignment_operation ';' { $$ = $1; }
+                                                          ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:77:11: note: class type 'decaf::AssignmentStatement' is incomplete
+     class AssignmentStatement*      pAssgnStmt;
+           ^~~~~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:264:54: error: cannot convert 'decaf::MethodCall*' to 'decaf::Statement*' in assignment
+  |   method_call ';'          { $$ = $1; }
+                                                      ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:84:11: note: class type 'decaf::MethodCall' is incomplete
+     class MethodCall*               pMCall;
+           ^~~~~~~~~~
+./src/Driver/Parser.yy:265:59: error: cannot convert 'decaf::ReturnStatement*' to 'decaf::Statement*' in assignment
+  | return_statement ';'     { $$ = $1; }
+                                                           ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:78:11: note: class type 'decaf::ReturnStatement' is incomplete
+     class ReturnStatement*          pReturnStmt;
+           ^~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:266:48: error: cannot convert 'BreakStatement*' to 'decaf::Statement*' in assignment
+  | BREAK ';'                { $$ = new BreakStatement(); }
+                                                ^
+./src/Driver/Parser.yy:267:51: error: cannot convert 'ContinueStatement*' to 'decaf::Statement*' in assignment
+  | CONTINUE ';'             { $$ = new ContinueStatement(); }
+                                                   ^
+./src/Driver/Parser.yy:271:119: error: invalid use of incomplete type 'class decaf::AssignmentStatement'
+         location '=' expr          { $$ = new AssignmentStatement("=", $1, $3); }
+                                                                                                                       ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:77:11: note: forward declaration of 'class decaf::AssignmentStatement'
+     class AssignmentStatement*      pAssgnStmt;
+           ^~~~~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:272:120: error: invalid use of incomplete type 'class decaf::AssignmentStatement'
+  |   location OP_PLUS_EQ expr   { $$ = new AssignmentStatement("+=", $1, $3); }
+                                                                                                                        ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:77:11: note: forward declaration of 'class decaf::AssignmentStatement'
+     class AssignmentStatement*      pAssgnStmt;
+           ^~~~~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:273:120: error: invalid use of incomplete type 'class decaf::AssignmentStatement'
+  |   location OP_MINUS_EQ expr  { $$ = new AssignmentStatement("-=", $1, $3); }
+                                                                                                                        ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:77:11: note: forward declaration of 'class decaf::AssignmentStatement'
+     class AssignmentStatement*      pAssgnStmt;
+           ^~~~~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:278:122: error: invalid use of incomplete type 'class decaf::IfElseStatement'
+             $$ = new IfElseStatement($3, $5, NULL);
+                                                                                                                          ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:75:11: note: forward declaration of 'class decaf::IfElseStatement'
+     class IfElseStatement*          pCondStmt;
+           ^~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:281:148: error: invalid use of incomplete type 'class decaf::IfElseStatement'
+             $$ = new IfElseStatement($3, $5, $7);
+                                                                                                                                                    ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:75:11: note: forward declaration of 'class decaf::IfElseStatement'
+     class IfElseStatement*          pCondStmt;
+           ^~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:287:172: error: invalid use of incomplete type 'class decaf::ForStatement'
+             $$ = new ForStatement(*$2, $4, $6, $7);
+                                                                                                                                                                            ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:76:11: note: forward declaration of 'class decaf::ForStatement'
+     class ForStatement*             pLoopStmt;
+           ^~~~~~~~~~~~
+./src/Driver/Parser.yy:291:59: error: invalid use of incomplete type 'class decaf::ReturnStatement'
+   RETURN              { $$ = new ReturnStatement(NULL); }
+                                                           ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:78:11: note: forward declaration of 'class decaf::ReturnStatement'
+     class ReturnStatement*          pReturnStmt;
+           ^~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:292:80: error: invalid use of incomplete type 'class decaf::ReturnStatement'
+  | RETURN '(' expr ')' { $$ = new ReturnStatement($3); }
+                                                                                ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:78:11: note: forward declaration of 'class decaf::ReturnStatement'
+     class ReturnStatement*          pReturnStmt;
+           ^~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:297:123: error: no matching function for call to 'UserDefinedMethodCall::UserDefinedMethodCall(std::__cxx11::string&, decaf::ExpressionsList*&)'
+             $$ = new UserDefinedMethodCall(*$1, $3);
+                                                                                                                           ^
+In file included from ./src/Driver/Modules.hh:26,
+                 from ./src/Driver/Parser.yy:157:
+./src/Declarations/UserDefinedMethodCall.hh:15:5: note: candidate: 'UserDefinedMethodCall::UserDefinedMethodCall(std::__cxx11::string, ExpressionsList*)'
+     UserDefinedMethodCall(string methodNameParm,
+     ^~~~~~~~~~~~~~~~~~~~~
+./src/Declarations/UserDefinedMethodCall.hh:15:5: note:   no known conversion for argument 2 from 'decaf::ExpressionsList*' to 'ExpressionsList*'
+./src/Declarations/UserDefinedMethodCall.hh:12:7: note: candidate: 'UserDefinedMethodCall::UserDefinedMethodCall(const UserDefinedMethodCall&)'
+ class UserDefinedMethodCall : public MethodCall
+       ^~~~~~~~~~~~~~~~~~~~~
+./src/Declarations/UserDefinedMethodCall.hh:12:7: note:   candidate expects 1 argument, 2 provided
+./src/Declarations/UserDefinedMethodCall.hh:12:7: note: candidate: 'UserDefinedMethodCall::UserDefinedMethodCall(UserDefinedMethodCall&&)'
+./src/Declarations/UserDefinedMethodCall.hh:12:7: note:   candidate expects 1 argument, 2 provided
+./src/Driver/Parser.yy:300:122: error: no matching function for call to 'CalloutMethodCall::CalloutMethodCall(std::__cxx11::string&, decaf::CalloutArgumentsList*&)'
+             $$ = new CalloutMethodCall(*$3, $5);
+                                                                                                                          ^
+In file included from ./src/Driver/Modules.hh:27,
+                 from ./src/Driver/Parser.yy:157:
+./src/Declarations/CalloutMethodCall.hh:15:5: note: candidate: 'CalloutMethodCall::CalloutMethodCall(std::__cxx11::string, CalloutArgumentsList*)'
+     CalloutMethodCall(string methodNameParm,
+     ^~~~~~~~~~~~~~~~~
+./src/Declarations/CalloutMethodCall.hh:15:5: note:   no known conversion for argument 2 from 'decaf::CalloutArgumentsList*' to 'CalloutArgumentsList*'
+./src/Declarations/CalloutMethodCall.hh:12:7: note: candidate: 'CalloutMethodCall::CalloutMethodCall(const CalloutMethodCall&)'
+ class CalloutMethodCall : public MethodCall
+       ^~~~~~~~~~~~~~~~~
+./src/Declarations/CalloutMethodCall.hh:12:7: note:   candidate expects 1 argument, 2 provided
+./src/Declarations/CalloutMethodCall.hh:12:7: note: candidate: 'CalloutMethodCall::CalloutMethodCall(CalloutMethodCall&&)'
+./src/Declarations/CalloutMethodCall.hh:12:7: note:   candidate expects 1 argument, 2 provided
+./src/Driver/Parser.yy:305:53: error: invalid use of incomplete type 'class decaf::ExpressionsList'
+  { $$ = new ExpressionsList(); }
+                                                     ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:81:11: note: forward declaration of 'class decaf::ExpressionsList'
+     class ExpressionsList*          pExprList;
+           ^~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:306:30: error: invalid use of incomplete type 'class decaf::ExpressionsList'
+  | expr { $$->add($1); }
+                              ^ 
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:81:11: note: forward declaration of 'class decaf::ExpressionsList'
+     class ExpressionsList*          pExprList;
+           ^~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:307:30: error: invalid use of incomplete type 'class decaf::ExpressionsList'
+  | expr_list ',' expr { $$->add($3); }
+                              ^~
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:81:11: note: forward declaration of 'class decaf::ExpressionsList'
+     class ExpressionsList*          pExprList;
+           ^~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:311:61: error: invalid use of incomplete type 'class decaf::CalloutArgumentsList'
+  { $$ = new CalloutArgumentsList();}
+                                                             ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:86:11: note: forward declaration of 'class decaf::CalloutArgumentsList'
+     class CalloutArgumentsList*     pCallArgList;
+           ^~~~~~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:312:33: error: invalid use of incomplete type 'class decaf::CalloutArgumentsList'
+  | callout_arg { $$->add($1); }
+                                 ^ 
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:86:11: note: forward declaration of 'class decaf::CalloutArgumentsList'
+     class CalloutArgumentsList*     pCallArgList;
+           ^~~~~~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:313:33: error: invalid use of incomplete type 'class decaf::CalloutArgumentsList'
+  | callout_arg_list ',' callout_arg { $$->add($3); }
+                                 ^~
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:86:11: note: forward declaration of 'class decaf::CalloutArgumentsList'
+     class CalloutArgumentsList*     pCallArgList;
+           ^~~~~~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:317:77: error: invalid use of incomplete type 'class decaf::CalloutArgument'
+   expr   { $$ = new CalloutArgument($1); }
+                                                                             ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:85:11: note: forward declaration of 'class decaf::CalloutArgument'
+     class CalloutArgument*          pCallArg;
+           ^~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:318:82: error: invalid use of incomplete type 'class decaf::CalloutArgument'
+  | STRING { $$ = new CalloutArgument(*$1); }
+                                                                                  ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:85:11: note: forward declaration of 'class decaf::CalloutArgument'
+     class CalloutArgument*          pCallArg;
+           ^~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:322:57: error: cannot convert 'decaf::VariableLocation*' to 'decaf::Expression*' in assignment
+   location         { $$ = $1; }
+                                                         ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:79:11: note: class type 'decaf::VariableLocation' is incomplete
+     class VariableLocation*         pLocation;
+           ^~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:323:52: error: cannot convert 'decaf::Literal*' to 'decaf::Expression*' in assignment
+  |  literal          { $$ = $1; }
+                                                    ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:87:11: note: class type 'decaf::Literal' is incomplete
+     class Literal*                  pLit;
+           ^~~~~~~
+./src/Driver/Parser.yy:324:54: error: cannot convert 'decaf::MethodCall*' to 'decaf::Expression*' in assignment
+  | method_call      { $$ = $1; }
+                                                      ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:84:11: note: class type 'decaf::MethodCall' is incomplete
+     class MethodCall*               pMCall;
+           ^~~~~~~~~~
+./src/Driver/Parser.yy:325:54: error: cannot convert 'decaf::BinaryExpression*' to 'decaf::Expression*' in assignment
+  | binary_operation { $$ = $1; }
+                                                      ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:82:11: note: class type 'decaf::BinaryExpression' is incomplete
+     class BinaryExpression*         pBExpr;
+           ^~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:326:54: error: cannot convert 'decaf::UnaryExpression*' to 'decaf::Expression*' in assignment
+  | unary_operation  { $$ = $1; }
+                                                      ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:83:11: note: class type 'decaf::UnaryExpression' is incomplete
+     class UnaryExpression*          pUExpr;
+           ^~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:327:77: error: no matching function for call to 'EnclosedExpression::EnclosedExpression(decaf::Expression*&)'
+  | '(' expr ')'     { $$ = new EnclosedExpression($2); }
+                                                                             ^
+In file included from ./src/Driver/Modules.hh:34,
+                 from ./src/Driver/Parser.yy:157:
+./src/Declarations/EnclosedExpression.hh:13:5: note: candidate: 'EnclosedExpression::EnclosedExpression(Expression*)'
+     EnclosedExpression(class Expression* pExprParm);
+     ^~~~~~~~~~~~~~~~~~
+./src/Declarations/EnclosedExpression.hh:13:5: note:   no known conversion for argument 1 from 'decaf::Expression*' to 'Expression*'
+./src/Declarations/EnclosedExpression.hh:10:7: note: candidate: 'constexpr EnclosedExpression::EnclosedExpression(const EnclosedExpression&)'
+ class EnclosedExpression : public Expression
+       ^~~~~~~~~~~~~~~~~~
+./src/Declarations/EnclosedExpression.hh:10:7: note:   no known conversion for argument 1 from 'decaf::Expression*' to 'const EnclosedExpression&'
+./src/Declarations/EnclosedExpression.hh:10:7: note: candidate: 'constexpr EnclosedExpression::EnclosedExpression(EnclosedExpression&&)'
+./src/Declarations/EnclosedExpression.hh:10:7: note:   no known conversion for argument 1 from 'decaf::Expression*' to 'EnclosedExpression&&'
+./src/Driver/Parser.yy:331:83: error: invalid use of incomplete type 'class decaf::VariableLocation'
+   ID              { $$ = new VariableLocation($1); }
+                                                                                   ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:79:11: note: forward declaration of 'class decaf::VariableLocation'
+     class VariableLocation*         pLocation;
+           ^~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:332:111: error: invalid use of incomplete type 'class decaf::VariableLocation'
+  | ID '[' expr ']' { $$ = new VariableLocation(*$1, $3); }
+                                                                                                               ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:79:11: note: forward declaration of 'class decaf::VariableLocation'
+     class VariableLocation*         pLocation;
+           ^~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:336:54: error: cannot convert 'decaf::IntegerLiteral*' to 'decaf::Literal*' in assignment
+   int_literal  { $$ = $1; }
+                                                      ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:88:11: note: class type 'decaf::IntegerLiteral' is incomplete
+     class IntegerLiteral*           pIntLit;
+           ^~~~~~~~~~~~~~
+./src/Driver/Parser.yy:337:54: error: cannot convert 'decaf::HexadecimalLiteral*' to 'decaf::Literal*' in assignment
+     | hex_literal  { $$ = $1; }
+                                                      ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:90:11: note: class type 'decaf::HexadecimalLiteral' is incomplete
+     class HexadecimalLiteral*       pHexLit;
+           ^~~~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:338:55: error: cannot convert 'decaf::BooleanLiteral*' to 'decaf::Literal*' in assignment
+  | bool_literal { $$ = $1; }
+                                                       ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:89:11: note: class type 'decaf::BooleanLiteral' is incomplete
+     class BooleanLiteral*           pBoolLit;
+           ^~~~~~~~~~~~~~
+./src/Driver/Parser.yy:339:55: error: cannot convert 'decaf::CharacterLiteral*' to 'decaf::Literal*' in assignment
+  | char_literal { $$ = $1; }
+                                                       ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:91:11: note: class type 'decaf::CharacterLiteral' is incomplete
+     class CharacterLiteral*         pCharLit;
+           ^~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:343:57: error: invalid use of incomplete type 'class decaf::BooleanLiteral'
+   TRUE             { $$ = new BooleanLiteral("true"); }
+                                                         ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:89:11: note: forward declaration of 'class decaf::BooleanLiteral'
+     class BooleanLiteral*           pBoolLit;
+           ^~~~~~~~~~~~~~
+./src/Driver/Parser.yy:344:58: error: invalid use of incomplete type 'class decaf::BooleanLiteral'
+  | FALSE            { $$ = new BooleanLiteral("false") };
+                                                          ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:89:11: note: forward declaration of 'class decaf::BooleanLiteral'
+     class BooleanLiteral*           pBoolLit;
+           ^~~~~~~~~~~~~~
+./src/Driver/Parser.yy:345:76: error: invalid use of incomplete type 'class decaf::IntegerLiteral'
+ int_literal:  NUMBER     { $$ = new IntegerLiteral($1); };
+                                                                            ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:88:11: note: forward declaration of 'class decaf::IntegerLiteral'
+     class IntegerLiteral*           pIntLit;
+           ^~~~~~~~~~~~~~
+./src/Driver/Parser.yy:346:82: error: invalid use of incomplete type 'class decaf::HexadecimalLiteral'
+ hex_literal:  HEX_NUMBER { $$ = new HexadecimalLiteral($1); };
+                                                                                  ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:90:11: note: forward declaration of 'class decaf::HexadecimalLiteral'
+     class HexadecimalLiteral*       pHexLit;
+           ^~~~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:347:79: error: invalid use of incomplete type 'class decaf::CharacterLiteral'
+ char_literal: CHAR       { $$ = new CharacterLiteral($1); };
+                                                                               ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:91:11: note: forward declaration of 'class decaf::CharacterLiteral'
+     class CharacterLiteral*         pCharLit;
+           ^~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:351:108: error: invalid use of incomplete type 'class decaf::BinaryExpression'
+         expr '+' expr    { $$ = new BinaryExpression("+", $1, $3); }
+                                                                                                            ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:82:11: note: forward declaration of 'class decaf::BinaryExpression'
+     class BinaryExpression*         pBExpr;
+           ^~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:352:108: error: invalid use of incomplete type 'class decaf::BinaryExpression'
+     |   expr '-' expr    { $$ = new BinaryExpression("-", $1, $3); }
+                                                                                                            ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:82:11: note: forward declaration of 'class decaf::BinaryExpression'
+     class BinaryExpression*         pBExpr;
+           ^~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:353:108: error: invalid use of incomplete type 'class decaf::BinaryExpression'
+     |   expr '*' expr    { $$ = new BinaryExpression("*", $1, $3); }
+                                                                                                            ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:82:11: note: forward declaration of 'class decaf::BinaryExpression'
+     class BinaryExpression*         pBExpr;
+           ^~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:354:108: error: invalid use of incomplete type 'class decaf::BinaryExpression'
+     |   expr '/' expr    { $$ = new BinaryExpression("/", $1, $3); }
+                                                                                                            ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:82:11: note: forward declaration of 'class decaf::BinaryExpression'
+     class BinaryExpression*         pBExpr;
+           ^~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:355:108: error: invalid use of incomplete type 'class decaf::BinaryExpression'
+     |   expr '%' expr    { $$ = new BinaryExpression("%", $1, $3); }
+                                                                                                            ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:82:11: note: forward declaration of 'class decaf::BinaryExpression'
+     class BinaryExpression*         pBExpr;
+           ^~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:356:108: error: invalid use of incomplete type 'class decaf::BinaryExpression'
+     |   expr '<' expr    { $$ = new BinaryExpression("<", $1, $3); }
+                                                                                                            ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:82:11: note: forward declaration of 'class decaf::BinaryExpression'
+     class BinaryExpression*         pBExpr;
+           ^~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:357:108: error: invalid use of incomplete type 'class decaf::BinaryExpression'
+     |   expr '>' expr    { $$ = new BinaryExpression(">", $1, $3); }
+                                                                                                            ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:82:11: note: forward declaration of 'class decaf::BinaryExpression'
+     class BinaryExpression*         pBExpr;
+           ^~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:358:109: error: invalid use of incomplete type 'class decaf::BinaryExpression'
+     |   expr OP_EEQ expr { $$ = new BinaryExpression("==", $1, $3); }
+                                                                                                             ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:82:11: note: forward declaration of 'class decaf::BinaryExpression'
+     class BinaryExpression*         pBExpr;
+           ^~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:359:109: error: invalid use of incomplete type 'class decaf::BinaryExpression'
+     |   expr OP_GET expr { $$ = new BinaryExpression(">=", $1, $3); }
+                                                                                                             ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:82:11: note: forward declaration of 'class decaf::BinaryExpression'
+     class BinaryExpression*         pBExpr;
+           ^~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:360:109: error: invalid use of incomplete type 'class decaf::BinaryExpression'
+     |   expr OP_LET expr { $$ = new BinaryExpression("<=", $1, $3); }
+                                                                                                             ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:82:11: note: forward declaration of 'class decaf::BinaryExpression'
+     class BinaryExpression*         pBExpr;
+           ^~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:361:109: error: invalid use of incomplete type 'class decaf::BinaryExpression'
+     |   expr OP_NEQ expr { $$ = new BinaryExpression("!=", $1, $3); }
+                                                                                                             ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:82:11: note: forward declaration of 'class decaf::BinaryExpression'
+     class BinaryExpression*         pBExpr;
+           ^~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:362:109: error: invalid use of incomplete type 'class decaf::BinaryExpression'
+     |   expr OP_AND expr { $$ = new BinaryExpression("&&", $1, $3); }
+                                                                                                             ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:82:11: note: forward declaration of 'class decaf::BinaryExpression'
+     class BinaryExpression*         pBExpr;
+           ^~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:363:109: error: invalid use of incomplete type 'class decaf::BinaryExpression'
+     |   expr OP_OR  expr { $$ = new BinaryExpression("||", $1, $3); }
+                                                                                                             ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:82:11: note: forward declaration of 'class decaf::BinaryExpression'
+     class BinaryExpression*         pBExpr;
+           ^~~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:367:80: error: invalid use of incomplete type 'class decaf::UnaryExpression'
+         '-' expr %prec UMINUS { $$ = new UnaryExpression("-", $2); }
+                                                                                ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:83:11: note: forward declaration of 'class decaf::UnaryExpression'
+     class UnaryExpression*          pUExpr;
+           ^~~~~~~~~~~~~~~
+./src/Driver/Parser.yy:368:80: error: invalid use of incomplete type 'class decaf::UnaryExpression'
+     |   '!' expr              { $$ = new UnaryExpression("!", $2); }
+                                                                                ^
+In file included from ./src/Driver/Parser.cc:59:
+./src/Driver/Parser.yy:83:11: note: forward declaration of 'class decaf::UnaryExpression'
+     class UnaryExpression*          pUExpr;
+           ^~~~~~~~~~~~~~~
+make: *** [obj/Parser.o] Error 1

@@ -10,6 +10,13 @@ CalloutMethodCall:: CalloutMethodCall(string methodNameParm,
 {
     mMethodName = methodNameParm;
 }
+
+
+CalloutArgumentsList* CalloutMethodCall::getCalloutArgsListPtr()
+{
+    return mCalloutArgsListPtr;
+}
+
     
 void CalloutMethodCall::accept(Visitor& vParm)
 {

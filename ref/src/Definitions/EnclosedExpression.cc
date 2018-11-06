@@ -9,6 +9,13 @@ EnclosedExpression::EnclosedExpression(class Expression* pExprParm)
     mExprType = Expression::ENCLOSED_EXPR;
 }
 
+
+Expression* EnclosedExpression::getExprPtr()
+{
+    return mExprPtr;
+}
+
+
 void EnclosedExpression::accept(Visitor& vParm)
 {
     vParm.visit(*this);

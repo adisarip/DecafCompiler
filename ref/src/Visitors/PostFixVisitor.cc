@@ -23,6 +23,6 @@ void PostFixVisitor::visit(IntegerLiteral& node)
 
 void PostFixVisitor::visit(BooleanLiteral& node) 
 {
-    std::cout << node.getBoolean() << " " << std::flush;
+    std::cout << node.getValue() << " " << std::flush;
 }
 

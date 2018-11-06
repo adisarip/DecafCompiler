@@ -14,6 +14,24 @@ IfElseStatement::IfElseStatement(class Expression* pCondExprParm,
 }
 
 
+Expression* IfElseStatement::getCondExprPtr()
+{
+    return mCondExprPtr;
+}
+
+
+BlockStatement* IfElseStatement::getIfBlockPtr()
+{
+    return mIfBlockPtr;
+}
+
+
+BlockStatement* IfElseStatement::getElseBlockPtr()
+{
+    return mElseBlockPtr;
+}
+
+
 bool IfElseStatement::hasReturnValue()
 {
     bool sStatus = false;

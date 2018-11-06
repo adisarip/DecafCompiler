@@ -22,6 +22,25 @@ VariableLocation::VariableLocation(string variableNameParm,
 }
 
 
+VariableLocation::LocationType
+VariableLocation::getLocationType()
+{
+    return mLocationType;
+}
+
+
+string VariableLocation::getVariableName()
+{
+    return mVariableName;
+}
+
+
+Expression* VariableLocation::getArrayIndexPtr()
+{
+    return mArrayIndexPtr;
+}
+
+
 void VariableLocation::accept(Visitor& vParm)
 {
     vParm.visit(*this);

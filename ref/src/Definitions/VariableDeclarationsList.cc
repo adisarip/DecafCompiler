@@ -10,6 +10,13 @@ void VariableDeclarationsList::add(class VariableDeclaration* pVariableDeclParm)
 }
 
 
+vector<class VariableDeclaration*>
+VariableDeclarationsList::getVariableDeclList()
+{
+    return mVariableDeclList;
+}
+
+
 void VariableDeclarationsList::accept(Visitor& vParm)
 {
     vParm.visit(*this);

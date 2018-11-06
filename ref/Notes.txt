@@ -1,0 +1,7 @@
+
+Q. What should be the outcome of AST Construction?
+
+Q. How does the pRoot is filled (the memory creation) ?
+
+Q. 
+

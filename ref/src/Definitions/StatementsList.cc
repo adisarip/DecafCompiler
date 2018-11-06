@@ -26,6 +26,12 @@ bool StatementsList::hasReturnValue()
 }
 
 
+vector<class Statement*> StatementsList::getStmtPtrList()
+{
+    return mStmtPtrList;
+}
+
+
 void StatementsList::accept(Visitor& vParm)
 {
     vParm.visit(*this);
