@@ -8,12 +8,8 @@ using namespace std;
 VariableDeclaration::VariableDeclaration(string declarationTypeParm,
                                          class IdentifiersList* pIdListParm)
 :mDeclarationType(declarationTypeParm)
+,mIdListPtr(pIdListParm)
 {
-    vector<string> sVarList = pIdListParm->getIdList();
-    for (auto& s : sVarList)
-    {
-        add(s);
-    }
 }
 
 
@@ -23,15 +19,9 @@ string VariableDeclaration::getDeclarationType()
 }
 
 
-vector<string> VariableDeclaration::getVariablesList()
+IdentifiersList* VariableDeclaration::getIdListPtr()
 {
-    return mVariablesList;
-}
-
-
-void VariableDeclaration::add(string variableParm)
-{
-    mVariablesList.push_back(variableParm);
+    return mIdListPtr;
 }
 
 

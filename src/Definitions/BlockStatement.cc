@@ -13,6 +13,18 @@ BlockStatement::BlockStatement(class VariableDeclarationsList* pVarDeclListParm,
 }
 
 
+VariableDeclarationsList* BlockStatement::getVarDeclListPtr()
+{
+    return mVarDeclListPtr;
+}
+
+
+StatementsList* BlockStatement::getStmtListPtr()
+{
+    return mStmtListPtr;
+}
+
+
 bool BlockStatement::hasReturnValue()
 {
     return mStmtListPtr->hasReturnValue();

@@ -16,13 +16,12 @@ class VariableDeclaration : public AstNode
                         class IdentifiersList* pIdListParm);
 
     string getDeclarationType();
-    vector<string> getVariablesList();
-    void add(string variableParm);
+    IdentifiersList* getIdListPtr();
     virtual void accept(Visitor& vParm);
 
   private:
     string mDeclarationType; // INT or BOOLEAN
-    vector<string> mVariablesList;
+    class IdentifiersList* mIdListPtr;
 };
 
 #endif /* VARIABLE_DECLARATION_H */

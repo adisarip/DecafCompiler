@@ -21,10 +21,10 @@ class Literal : public Expression
         HEXADECIMAL = 5
     };
 
-    virtual void accept(Visitor& vParm)
+    /*virtual void accept(Visitor& vParm)
     {
         vParm.visit(*this);
-    };
+    };*/
 
   protected:
     LiteralType mLiteralType; // for the derived classes to access

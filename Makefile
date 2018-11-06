@@ -28,10 +28,6 @@ AUTOGEN_FILES = $(DRIVER)/Parser.cc     \
                 $(DRIVER)/position.hh   \
                 $(DRIVER)/stack.hh
 
-DRIVER_SRC  = $(DRIVER)/Driver.cc
-DRIVER_SRC += $(DRIVER)/DecafParser.cc
-
-
 DECAF_SRC  = $(DEFINS)/Program.cc
 DECAF_SRC += $(DEFINS)/FieldDeclaration.cc
 DECAF_SRC += $(DEFINS)/FieldDeclarationsList.cc
@@ -67,10 +63,16 @@ DECAF_SRC += $(DEFINS)/VariableDeclaration.cc
 DECAF_SRC += $(DEFINS)/VariableDeclarationsList.cc
 
 
-PARSER_OBJ  := $(OBJDIR)/Parser.o
-SCANNER_OBJ := $(OBJDIR)/Scanner.o
-DRIVER_OBJECTS :=  $(DRIVER_SRC:$(DRIVER)/%.cc=$(OBJDIR)/%.o)
+DRIVER_SRC  = $(DRIVER)/Driver.cc
+DRIVER_SRC += $(DRIVER)/DecafParser.cc
+
+FEATURES_SRC = $(VISITR)/AstVisitor.cc
+
+PARSER_OBJ     := $(OBJDIR)/Parser.o
+SCANNER_OBJ    := $(OBJDIR)/Scanner.o
+DRIVER_OBJECTS := $(DRIVER_SRC:$(DRIVER)/%.cc=$(OBJDIR)/%.o)
 SRC_OBJECTS    := $(DECAF_SRC:$(DEFINS)/%.cc=$(OBJDIR)/%.o)
+FEATURE_OBJS   := $(OBJDIR)/AstVisitor.o
 
 CXX      = g++
 CXXFLAGS = -W -Wall -Wextra -ansi -g -std=c++11
@@ -85,17 +87,24 @@ LDFLAGS  =
 all: $(PARSER) $(SCANNER) $(TARGET)
 
 
-$(DRIVER_OBJECTS): $(OBJDIR)/%.o : $(DRIVER)/%.cc
-	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
+$(FEATURE_OBJS):
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $(FEATURES_SRC) -o $@
 
-$(SRC_OBJECTS): $(OBJDIR)/%.o : $(DEFINS)/%.cc
-	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
 
 $(PARSER_OBJ):
 	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $(PARSER) -o $@
 
+
 $(SCANNER_OBJ):
 	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $(SCANNER) -o $@
+
+
+$(SRC_OBJECTS): $(OBJDIR)/%.o : $(DEFINS)/%.cc
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
+
+
+$(DRIVER_OBJECTS): $(OBJDIR)/%.o : $(DRIVER)/%.cc
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -o $@
 
 
 $(PARSER): $(PARSER_FILES)
@@ -108,12 +117,12 @@ $(SCANNER): $(SCANNER_FILES)
 	@echo "Scanner Built Successfully"
 
 
-$(TARGET): $(SRC_OBJECTS) $(DRIVER_OBJECTS) $(PARSER_OBJ) $(SCANNER_OBJ) 
-	$(CXX) $(LDFLAGS) $(SRC_OBJECTS) $(DRIVER_OBJECTS) $(PARSER_OBJ) $(SCANNER_OBJ)  -o $@
+$(TARGET): $(SRC_OBJECTS) $(DRIVER_OBJECTS) $(FEATURE_OBJS) $(PARSER_OBJ) $(SCANNER_OBJ) 
+	$(CXX) $(LDFLAGS) $(SRC_OBJECTS) $(DRIVER_OBJECTS) $(FEATURE_OBJS) $(PARSER_OBJ) $(SCANNER_OBJ)  -o $@
 	mv $(TARGET) $(BINDIR)
 	@echo "$(TARGET) Built Successfully."
 
 clean:
 	@echo "Cleaning all the object files and binaries."
 	rm -f core
-	rm -f $(DRIVER_OBJECTS) $(SRC_OBJECTS) $(BINDIR)/$(TARGET) $(AUTOGEN_FILES)
+	rm -f $(OBJDIR)/*.o

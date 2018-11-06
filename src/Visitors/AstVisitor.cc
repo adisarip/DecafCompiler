@@ -102,8 +102,8 @@ void AstVisitor::visit(ArgumentsList& nodeParm)
 
 void AstVisitor::visit(Argument& nodeParm)
 {
-    cout << "Argument:" << nodeParm.getArgType
-         << ":" <<  nodeParm.getArgName << endl;
+    cout << "Argument:" << nodeParm.getArgType()
+         << ":" <<  nodeParm.getArgName() << endl;
 }
 
 
@@ -133,9 +133,16 @@ void AstVisitor::visit(VariableDeclarationsList& nodeParm)
 void AstVisitor::visit(VariableDeclaration& nodeParm)
 {
     cout << "Variable Declaration: " << nodeParm.getDeclarationType() << endl;
-    vector<string> sVarList = nodeParm.getVariablesList();
-    for (vector<string>::iterator it = sVarList.begin();
-         it != sVarList.end();
+    nodeParm.getIdListPtr()->accept(*this);
+}
+
+
+void AstVisitor::visit(IdentifiersList& nodeParm)
+{
+    cout << "Identifiers:" << endl;
+    vector<string> sIdList = nodeParm.getIdList();
+    for (vector<string>::iterator it = sIdList.begin();
+         it != sIdList.end();
          it++)
     {
         cout << *it << ", " << flush;
@@ -169,7 +176,7 @@ void AstVisitor::visit(AssignmentStatement& nodeParm)
 void AstVisitor::visit(VariableLocation& nodeParm)
 {
     cout << "Location: " << flush;
-    if (VariableLocation::VARIABLE == nodeParm.getLocationType)
+    if (VariableLocation::VARIABLE == nodeParm.getLocationType())
     {
         cout << "VARIABLE" << flush;
     }

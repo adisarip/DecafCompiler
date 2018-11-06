@@ -31,7 +31,7 @@ class AstVisitor: public Visitor
     virtual void visit(UnaryExpression& nodeParm);
     virtual void visit(BinaryExpression& nodeParm);
     virtual void visit(EnclosedExpression& nodeParm);
-    virtual void visit(Literal& nodeParm);
+    //virtual void visit(Literal& nodeParm);
     virtual void visit(IntegerLiteral& nodeParm);
     virtual void visit(BooleanLiteral& nodeParm);
     virtual void visit(HexadecimalLiteral& nodeParm);

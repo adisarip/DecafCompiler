@@ -26,7 +26,7 @@ class ExpressionsList;
 class UnaryExpression;
 class BinaryExpression;
 class EnclosedExpression;
-class Literal;
+//class Literal;
 class IntegerLiteral;
 class BooleanLiteral;
 class HexadecimalLiteral;
@@ -65,7 +65,7 @@ class Visitor
     virtual void visit(UnaryExpression& nodeParm) = 0;
     virtual void visit(BinaryExpression& nodeParm) = 0;
     virtual void visit(EnclosedExpression& nodeParm) = 0;
-    virtual void visit(Literal& nodeParm) = 0;
+    //virtual void visit(Literal& nodeParm) = 0;
     virtual void visit(IntegerLiteral& nodeParm) = 0;
     virtual void visit(BooleanLiteral& nodeParm) = 0;
     virtual void visit(HexadecimalLiteral& nodeParm) = 0;
