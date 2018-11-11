@@ -58,7 +58,8 @@ int errors=0;
 
 %start program
 
-%token CLASS CALLOUT EOL END
+%token END 0
+%token CLASS CALLOUT
 %token IF ELSE FOR BREAK CONTINUE RETURN
 %token TRUE FALSE
 %token <iValue> NUMBER
@@ -169,7 +170,7 @@ field_declaration_variable:
 
 method_declaration_list:
 	{ $$ = new MethodDeclarationsList(); }
-	|	method_declaration method_declaration_list { $$->add($1); }
+	|	method_declaration_list method_declaration { $$->add($2); }
 	;
 
 method_declaration:

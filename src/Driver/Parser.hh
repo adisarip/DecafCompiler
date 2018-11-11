@@ -40,11 +40,11 @@
 #ifndef YY_DECAF_SRC_DRIVER_PARSER_HH_INCLUDED
 # define YY_DECAF_SRC_DRIVER_PARSER_HH_INCLUDED
 // //                    "%code requires" blocks.
-#line 55 "./src/Driver/Parser.yy" // lalr1.cc:395
+
 
     #include "Modules.hh"
 
-#line 48 "./src/Driver/Parser.hh" // lalr1.cc:395
+
 
 
 # include <cstdlib> // std::abort
@@ -123,7 +123,7 @@
 
 
 namespace decaf {
-#line 127 "./src/Driver/Parser.hh" // lalr1.cc:395
+
 
 
 
@@ -154,37 +154,36 @@ namespace decaf {
     {
       enum yytokentype
       {
+        END = 0,
         CLASS = 258,
         CALLOUT = 259,
-        EOL = 260,
-        END = 261,
-        IF = 262,
-        ELSE = 263,
-        FOR = 264,
-        BREAK = 265,
-        CONTINUE = 266,
-        RETURN = 267,
-        TRUE = 268,
-        FALSE = 269,
-        NUMBER = 270,
-        HEX_NUMBER = 271,
-        CHAR = 272,
-        INT = 273,
-        BOOLEAN = 274,
-        ID = 275,
-        VOID = 276,
-        ALPHA = 277,
-        ALPHA_NUM = 278,
-        STRING = 279,
-        OP_PLUS_EQ = 280,
-        OP_MINUS_EQ = 281,
-        OP_OR = 282,
-        OP_AND = 283,
-        OP_EEQ = 284,
-        OP_NEQ = 285,
-        OP_LET = 286,
-        OP_GET = 287,
-        UMINUS = 288
+        IF = 260,
+        ELSE = 261,
+        FOR = 262,
+        BREAK = 263,
+        CONTINUE = 264,
+        RETURN = 265,
+        TRUE = 266,
+        FALSE = 267,
+        NUMBER = 268,
+        HEX_NUMBER = 269,
+        CHAR = 270,
+        INT = 271,
+        BOOLEAN = 272,
+        ID = 273,
+        VOID = 274,
+        ALPHA = 275,
+        ALPHA_NUM = 276,
+        STRING = 277,
+        OP_PLUS_EQ = 278,
+        OP_MINUS_EQ = 279,
+        OP_OR = 280,
+        OP_AND = 281,
+        OP_EEQ = 282,
+        OP_NEQ = 283,
+        OP_LET = 284,
+        OP_GET = 285,
+        UMINUS = 286
       };
     };
 
@@ -372,7 +371,7 @@ namespace decaf {
   // number is the opposite.  If YYTABLE_NINF, syntax error.
   static const unsigned char yytable_[];
 
-  static const short yycheck_[];
+  static const unsigned char yycheck_[];
 
   // YYSTOS[STATE-NUM] -- The (internal number of the) accessing
   // symbol of state STATE-NUM.
@@ -494,12 +493,12 @@ namespace decaf {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 287,     ///< Last index in yytable_.
+      yylast_ = 276,     ///< Last index in yytable_.
       yynnts_ = 33,  ///< Number of nonterminal symbols.
       yyfinal_ = 4, ///< Termination state number.
       yyterror_ = 1,
       yyerrcode_ = 256,
-      yyntokens_ = 51  ///< Number of tokens.
+      yyntokens_ = 49  ///< Number of tokens.
     };
 
 
@@ -510,7 +509,7 @@ namespace decaf {
 
 
 } // decaf
-#line 514 "./src/Driver/Parser.hh" // lalr1.cc:395
+
 
 
 

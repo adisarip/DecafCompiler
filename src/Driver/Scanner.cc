@@ -569,7 +569,7 @@ static const flex_int16_t yy_rule_linenum[47] =
        73,   74,   75,   77,   82,   87,   92,   93,   94,   95,
        96,   97,   98,   99,  100,  101,  102,  103,  104,  105,
       106,  107,  108,  109,  110,  111,  112,  113,  114,  115,
-      116,  119,  124,  130,  134,  141
+      116,  119,  124,  130,  134,  140
     } ;
 
 /* The intent behind this definition is that it'll catch
@@ -1139,23 +1139,22 @@ YY_RULE_SETUP
 {
     yylloc->lines(yyleng);
     yylloc->step();
-    return token::EOL;
 }
 	YY_BREAK
 /* pass all other characters up to bison */
 case 46:
 YY_RULE_SETUP
-#line 141 "./src/Driver/Scanner.ll"
+#line 140 "./src/Driver/Scanner.ll"
 {
     return static_cast<token_type>(*yytext);
 }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 146 "./src/Driver/Scanner.ll"
+#line 145 "./src/Driver/Scanner.ll"
 ECHO;
 	YY_BREAK
-#line 1158 "./src/Driver/Scanner.cc"
+#line 1157 "./src/Driver/Scanner.cc"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2274,7 +2273,7 @@ void yyfree (void * ptr )
 
 /* %ok-for-header */
 
-#line 146 "./src/Driver/Scanner.ll"
+#line 145 "./src/Driver/Scanner.ll"
 
 
 namespace decaf

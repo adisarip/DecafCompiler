@@ -42,7 +42,7 @@
 
 
 namespace decaf {
-#line 46 "./src/Driver/location.hh" // location.cc:331
+
   /// Abstract a location.
   class location
   {
@@ -185,5 +185,5 @@ namespace decaf {
 
 
 } // decaf
-#line 189 "./src/Driver/location.hh" // location.cc:331
+
 #endif // !YY_DECAF_SRC_DRIVER_LOCATION_HH_INCLUDED

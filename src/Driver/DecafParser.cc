@@ -29,6 +29,8 @@ int main(int argc, char *argv[])
         //cout << "AST Cleared." << endl;
 
 	    bool result = sDriver.parse_stream(infile, argv[index]);
+
+        cout << "Parsing Over" << endl;
         if (result)
         {
             cout << "Parsing " << argv[index] << " Successful" << endl;
@@ -38,6 +40,10 @@ int main(int argc, char *argv[])
                 sAstCtx.pRoot->accept(sVisitor);
                 cout << "Traverse AST Complete !!!" << endl; 
             }
+        }
+        else
+        {
+            cout << "Result FALSE" << endl;
         }
 	}
     //sAstCtx.clearAST();

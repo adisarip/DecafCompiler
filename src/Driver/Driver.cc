@@ -28,7 +28,8 @@ bool Driver::parse_stream(std::istream& in,
 
     Parser parser(*this);
     parser.set_debug_level(trace_parsing);
-    return (parser.parse() == 0);
+    int sParsingResult = parser.parse();
+    return (sParsingResult == 0);
 }
 
 bool Driver::parse_file(const std::string &filename)

@@ -74,7 +74,7 @@ DRIVER_OBJECTS := $(DRIVER_SRC:$(DRIVER)/%.cc=$(OBJDIR)/%.o)
 SRC_OBJECTS    := $(DECAF_SRC:$(DEFINS)/%.cc=$(OBJDIR)/%.o)
 FEATURE_OBJS   := $(OBJDIR)/AstVisitor.o
 
-CXX      = g++
+CXX      = clang++
 CXXFLAGS = -W -Wall -Wextra -ansi -g -std=c++11
 INCLUDE  = -I./ -I$(VISITR)/ -I$(DECLRS)/ -I$(DRIVER)/
 LDFLAGS  = 
@@ -108,7 +108,7 @@ $(DRIVER_OBJECTS): $(OBJDIR)/%.o : $(DRIVER)/%.cc
 
 
 $(PARSER): $(PARSER_FILES)
-	bison -o $(PARSER) --defines=$(DRIVER)/Parser.hh $(PARSER_FILES)
+	bison -o $(PARSER) --defines=$(DRIVER)/Parser.hh --no-lines --debug $(PARSER_FILES)
 	@echo "Parser Built Successfully"
 	
 
@@ -125,4 +125,4 @@ $(TARGET): $(SRC_OBJECTS) $(DRIVER_OBJECTS) $(FEATURE_OBJS) $(PARSER_OBJ) $(SCAN
 clean:
 	@echo "Cleaning all the object files and binaries."
 	rm -f core
-	rm -f $(OBJDIR)/*.o
+	rm -f $(OBJDIR)/*.o $(AUTOGEN_FILES)

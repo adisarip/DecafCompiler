@@ -42,7 +42,7 @@
 
 
 namespace decaf {
-#line 46 "./src/Driver/stack.hh" // stack.hh:151
+
   /// A stack with random access from its top.
   template <class T, class S = std::vector<T> >
   class stack
@@ -152,6 +152,6 @@ namespace decaf {
 
 
 } // decaf
-#line 156 "./src/Driver/stack.hh" // stack.hh:151
+
 
 #endif // !YY_DECAF_SRC_DRIVER_STACK_HH_INCLUDED
