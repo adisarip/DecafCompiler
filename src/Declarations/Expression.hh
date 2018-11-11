@@ -24,7 +24,12 @@ class Expression : public AstNode
     {
         return mExprType;
     }
-    
+
+    int getExprValue()
+    {
+        return mExprValue;
+    }
+
     /*
     virtual void accept(Visitor& vParm)
     {
@@ -34,6 +39,7 @@ class Expression : public AstNode
 
   protected:
     ExpressionType mExprType;
+    int mExprValue;
 };
 
 #endif /* EXPRESSION_H */

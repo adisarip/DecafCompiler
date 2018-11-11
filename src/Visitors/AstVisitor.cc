@@ -191,8 +191,18 @@ void AstVisitor::visit(IfElseStatement& nodeParm)
 {
     cout << "    If Else Statement:" << endl;
     nodeParm.getCondExprPtr()->accept(*this);
-    nodeParm.getIfBlockPtr()->accept(*this);
-    nodeParm.getElseBlockPtr()->accept(*this);
+    if (nodeParm.getCondExprPtr())
+    {
+        nodeParm.getCondExprPtr()->accept(*this);
+    }
+    if (nodeParm.getIfBlockPtr())
+    {
+        nodeParm.getIfBlockPtr()->accept(*this);
+    }
+    if (nodeParm.getElseBlockPtr())
+    {
+        nodeParm.getElseBlockPtr()->accept(*this);
+    }
 }
 
 
@@ -200,16 +210,26 @@ void AstVisitor::visit(ForStatement& nodeParm)
 {
     cout << "    For Statement:" << endl;
     cout << "      Init Value: " << nodeParm.getInitValue() << endl;
-    nodeParm.getInitExprPtr()->accept(*this);
-    nodeParm.getCondExprPtr()->accept(*this);
-    nodeParm.getForBlockPtr()->accept(*this);
+
+    if (nodeParm.getInitExprPtr())
+    {
+        nodeParm.getInitExprPtr()->accept(*this);
+    }
+    if (nodeParm.getCondExprPtr())
+    {
+        nodeParm.getCondExprPtr()->accept(*this);
+    }
+    if (nodeParm.getForBlockPtr())
+    {
+        nodeParm.getForBlockPtr()->accept(*this);
+    }
 }
 
 
 void AstVisitor::visit(ReturnStatement& nodeParm)
 {
-    cout << "      RETURN:" << endl;
-    nodeParm.getReturnExprPtr()->accept(*this);
+    cout << "      RETURN:" << nodeParm.hasReturnValue() << endl;
+    //nodeParm.getReturnExprPtr()->accept(*this);
 }
 
 

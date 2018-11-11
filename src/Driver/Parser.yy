@@ -286,12 +286,14 @@ statement:
 	;
 
 if_conditional_statement:
-		IF '(' expr ')' block_statement {
+		IF '(' expr ')' block_statement
+		{
             $$ = new IfElseStatement($3, $5, NULL);
         }
-	|	IF '(' expr ')' block_statement ELSE block_statement {
+	|	IF '(' expr ')' block_statement ELSE block_statement
+		{
             $$ = new IfElseStatement($3, $5, $7);
-    }
+    	}
 	;
 
 for_loop_statement:

@@ -2,16 +2,16 @@ class Program
 {
     void main ()
     {
-        int N;
+        int N, prevValue, currValue, nextValue;
+        prevValue = 0;
+        currValue = 1;
+        nextValue = 0;
+
         callout("printf", "Enter a positive integer: ");
         callout("scanf", "%d", N); // get the user input
-
-        int prevValue = 0;
-        int currValue = 1;
-        int nextValue = 0;
-        
         callout("printf", "%d  %d  ", prevValue, currValue); // print the starting value
-        for count=1,N-2
+
+        for count=1, N-2
         {
             nextValue = prevValue + currValue;
             callout("printf", "%d  ", nextValue);
