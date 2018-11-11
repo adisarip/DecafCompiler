@@ -1,0 +1,225 @@
+Parsing ./test/fact.dcf
+Parsing ./test/fact.dcf Started
+Parsing Over
+Parsing ./test/fact.dcf Successful
+Traversing the AST ...
+================= Program Info =================
+
+Program Name: Factorial
+  Field Declaration List
+  Method Declaration List
+    Method Declaration: void:main
+      Block Statement: 
+        Variables Declarations List:
+          Type: int
+          Identifiers: N, 
+          Type: int
+          Identifiers: factN, 
+    Statements List:
+      Assignment Stmt: =
+      Location: factN : VARIABLE
+        Integer Literal: 1
+      Callout : "print"
+        Callout Args List:
+          Callout Arg:"Enter a Number >= 0: " : STRING
+      Callout : "scanf"
+        Callout Args List:
+          Callout Arg:"%d" : STRING
+          Callout Arg: : EXPRESSION
+      Location: N : VARIABLE
+    If Else Statement:
+      Binary Expression:==
+      Location: N : VARIABLE
+        Integer Literal: 0
+      Binary Expression:==
+      Location: N : VARIABLE
+        Integer Literal: 0
+      Block Statement: 
+        Variables Declarations List:
+    Statements List:
+      Assignment Stmt: =
+      Location: factN : VARIABLE
+        Integer Literal: 1
+      Block Statement: 
+        Variables Declarations List:
+    Statements List:
+    For Statement:
+      Init Value: i
+        Integer Literal: 1
+      Location: N : VARIABLE
+      Block Statement: 
+        Variables Declarations List:
+    Statements List:
+      Assignment Stmt: =
+      Location: factN : VARIABLE
+      Binary Expression:*
+      Location: factN : VARIABLE
+      Location: i : VARIABLE
+      Callout : "print"
+        Callout Args List:
+          Callout Arg:"Factorial of " : STRING
+          Callout Arg: : EXPRESSION
+      Location: N : VARIABLE
+          Callout Arg:" is: " : STRING
+          Callout Arg: : EXPRESSION
+      Location: factN : VARIABLE
+Traverse AST Complete !!!
+AST Cleared
+...
+...
+Parsing ./test/fib.dcf
+Parsing ./test/fib.dcf Started
+Parsing Over
+Parsing ./test/fib.dcf Successful
+Traversing the AST ...
+================= Program Info =================
+
+Program Name: FibonacciSeries
+  Field Declaration List
+  Method Declaration List
+    Method Declaration: void:main
+      Block Statement: 
+        Variables Declarations List:
+          Type: int
+          Identifiers: N, prevValue, currValue, nextValue, 
+    Statements List:
+      Assignment Stmt: =
+      Location: prevValue : VARIABLE
+        Integer Literal: 0
+      Assignment Stmt: =
+      Location: currValue : VARIABLE
+        Integer Literal: 1
+      Assignment Stmt: =
+      Location: nextValue : VARIABLE
+        Integer Literal: 0
+      Callout : "printf"
+        Callout Args List:
+          Callout Arg:"Enter a positive integer: " : STRING
+      Callout : "scanf"
+        Callout Args List:
+          Callout Arg:"%d" : STRING
+          Callout Arg: : EXPRESSION
+      Location: N : VARIABLE
+      Callout : "printf"
+        Callout Args List:
+          Callout Arg:"%d  %d  " : STRING
+          Callout Arg: : EXPRESSION
+      Location: prevValue : VARIABLE
+          Callout Arg: : EXPRESSION
+      Location: currValue : VARIABLE
+    For Statement:
+      Init Value: count
+        Integer Literal: 1
+      Binary Expression:-
+      Location: N : VARIABLE
+        Integer Literal: 2
+      Block Statement: 
+        Variables Declarations List:
+    Statements List:
+      Assignment Stmt: =
+      Location: nextValue : VARIABLE
+      Binary Expression:+
+      Location: prevValue : VARIABLE
+      Location: currValue : VARIABLE
+      Callout : "printf"
+        Callout Args List:
+          Callout Arg:"%d  " : STRING
+          Callout Arg: : EXPRESSION
+      Location: nextValue : VARIABLE
+      Assignment Stmt: =
+      Location: prevValue : VARIABLE
+      Location: currValue : VARIABLE
+      Assignment Stmt: =
+      Location: currValue : VARIABLE
+      Location: nextValue : VARIABLE
+      Assignment Stmt: =
+      Location: count : VARIABLE
+      Binary Expression:+
+      Location: count : VARIABLE
+        Integer Literal: 1
+      Callout : "printf"
+        Callout Args List:
+          Callout Arg:"\n" : STRING
+Traverse AST Complete !!!
+AST Cleared
+...
+...
+Parsing ./test/hanoi.dcf
+Parsing ./test/hannoi.dcf Started
+Parsing Over
+Parsing ./test/hannoi.dcf Successful
+Traversing the AST ...
+================= Program Info =================
+
+Program Name: Hannoi
+  Field Declaration List
+  Method Declaration List
+    Method Declaration: void:main
+      Block Statement: 
+        Variables Declarations List:
+          Type: int
+          Identifiers: n, 
+    Statements List:
+      Assignment Stmt: =
+      Location: n : VARIABLE
+        Integer Literal: 4
+    User Defined Function: towerOfHanoi
+      Expr List:
+      Location: n : VARIABLE
+        Integer Literal: 1
+        Integer Literal: 2
+        Integer Literal: 3
+      RETURN:1
+    Method Declaration: void:towerOfHanoi
+      Argument:n:int
+      Argument:from_rod:int
+      Argument:to_rod:int
+      Argument:aux_rod:int
+      Block Statement: 
+        Variables Declarations List:
+    Statements List:
+    If Else Statement:
+      Binary Expression:==
+      Location: n : VARIABLE
+        Integer Literal: 1
+      Binary Expression:==
+      Location: n : VARIABLE
+        Integer Literal: 1
+      Block Statement: 
+        Variables Declarations List:
+    Statements List:
+      Callout : "printf"
+        Callout Args List:
+          Callout Arg:"\nMove disk 1 from rod %d to rod %d" : STRING
+          Callout Arg: : EXPRESSION
+      Location: from_rod : VARIABLE
+          Callout Arg: : EXPRESSION
+      Location: to_rod : VARIABLE
+      RETURN:1
+    User Defined Function: towerOfHanoi
+      Expr List:
+      Binary Expression:-
+      Location: n : VARIABLE
+        Integer Literal: 1
+      Location: from_rod : VARIABLE
+      Location: aux_rod : VARIABLE
+      Location: to_rod : VARIABLE
+      Callout : "printf"
+        Callout Args List:
+          Callout Arg:"\n Move disk %d from rod %d to rod %d" : STRING
+          Callout Arg: : EXPRESSION
+      Location: n : VARIABLE
+          Callout Arg: : EXPRESSION
+      Location: from_rod : VARIABLE
+          Callout Arg: : EXPRESSION
+      Location: to_rod : VARIABLE
+    User Defined Function: towerOfHanoi
+      Expr List:
+      Binary Expression:-
+      Location: n : VARIABLE
+        Integer Literal: 1
+      Location: aux_rod : VARIABLE
+      Location: to_rod : VARIABLE
+      Location: from_rod : VARIABLE
+Traverse AST Complete !!!
+AST Cleared

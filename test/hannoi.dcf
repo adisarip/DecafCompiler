@@ -1,7 +1,7 @@
 // tower of hannoi
 // recursive function to solve tower of hanoi puzzle (with 4 disks)
 
-class Program
+class Hannoi
 {
     void towerOfHanoi(int n, int from_rod, int to_rod, int aux_rod)
     { 

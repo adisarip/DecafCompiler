@@ -1,4 +1,6 @@
-class Program
+// Print Fibonacci series
+
+class FibonacciSeries
 {
     void main ()
     {

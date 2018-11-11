@@ -2,7 +2,7 @@
 // Input: A positive integer n >= 0
 // Output: print the factorial of the number.
 
-class Program
+class Factorial
 {
     void main()
     {
