@@ -7,7 +7,8 @@ class Program
     void main()
     {
         int N;
-        int factN = 1;
+        int factN;
+        factN = 1;
         callout("print", "Enter a Number >= 0: ");
         callout("scanf", "%d", N); // get the user input
 

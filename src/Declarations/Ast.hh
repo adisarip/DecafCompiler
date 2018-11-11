@@ -2,6 +2,7 @@
 #ifndef AST_H
 #define AST_H
 
+#include <iostream>
 #include "Visitor.hh"
 
 
@@ -26,6 +27,7 @@ class AstContext
     inline void clearAST()
     {
         delete pRoot;
+        std::cout << "AST Cleared" << std::endl;
     }
 };
 

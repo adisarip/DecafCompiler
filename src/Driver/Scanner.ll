@@ -50,6 +50,8 @@ typedef decaf::Parser::token_type token_type;
     #define YY_USER_ACTION  yylloc->columns(yyleng);
 %}
 
+stringVal (\\n|\\t|\\'|\\\\|\\\"|[^\\"'])
+
 %% /*** Regular Expressions Part ***/
 
  /* code to place at the beginning of yylex() */
@@ -72,6 +74,8 @@ typedef decaf::Parser::token_type token_type;
 "break"     {yylval->pStrValue = new std::string(yytext); return token::BREAK;}
 "continue"  {yylval->pStrValue = new std::string(yytext); return token::CONTINUE;}
 "return"    {yylval->pStrValue = new std::string(yytext); return token::RETURN;}
+
+"//".*		/* Ignore Comments */
 
 [a-zA-Z_][a-zA-Z0-9_]* {
     yylval->pStrValue = new std::string(yytext);
@@ -120,10 +124,11 @@ typedef decaf::Parser::token_type token_type;
     return token::CHAR;
 }
 
-[ !#$%&(-[]-~]* {
+\"{stringVal}*\" {
     yylval->pStrValue = new std::string(yytext);
     return token::STRING;
-}
+    }
+
 
  /* gobble up white-spaces & end-of-lines */
 [ \t\r]+ {

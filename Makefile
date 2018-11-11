@@ -74,7 +74,7 @@ DRIVER_OBJECTS := $(DRIVER_SRC:$(DRIVER)/%.cc=$(OBJDIR)/%.o)
 SRC_OBJECTS    := $(DECAF_SRC:$(DEFINS)/%.cc=$(OBJDIR)/%.o)
 FEATURE_OBJS   := $(OBJDIR)/AstVisitor.o
 
-CXX      = clang++
+CXX      = g++
 CXXFLAGS = -W -Wall -Wextra -ansi -g -std=c++11
 INCLUDE  = -I./ -I$(VISITR)/ -I$(DECLRS)/ -I$(DRIVER)/
 LDFLAGS  = 

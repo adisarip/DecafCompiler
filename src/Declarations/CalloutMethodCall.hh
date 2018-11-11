@@ -15,6 +15,7 @@ class CalloutMethodCall : public MethodCall
     CalloutMethodCall(string methodNameParm,
                       class CalloutArgumentsList* pCalloutArgsListParm);
     
+    string getMethodName();
     CalloutArgumentsList* getCalloutArgsListPtr();
     virtual void accept(Visitor& vParm);
 

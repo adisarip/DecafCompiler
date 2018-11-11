@@ -135,30 +135,44 @@ int errors=0;
 /* Parser Rules*/ 
 
 program:
-    CLASS ID '{' field_declaration_list method_declaration_list '}' {
+    CLASS ID '{' field_declaration_list method_declaration_list '}'
+	{
         $$ = new Program(*$2, $4, $5);
         driver.mAstCtx.pRoot = $$;
     };
 
 
 field_declaration_list:
-	{ $$ = new FieldDeclarationsList(); }
-	|	field_declaration_list field_declaration { $$->add($2); }
+	{
+		$$ = new FieldDeclarationsList();
+	}
+	|	field_declaration_list field_declaration
+		{
+			$$->add($2);
+		}
 	;
 
 field_declaration:
-		INT field_declaration_variables_list ';' {
+		INT field_declaration_variables_list ';'
+		{
             $$ = new FieldDeclaration("int", $2);
         }
-	|	BOOLEAN field_declaration_variables_list ';' {
+	|	BOOLEAN field_declaration_variables_list ';'
+		{
             $$ = new FieldDeclaration("boolean", $2);
         }
 	;
 
 field_declaration_variables_list:
-	{ $$ = new VariablesList(); }
-	|	field_declaration_variable  { $$->add($1); }
-	|	field_declaration_variables_list ',' field_declaration_variable { $$->add($3); }
+		field_declaration_variable
+		{
+			$$ = new VariablesList();
+			$$->add($1);
+		}
+	|	field_declaration_variables_list ',' field_declaration_variable
+		{
+			$$->add($3);
+		}
 	;
 
 field_declaration_variable:
@@ -169,41 +183,74 @@ field_declaration_variable:
 
 
 method_declaration_list:
-	{ $$ = new MethodDeclarationsList(); }
-	|	method_declaration_list method_declaration { $$->add($2); }
+	{
+		$$ = new MethodDeclarationsList();
+	}
+	|	method_declaration method_declaration_list
+		{
+			$2->add($1);
+			$$ = $2;
+		}
 	;
 
 method_declaration:
-		VOID ID '(' parameter_list ')' block_statement {
+		VOID ID '(' parameter_list ')' block_statement
+		{
             $$ = new MethodDeclaration("void", *$2, $4, $6);
         }
-	|	INT ID '(' parameter_list ')' block_statement {
+	|	INT ID '(' parameter_list ')' block_statement
+		{
             $$ = new MethodDeclaration("int", *$2, $4, $6);
         }
-	|	BOOLEAN ID '(' parameter_list ')' block_statement {
+	|	BOOLEAN ID '(' parameter_list ')' block_statement
+		{
             MethodDeclaration("boolean", *$2, $4, $6);
         }
 	;
 
+
 parameter_list:
-	{ $$ = new ArgumentsList();  }
-	|	parameter  { $$->add($1); }
-	|	parameter_list ',' parameter  { $$->add($3); }
+	{
+		$$ = new ArgumentsList();
+	}
+	|	parameter
+		{
+			$$ = new ArgumentsList();
+			$$->add($1);
+		}
+	|	parameter_list ',' parameter
+		{
+			$$->add($3);
+		}
 	;
+
 
 parameter:
-		INT ID     { $$ = new Argument("int", *$2); }
-	|	BOOLEAN ID { $$ = new Argument("boolean", *$2); }
+		INT ID
+		{
+			$$ = new Argument("int", *$2);
+		}
+	|	BOOLEAN ID
+		{
+			$$ = new Argument("boolean", *$2);
+		}
 	;
 
+
 block_statement:
-    '{' variable_declaration_list statement_list '}'  {
+    '{' variable_declaration_list statement_list '}'
+	{
         $$ = new BlockStatement($2, $3);
     };
 
 variable_declaration_list:
-	{ $$ = new VariableDeclarationsList(); }
-	|	variable_declaration_list variable_declaration { $$->add($2); }
+	{
+		$$ = new VariableDeclarationsList();
+	}
+	|	variable_declaration_list variable_declaration
+		{
+			$$->add($2);
+		}
 	;
 
 variable_declaration:
@@ -212,7 +259,7 @@ variable_declaration:
 
 id_list:
 	{ $$ = new IdentifiersList(); }
-	|	ID  { $$->add(*$1); }
+	|	ID  { $$ = new IdentifiersList(); $$->add(*$1); }
 	|	id_list ',' ID  { $$->add(*$3); }
 	;
 
@@ -258,24 +305,44 @@ return_statement:
 	;
 
 method_call:
-		ID '(' expr_list ')'  {
+		ID '(' expr_list ')'
+		{
             $$ = new UserDefinedMethodCall(*$1, $3);
         }
-	|	CALLOUT '(' STRING ',' callout_arg_list ')'  {
+	|	CALLOUT '(' STRING ',' callout_arg_list ')'
+		{
             $$ = new CalloutMethodCall(*$3, $5);
         }
 	;
 
 expr_list:
-	{ $$ = new ExpressionsList(); }
-	|	expr { $$->add($1); }
-	|	expr_list ',' expr { $$->add($3); }
+	{
+		$$ = new ExpressionsList();
+	}
+	|	expr
+		{
+			$$ = new ExpressionsList();
+			$$->add($1);
+		}
+	|	expr_list ',' expr
+		{
+			$$->add($3);
+		}
 	;
 
 callout_arg_list:
-	{ $$ = new CalloutArgumentsList();}
-	|	callout_arg { $$->add($1); }
-	|	callout_arg_list ',' callout_arg { $$->add($3); }
+	{
+		$$ = new CalloutArgumentsList();
+	}
+	|	callout_arg
+		{
+			$$ = new CalloutArgumentsList();
+			$$->add($1);
+		}
+	|	callout_arg_list ',' callout_arg
+		{
+			$$->add($3);
+		}
 	;
 
 callout_arg:

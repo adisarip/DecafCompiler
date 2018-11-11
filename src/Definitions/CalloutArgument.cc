@@ -7,12 +7,14 @@ using namespace std;
 CalloutArgument::CalloutArgument(string calloutArgStringParm)
 :mCalloutArgString(calloutArgStringParm)
 {
+    mArgType = CalloutArgument::STRING;
 }
 
 
 CalloutArgument::CalloutArgument(class Expression* pCalloutExprParm)
 :mCalloutExprPtr(pCalloutExprParm)
 {
+    mArgType = CalloutArgument::EXPRESSION;
 }
 
 
@@ -25,6 +27,12 @@ string CalloutArgument::getCalloutArgString()
 Expression* CalloutArgument::getCalloutExprPtr()
 {
     return mCalloutExprPtr;
+}
+
+CalloutArgument::CalloutArgumentType
+CalloutArgument::getArgType()
+{
+    return mArgType;
 }
 
 

@@ -12,6 +12,12 @@ CalloutMethodCall:: CalloutMethodCall(string methodNameParm,
 }
 
 
+string CalloutMethodCall::getMethodName()
+{
+    return mMethodName;
+}
+
+
 CalloutArgumentsList* CalloutMethodCall::getCalloutArgsListPtr()
 {
     return mCalloutArgsListPtr;

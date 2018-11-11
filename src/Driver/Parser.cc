@@ -646,13 +646,17 @@ namespace decaf {
 
   case 3:
 
-    { (yylhs.value.pFieldList) = new FieldDeclarationsList(); }
+    {
+		(yylhs.value.pFieldList) = new FieldDeclarationsList();
+	}
 
     break;
 
   case 4:
 
-    { (yylhs.value.pFieldList)->add((yystack_[0].value.pField)); }
+    {
+			(yylhs.value.pFieldList)->add((yystack_[0].value.pField));
+		}
 
     break;
 
@@ -674,53 +678,57 @@ namespace decaf {
 
   case 7:
 
-    { (yylhs.value.pFieldVarList) = new VariablesList(); }
+    {
+			(yylhs.value.pFieldVarList) = new VariablesList();
+			(yylhs.value.pFieldVarList)->add((yystack_[0].value.pFieldVar));
+		}
 
     break;
 
   case 8:
 
-    { (yylhs.value.pFieldVarList)->add((yystack_[0].value.pFieldVar)); }
+    {
+			(yylhs.value.pFieldVarList)->add((yystack_[0].value.pFieldVar));
+		}
 
     break;
 
   case 9:
 
-    { (yylhs.value.pFieldVarList)->add((yystack_[0].value.pFieldVar)); }
+    { (yylhs.value.pFieldVar) = new Variable(*(yystack_[0].value.pStrValue)); }
 
     break;
 
   case 10:
 
-    { (yylhs.value.pFieldVar) = new Variable(*(yystack_[0].value.pStrValue)); }
+    { (yylhs.value.pFieldVar) = new Variable(*(yystack_[3].value.pStrValue), (yystack_[1].value.pIntLit)->getValue()); }
 
     break;
 
   case 11:
 
-    { (yylhs.value.pFieldVar) = new Variable(*(yystack_[3].value.pStrValue), (yystack_[1].value.pIntLit)->getValue()); }
+    { (yylhs.value.pFieldVar) = new Variable(*(yystack_[3].value.pStrValue), (yystack_[1].value.pHexLit)->getHexValue()); }
 
     break;
 
   case 12:
 
-    { (yylhs.value.pFieldVar) = new Variable(*(yystack_[3].value.pStrValue), (yystack_[1].value.pHexLit)->getHexValue()); }
+    {
+		(yylhs.value.pMDeclList) = new MethodDeclarationsList();
+	}
 
     break;
 
   case 13:
 
-    { (yylhs.value.pMDeclList) = new MethodDeclarationsList(); }
+    {
+			(yystack_[0].value.pMDeclList)->add((yystack_[1].value.pMDecl));
+			(yylhs.value.pMDeclList) = (yystack_[0].value.pMDeclList);
+		}
 
     break;
 
   case 14:
-
-    { (yylhs.value.pMDeclList)->add((yystack_[0].value.pMDecl)); }
-
-    break;
-
-  case 15:
 
     {
             (yylhs.value.pMDecl) = new MethodDeclaration("void", *(yystack_[4].value.pStrValue), (yystack_[2].value.pArgList), (yystack_[0].value.pBlockStmt));
@@ -728,7 +736,7 @@ namespace decaf {
 
     break;
 
-  case 16:
+  case 15:
 
     {
             (yylhs.value.pMDecl) = new MethodDeclaration("int", *(yystack_[4].value.pStrValue), (yystack_[2].value.pArgList), (yystack_[0].value.pBlockStmt));
@@ -736,7 +744,7 @@ namespace decaf {
 
     break;
 
-  case 17:
+  case 16:
 
     {
             MethodDeclaration("boolean", *(yystack_[4].value.pStrValue), (yystack_[2].value.pArgList), (yystack_[0].value.pBlockStmt));
@@ -744,37 +752,48 @@ namespace decaf {
 
     break;
 
+  case 17:
+
+    {
+		(yylhs.value.pArgList) = new ArgumentsList();
+	}
+
+    break;
+
   case 18:
 
-    { (yylhs.value.pArgList) = new ArgumentsList();  }
+    {
+			(yylhs.value.pArgList) = new ArgumentsList();
+			(yylhs.value.pArgList)->add((yystack_[0].value.pArg));
+		}
 
     break;
 
   case 19:
 
-    { (yylhs.value.pArgList)->add((yystack_[0].value.pArg)); }
+    {
+			(yylhs.value.pArgList)->add((yystack_[0].value.pArg));
+		}
 
     break;
 
   case 20:
 
-    { (yylhs.value.pArgList)->add((yystack_[0].value.pArg)); }
+    {
+			(yylhs.value.pArg) = new Argument("int", *(yystack_[0].value.pStrValue));
+		}
 
     break;
 
   case 21:
 
-    { (yylhs.value.pArg) = new Argument("int", *(yystack_[0].value.pStrValue)); }
+    {
+			(yylhs.value.pArg) = new Argument("boolean", *(yystack_[0].value.pStrValue));
+		}
 
     break;
 
   case 22:
-
-    { (yylhs.value.pArg) = new Argument("boolean", *(yystack_[0].value.pStrValue)); }
-
-    break;
-
-  case 23:
 
     {
         (yylhs.value.pBlockStmt) = new BlockStatement((yystack_[2].value.pVarDeclList), (yystack_[1].value.pStmtList));
@@ -782,33 +801,43 @@ namespace decaf {
 
     break;
 
+  case 23:
+
+    {
+		(yylhs.value.pVarDeclList) = new VariableDeclarationsList();
+	}
+
+    break;
+
   case 24:
 
-    { (yylhs.value.pVarDeclList) = new VariableDeclarationsList(); }
+    {
+			(yylhs.value.pVarDeclList)->add((yystack_[0].value.pVarDecl));
+		}
 
     break;
 
   case 25:
 
-    { (yylhs.value.pVarDeclList)->add((yystack_[0].value.pVarDecl)); }
+    { (yylhs.value.pVarDecl) = new VariableDeclaration("int", (yystack_[1].value.pIdList)); }
 
     break;
 
   case 26:
 
-    { (yylhs.value.pVarDecl) = new VariableDeclaration("int", (yystack_[1].value.pIdList)); }
+    { (yylhs.value.pVarDecl) = new VariableDeclaration("boolean", (yystack_[1].value.pIdList)); }
 
     break;
 
   case 27:
 
-    { (yylhs.value.pVarDecl) = new VariableDeclaration("boolean", (yystack_[1].value.pIdList)); }
+    { (yylhs.value.pIdList) = new IdentifiersList(); }
 
     break;
 
   case 28:
 
-    { (yylhs.value.pIdList) = new IdentifiersList(); }
+    { (yylhs.value.pIdList) = new IdentifiersList(); (yylhs.value.pIdList)->add(*(yystack_[0].value.pStrValue)); }
 
     break;
 
@@ -820,89 +849,83 @@ namespace decaf {
 
   case 30:
 
-    { (yylhs.value.pIdList)->add(*(yystack_[0].value.pStrValue)); }
+    { (yylhs.value.pStmtList) = new StatementsList(); }
 
     break;
 
   case 31:
 
-    { (yylhs.value.pStmtList) = new StatementsList(); }
+    { (yylhs.value.pStmtList)->add((yystack_[0].value.pStmt)); }
 
     break;
 
   case 32:
 
-    { (yylhs.value.pStmtList)->add((yystack_[0].value.pStmt)); }
+    { (yylhs.value.pStmt) = (yystack_[0].value.pBlockStmt); }
 
     break;
 
   case 33:
 
-    { (yylhs.value.pStmt) = (yystack_[0].value.pBlockStmt); }
+    { (yylhs.value.pStmt) = (yystack_[0].value.pCondStmt); }
 
     break;
 
   case 34:
 
-    { (yylhs.value.pStmt) = (yystack_[0].value.pCondStmt); }
+    { (yylhs.value.pStmt) = (yystack_[0].value.pLoopStmt); }
 
     break;
 
   case 35:
 
-    { (yylhs.value.pStmt) = (yystack_[0].value.pLoopStmt); }
+    { (yylhs.value.pStmt) = (yystack_[1].value.pAssgnStmt); }
 
     break;
 
   case 36:
 
-    { (yylhs.value.pStmt) = (yystack_[1].value.pAssgnStmt); }
+    { (yylhs.value.pStmt) = (yystack_[1].value.pMCall); }
 
     break;
 
   case 37:
 
-    { (yylhs.value.pStmt) = (yystack_[1].value.pMCall); }
+    { (yylhs.value.pStmt) = (yystack_[1].value.pReturnStmt); }
 
     break;
 
   case 38:
 
-    { (yylhs.value.pStmt) = (yystack_[1].value.pReturnStmt); }
+    { (yylhs.value.pStmt) = new BreakStatement(); }
 
     break;
 
   case 39:
 
-    { (yylhs.value.pStmt) = new BreakStatement(); }
+    { (yylhs.value.pStmt) = new ContinueStatement(); }
 
     break;
 
   case 40:
 
-    { (yylhs.value.pStmt) = new ContinueStatement(); }
+    { (yylhs.value.pAssgnStmt) = new AssignmentStatement("=", (yystack_[2].value.pLocation), (yystack_[0].value.pExpr)); }
 
     break;
 
   case 41:
 
-    { (yylhs.value.pAssgnStmt) = new AssignmentStatement("=", (yystack_[2].value.pLocation), (yystack_[0].value.pExpr)); }
+    { (yylhs.value.pAssgnStmt) = new AssignmentStatement("+=", (yystack_[2].value.pLocation), (yystack_[0].value.pExpr)); }
 
     break;
 
   case 42:
 
-    { (yylhs.value.pAssgnStmt) = new AssignmentStatement("+=", (yystack_[2].value.pLocation), (yystack_[0].value.pExpr)); }
-
-    break;
-
-  case 43:
-
     { (yylhs.value.pAssgnStmt) = new AssignmentStatement("-=", (yystack_[2].value.pLocation), (yystack_[0].value.pExpr)); }
 
     break;
 
-  case 44:
+  case 43:
 
     {
             (yylhs.value.pCondStmt) = new IfElseStatement((yystack_[2].value.pExpr), (yystack_[0].value.pBlockStmt), NULL);
@@ -910,7 +933,7 @@ namespace decaf {
 
     break;
 
-  case 45:
+  case 44:
 
     {
             (yylhs.value.pCondStmt) = new IfElseStatement((yystack_[4].value.pExpr), (yystack_[2].value.pBlockStmt), (yystack_[0].value.pBlockStmt));
@@ -918,7 +941,7 @@ namespace decaf {
 
     break;
 
-  case 46:
+  case 45:
 
     {
             (yylhs.value.pLoopStmt) = new ForStatement(*(yystack_[5].value.pStrValue), (yystack_[3].value.pExpr), (yystack_[1].value.pExpr), (yystack_[0].value.pBlockStmt));
@@ -926,19 +949,19 @@ namespace decaf {
 
     break;
 
-  case 47:
+  case 46:
 
     { (yylhs.value.pReturnStmt) = new ReturnStatement(NULL); }
 
     break;
 
-  case 48:
+  case 47:
 
     { (yylhs.value.pReturnStmt) = new ReturnStatement((yystack_[1].value.pExpr)); }
 
     break;
 
-  case 49:
+  case 48:
 
     {
             (yylhs.value.pMCall) = new UserDefinedMethodCall(*(yystack_[3].value.pStrValue), (yystack_[1].value.pExprList));
@@ -946,7 +969,7 @@ namespace decaf {
 
     break;
 
-  case 50:
+  case 49:
 
     {
             (yylhs.value.pMCall) = new CalloutMethodCall(*(yystack_[3].value.pStrValue), (yystack_[1].value.pCallArgList));
@@ -954,241 +977,255 @@ namespace decaf {
 
     break;
 
+  case 50:
+
+    {
+		(yylhs.value.pExprList) = new ExpressionsList();
+	}
+
+    break;
+
   case 51:
 
-    { (yylhs.value.pExprList) = new ExpressionsList(); }
+    {
+			(yylhs.value.pExprList) = new ExpressionsList();
+			(yylhs.value.pExprList)->add((yystack_[0].value.pExpr));
+		}
 
     break;
 
   case 52:
 
-    { (yylhs.value.pExprList)->add((yystack_[0].value.pExpr)); }
+    {
+			(yylhs.value.pExprList)->add((yystack_[0].value.pExpr));
+		}
 
     break;
 
   case 53:
 
-    { (yylhs.value.pExprList)->add((yystack_[0].value.pExpr)); }
+    {
+		(yylhs.value.pCallArgList) = new CalloutArgumentsList();
+	}
 
     break;
 
   case 54:
 
-    { (yylhs.value.pCallArgList) = new CalloutArgumentsList();}
+    {
+			(yylhs.value.pCallArgList) = new CalloutArgumentsList();
+			(yylhs.value.pCallArgList)->add((yystack_[0].value.pCallArg));
+		}
 
     break;
 
   case 55:
 
-    { (yylhs.value.pCallArgList)->add((yystack_[0].value.pCallArg)); }
+    {
+			(yylhs.value.pCallArgList)->add((yystack_[0].value.pCallArg));
+		}
 
     break;
 
   case 56:
 
-    { (yylhs.value.pCallArgList)->add((yystack_[0].value.pCallArg)); }
+    { (yylhs.value.pCallArg) = new CalloutArgument((yystack_[0].value.pExpr)); }
 
     break;
 
   case 57:
 
-    { (yylhs.value.pCallArg) = new CalloutArgument((yystack_[0].value.pExpr)); }
+    { (yylhs.value.pCallArg) = new CalloutArgument(*(yystack_[0].value.pStrValue)); }
 
     break;
 
   case 58:
 
-    { (yylhs.value.pCallArg) = new CalloutArgument(*(yystack_[0].value.pStrValue)); }
+    { (yylhs.value.pExpr) = (yystack_[0].value.pLocation); }
 
     break;
 
   case 59:
 
-    { (yylhs.value.pExpr) = (yystack_[0].value.pLocation); }
+    { (yylhs.value.pExpr) = (yystack_[0].value.pLit); }
 
     break;
 
   case 60:
 
-    { (yylhs.value.pExpr) = (yystack_[0].value.pLit); }
+    { (yylhs.value.pExpr) = (yystack_[0].value.pMCall); }
 
     break;
 
   case 61:
 
-    { (yylhs.value.pExpr) = (yystack_[0].value.pMCall); }
+    { (yylhs.value.pExpr) = (yystack_[0].value.pBExpr); }
 
     break;
 
   case 62:
 
-    { (yylhs.value.pExpr) = (yystack_[0].value.pBExpr); }
+    { (yylhs.value.pExpr) = (yystack_[0].value.pUExpr); }
 
     break;
 
   case 63:
 
-    { (yylhs.value.pExpr) = (yystack_[0].value.pUExpr); }
+    { (yylhs.value.pExpr) = new EnclosedExpression((yystack_[1].value.pExpr)); }
 
     break;
 
   case 64:
 
-    { (yylhs.value.pExpr) = new EnclosedExpression((yystack_[1].value.pExpr)); }
+    { (yylhs.value.pLocation) = new VariableLocation(*(yystack_[0].value.pStrValue)); }
 
     break;
 
   case 65:
 
-    { (yylhs.value.pLocation) = new VariableLocation(*(yystack_[0].value.pStrValue)); }
+    { (yylhs.value.pLocation) = new VariableLocation(*(yystack_[3].value.pStrValue), (yystack_[1].value.pExpr)); }
 
     break;
 
   case 66:
 
-    { (yylhs.value.pLocation) = new VariableLocation(*(yystack_[3].value.pStrValue), (yystack_[1].value.pExpr)); }
+    { (yylhs.value.pLit) = (yystack_[0].value.pIntLit); }
 
     break;
 
   case 67:
 
-    { (yylhs.value.pLit) = (yystack_[0].value.pIntLit); }
+    { (yylhs.value.pLit) = (yystack_[0].value.pHexLit); }
 
     break;
 
   case 68:
 
-    { (yylhs.value.pLit) = (yystack_[0].value.pHexLit); }
+    { (yylhs.value.pLit) = (yystack_[0].value.pBoolLit); }
 
     break;
 
   case 69:
 
-    { (yylhs.value.pLit) = (yystack_[0].value.pBoolLit); }
+    { (yylhs.value.pLit) = (yystack_[0].value.pCharLit); }
 
     break;
 
   case 70:
 
-    { (yylhs.value.pLit) = (yystack_[0].value.pCharLit); }
+    { (yylhs.value.pBoolLit) = new BooleanLiteral("true"); }
 
     break;
 
   case 71:
 
-    { (yylhs.value.pBoolLit) = new BooleanLiteral("true"); }
+    { (yylhs.value.pBoolLit) = new BooleanLiteral("false"); }
 
     break;
 
   case 72:
 
-    { (yylhs.value.pBoolLit) = new BooleanLiteral("false"); }
+    { (yylhs.value.pIntLit) = new IntegerLiteral((yystack_[0].value.iValue)); }
 
     break;
 
   case 73:
 
-    { (yylhs.value.pIntLit) = new IntegerLiteral((yystack_[0].value.iValue)); }
+    { (yylhs.value.pHexLit) = new HexadecimalLiteral((yystack_[0].value.hexValue)); }
 
     break;
 
   case 74:
 
-    { (yylhs.value.pHexLit) = new HexadecimalLiteral((yystack_[0].value.hexValue)); }
+    { (yylhs.value.pCharLit) = new CharacterLiteral((yystack_[0].value.cValue)); }
 
     break;
 
   case 75:
 
-    { (yylhs.value.pCharLit) = new CharacterLiteral((yystack_[0].value.cValue)); }
+    { (yylhs.value.pBExpr) = new BinaryExpression("+", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
 
     break;
 
   case 76:
 
-    { (yylhs.value.pBExpr) = new BinaryExpression("+", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
+    { (yylhs.value.pBExpr) = new BinaryExpression("-", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
 
     break;
 
   case 77:
 
-    { (yylhs.value.pBExpr) = new BinaryExpression("-", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
+    { (yylhs.value.pBExpr) = new BinaryExpression("*", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
 
     break;
 
   case 78:
 
-    { (yylhs.value.pBExpr) = new BinaryExpression("*", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
+    { (yylhs.value.pBExpr) = new BinaryExpression("/", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
 
     break;
 
   case 79:
 
-    { (yylhs.value.pBExpr) = new BinaryExpression("/", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
+    { (yylhs.value.pBExpr) = new BinaryExpression("%", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
 
     break;
 
   case 80:
 
-    { (yylhs.value.pBExpr) = new BinaryExpression("%", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
+    { (yylhs.value.pBExpr) = new BinaryExpression("<", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
 
     break;
 
   case 81:
 
-    { (yylhs.value.pBExpr) = new BinaryExpression("<", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
+    { (yylhs.value.pBExpr) = new BinaryExpression(">", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
 
     break;
 
   case 82:
 
-    { (yylhs.value.pBExpr) = new BinaryExpression(">", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
+    { (yylhs.value.pBExpr) = new BinaryExpression("==", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
 
     break;
 
   case 83:
 
-    { (yylhs.value.pBExpr) = new BinaryExpression("==", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
+    { (yylhs.value.pBExpr) = new BinaryExpression(">=", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
 
     break;
 
   case 84:
 
-    { (yylhs.value.pBExpr) = new BinaryExpression(">=", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
+    { (yylhs.value.pBExpr) = new BinaryExpression("<=", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
 
     break;
 
   case 85:
 
-    { (yylhs.value.pBExpr) = new BinaryExpression("<=", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
+    { (yylhs.value.pBExpr) = new BinaryExpression("!=", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
 
     break;
 
   case 86:
 
-    { (yylhs.value.pBExpr) = new BinaryExpression("!=", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
+    { (yylhs.value.pBExpr) = new BinaryExpression("&&", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
 
     break;
 
   case 87:
 
-    { (yylhs.value.pBExpr) = new BinaryExpression("&&", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
+    { (yylhs.value.pBExpr) = new BinaryExpression("||", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
 
     break;
 
   case 88:
 
-    { (yylhs.value.pBExpr) = new BinaryExpression("||", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
-
-    break;
-
-  case 89:
-
     { (yylhs.value.pUExpr) = new UnaryExpression("-", (yystack_[0].value.pExpr)); }
 
     break;
 
-  case 90:
+  case 89:
 
     { (yylhs.value.pUExpr) = new UnaryExpression("!", (yystack_[0].value.pExpr)); }
 
@@ -1453,191 +1490,191 @@ namespace decaf {
   }
 
 
-  const signed char Parser::yypact_ninf_ = -81;
+  const signed char Parser::yypact_ninf_ = -84;
 
   const signed char Parser::yytable_ninf_ = -1;
 
   const short
   Parser::yypact_[] =
   {
-       6,     5,    32,   -25,   -81,   -81,    98,    25,    25,   -81,
-      -1,    28,   -13,   -81,    17,    64,    75,    82,   -81,   -81,
-     103,    25,   -81,   -81,    92,    93,    94,   -81,   -81,    65,
-      96,   -81,   102,   102,   102,   -81,   -81,   140,   141,   -20,
-     -81,   -19,   -18,   -81,   -81,   102,   115,   115,   115,   -81,
-     -81,   -81,   -81,   -81,   119,   142,   142,   -81,    70,   -81,
-      37,    48,   114,   116,   144,   120,   135,   133,    42,   -81,
-     -81,   -81,   137,   -81,   -81,   138,   157,     0,   165,   -81,
-     -81,   162,    23,   159,   -81,   -81,    23,    23,    23,   -81,
-     -81,   -81,    23,    23,    23,   -81,   163,   -81,   -81,   -81,
-      23,    23,    23,   -81,    95,   -81,   -81,   -81,   -81,   -81,
-     -81,   -81,   -81,    23,   117,   161,    -4,   210,   210,   210,
-     210,    54,   -81,   -81,   139,    23,    23,    23,    23,    23,
-      23,    23,    23,    23,    23,    23,    23,    23,   115,   181,
-     -81,   -81,    23,   -81,   -81,    16,   -81,   210,   -81,   222,
-     233,    71,    71,    60,    60,    60,    60,    47,    47,   -81,
-     -81,   -81,   196,    23,   210,    54,   -81,   115,   194,   -81,
-     -81,   -81
+       6,    -2,    19,   -17,   -84,   -84,    65,    14,    82,    93,
+     -84,    46,    98,   -21,   -13,   -84,    26,    -5,    72,   -84,
+     122,   124,   -84,    47,    76,   142,   -84,    76,   -84,    76,
+      88,   112,   -84,   -84,   115,   116,   145,   146,   -20,   -84,
+     134,   -84,   -19,   -18,   -84,   -84,   -84,   -84,    76,   138,
+     138,   138,   -84,   -84,   -84,   -84,   -84,   141,   163,   163,
+     -84,    70,   -84,     0,    20,   135,   136,   166,   157,   158,
+     156,    94,   -84,   -84,   -84,   162,   -84,   -84,   190,   191,
+      61,   167,   -84,   -84,   164,    23,   179,   -84,   -84,    23,
+      23,    23,   -84,   -84,   -84,    23,    23,    23,   -84,   250,
+     -84,   -84,   -84,    23,    23,    23,   -84,    95,   -84,   -84,
+     -84,   -84,   -84,   -84,   -84,   -84,    23,   117,   161,    -8,
+     210,   210,   210,   210,    54,   -84,   -84,   139,    23,    23,
+      23,    23,    23,    23,    23,    23,    23,    23,    23,    23,
+      23,   138,   181,   -84,   -84,    23,   -84,   -84,    -6,   -84,
+     210,   -84,   222,   233,    71,    71,    60,    60,    60,    60,
+      99,    99,   -84,   -84,   -84,   268,    23,   210,    54,   -84,
+     138,   194,   -84,   -84,   -84
   };
 
   const unsigned char
   Parser::yydefact_[] =
   {
-       0,     0,     0,     0,     1,     3,    13,     7,     7,     4,
-       0,    10,     0,     8,     0,     0,     0,     0,     2,    14,
-       0,     0,     5,     6,     0,     0,     0,    73,    74,     0,
-       0,     9,    18,    18,    18,    11,    12,     0,     0,     0,
-      19,     0,     0,    21,    22,     0,     0,     0,     0,    20,
-      24,    16,    17,    15,    31,    28,    28,    25,     0,    29,
-       0,     0,     0,     0,     0,     0,     0,    47,    65,    23,
-      33,    32,     0,    34,    35,     0,     0,     0,     0,    26,
-      27,     0,     0,     0,    39,    40,     0,     0,    51,    36,
-      38,    37,     0,     0,     0,    30,     0,    71,    72,    75,
-       0,     0,     0,    61,     0,    59,    60,    69,    67,    68,
-      70,    62,    63,     0,     0,     0,     0,    52,    42,    43,
-      41,    54,    89,    90,     0,     0,     0,     0,     0,     0,
+       0,     0,     0,     0,     1,     3,    12,     0,     0,     0,
+       4,     0,    12,     9,     0,     7,     9,     0,     0,     2,
+       0,     0,    13,     0,    17,     0,     5,    17,     6,    17,
+       0,     0,    72,    73,     0,     0,     0,     0,     0,    18,
+       9,     8,     0,     0,    10,    11,    20,    21,     0,     0,
+       0,     0,    19,    23,    15,    16,    14,    30,    27,    27,
+      24,     0,    28,     0,     0,     0,     0,     0,     0,     0,
+      46,    64,    22,    32,    31,     0,    33,    34,     0,     0,
+       0,     0,    25,    26,     0,     0,     0,    38,    39,     0,
+       0,    50,    35,    37,    36,     0,     0,     0,    29,     0,
+      70,    71,    74,     0,     0,     0,    60,     0,    58,    59,
+      68,    66,    67,    69,    61,    62,     0,     0,     0,     0,
+      51,    41,    42,    40,    53,    88,    89,     0,     0,     0,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-      48,    66,     0,    49,    58,     0,    55,    57,    64,    88,
-      87,    83,    86,    81,    85,    82,    84,    76,    77,    78,
-      79,    80,    44,     0,    53,     0,    50,     0,     0,    56,
-      45,    46
+       0,     0,     0,    47,    65,     0,    48,    57,     0,    54,
+      56,    63,    87,    86,    82,    85,    80,    84,    81,    83,
+      75,    76,    77,    78,    79,    43,     0,    52,     0,    49,
+       0,     0,    55,    44,    45
   };
 
   const short
   Parser::yypgoto_[] =
   {
-     -81,   -81,   -81,   -81,   195,   184,   -81,   -81,   104,   189,
-     -47,   -81,   -81,   150,   -81,   -81,   -81,   -81,   -81,   -81,
-     177,   -81,   -81,   108,   -80,   216,   -81,   -81,   255,   256,
-     -81,   -81,   -81
+     -84,   -84,   -84,   -84,   267,   251,   265,   -84,    89,   230,
+     -50,   -84,   -84,   220,   -84,   -84,   -84,   -84,   -84,   -84,
+     219,   -84,   -84,   113,   -83,   221,   -84,   -84,   260,   261,
+     -84,   -84,   -84
   };
 
   const short
   Parser::yydefgoto_[] =
   {
-      -1,     2,     6,     9,    12,    13,    10,    19,    39,    40,
-      51,    54,    57,    60,    58,    71,    72,    73,    74,    75,
-     103,   116,   145,   146,   147,   105,   106,   107,   108,   109,
-     110,   111,   112
+      -1,     2,     6,    10,    14,    15,    11,    12,    38,    39,
+      54,    57,    60,    63,    61,    74,    75,    76,    77,    78,
+     106,   119,   148,   149,   150,   108,   109,   110,   111,   112,
+     113,   114,   115
   };
 
   const unsigned char
   Parser::yytable_[] =
   {
-      52,    53,   104,    45,    45,    45,   114,   115,   117,     1,
-      21,    70,   118,   119,   120,    15,    16,     5,    17,   142,
-     122,   123,   124,     3,    92,    93,    94,    62,    46,    47,
-      48,    22,     4,   139,    97,    98,    27,    28,    99,   165,
-      21,    68,    18,    11,   143,   149,   150,   151,   152,   153,
-     154,   155,   156,   157,   158,   159,   160,   161,    62,   100,
-      78,    23,   164,   101,   166,    97,    98,    27,    28,    99,
-     102,    78,    68,    20,    62,    63,   144,    64,    65,    66,
-      67,    79,    24,   168,   135,   136,   137,    87,    68,    88,
-     100,   162,    80,    25,   101,   133,   134,   135,   136,   137,
-      26,   102,   129,   130,   131,   132,   133,   134,   135,   136,
-     137,    35,    50,    69,     7,     8,    27,    28,    37,    38,
-     170,   171,   125,   126,   127,   128,   129,   130,   131,   132,
-     133,   134,   135,   136,   137,    55,    56,    41,    42,    32,
-      33,    34,    36,   138,   125,   126,   127,   128,   129,   130,
-     131,   132,   133,   134,   135,   136,   137,    50,    43,    44,
-      59,    81,    83,    82,    84,   140,   125,   126,   127,   128,
-     129,   130,   131,   132,   133,   134,   135,   136,   137,    85,
-      86,    89,    90,    95,    96,   113,   121,   148,   125,   126,
-     127,   128,   129,   130,   131,   132,   133,   134,   135,   136,
-     137,    91,   167,    14,   163,    31,    61,   141,   125,   126,
-     127,   128,   129,   130,   131,   132,   133,   134,   135,   136,
-     137,   125,   126,   127,   128,   129,   130,   131,   132,   133,
-     134,   135,   136,   137,    49,    76,    50,   125,   126,   127,
-     128,   129,   130,   131,   132,   133,   134,   135,   136,   137,
-     126,   127,   128,   129,   130,   131,   132,   133,   134,   135,
-     136,   137,   127,   128,   129,   130,   131,   132,   133,   134,
-     135,   136,   137,   169,    77,    29,    30
+      55,    56,   107,    48,    48,    48,   117,   118,   120,     1,
+      25,    73,   121,   122,   123,   145,     3,   168,    25,     4,
+     125,   126,   127,    81,    23,     5,    24,    65,    49,    50,
+      51,    26,    13,   142,   100,   101,    32,    33,   102,    28,
+     146,    71,   169,    81,    82,   152,   153,   154,   155,   156,
+     157,   158,   159,   160,   161,   162,   163,   164,    65,   103,
+      32,    33,   167,   104,    83,   100,   101,    32,    33,   102,
+     105,    23,    71,    27,    65,    66,   147,    67,    68,    69,
+      70,     7,     8,   171,     9,    95,    96,    97,    71,    19,
+     103,   165,    36,    37,   104,   136,   137,   138,   139,   140,
+      16,   105,   132,   133,   134,   135,   136,   137,   138,   139,
+     140,    18,    53,    72,    20,    21,    42,     9,    43,    29,
+     173,   174,   128,   129,   130,   131,   132,   133,   134,   135,
+     136,   137,   138,   139,   140,    24,   138,   139,   140,    90,
+      30,    91,    31,   141,   128,   129,   130,   131,   132,   133,
+     134,   135,   136,   137,   138,   139,   140,    58,    59,    27,
+      40,    44,    45,    46,    47,   143,   128,   129,   130,   131,
+     132,   133,   134,   135,   136,   137,   138,   139,   140,    23,
+      53,    62,    84,    85,    86,    98,    99,   151,   128,   129,
+     130,   131,   132,   133,   134,   135,   136,   137,   138,   139,
+     140,    87,    88,    89,   166,   116,    92,   144,   128,   129,
+     130,   131,   132,   133,   134,   135,   136,   137,   138,   139,
+     140,   128,   129,   130,   131,   132,   133,   134,   135,   136,
+     137,   138,   139,   140,    93,    94,    53,   128,   129,   130,
+     131,   132,   133,   134,   135,   136,   137,   138,   139,   140,
+     129,   130,   131,   132,   133,   134,   135,   136,   137,   138,
+     139,   140,   130,   131,   132,   133,   134,   135,   136,   137,
+     138,   139,   140,   124,   170,    17,    41,    22,    52,    64,
+      79,   172,    80,    34,    35
   };
 
   const unsigned char
   Parser::yycheck_[] =
   {
-      47,    48,    82,    23,    23,    23,    86,    87,    88,     3,
-      23,    58,    92,    93,    94,    16,    17,    42,    19,    23,
-     100,   101,   102,    18,    24,    25,    26,     4,    48,    48,
-      48,    44,     0,   113,    11,    12,    13,    14,    15,    23,
-      23,    18,    43,    18,    48,   125,   126,   127,   128,   129,
-     130,   131,   132,   133,   134,   135,   136,   137,     4,    36,
-      23,    44,   142,    40,    48,    11,    12,    13,    14,    15,
-      47,    23,    18,    45,     4,     5,    22,     7,     8,     9,
-      10,    44,    18,   163,    37,    38,    39,    45,    18,    47,
-      36,   138,    44,    18,    40,    35,    36,    37,    38,    39,
+      50,    51,    85,    23,    23,    23,    89,    90,    91,     3,
+      23,    61,    95,    96,    97,    23,    18,    23,    23,     0,
+     103,   104,   105,    23,    45,    42,    47,     4,    48,    48,
+      48,    44,    18,   116,    11,    12,    13,    14,    15,    44,
+      48,    18,    48,    23,    44,   128,   129,   130,   131,   132,
+     133,   134,   135,   136,   137,   138,   139,   140,     4,    36,
+      13,    14,   145,    40,    44,    11,    12,    13,    14,    15,
+      47,    45,    18,    47,     4,     5,    22,     7,     8,     9,
+      10,    16,    17,   166,    19,    24,    25,    26,    18,    43,
+      36,   141,    16,    17,    40,    35,    36,    37,    38,    39,
       18,    47,    31,    32,    33,    34,    35,    36,    37,    38,
-      39,    46,    42,    43,    16,    17,    13,    14,    16,    17,
-     167,   168,    27,    28,    29,    30,    31,    32,    33,    34,
-      35,    36,    37,    38,    39,    16,    17,    33,    34,    47,
-      47,    47,    46,    48,    27,    28,    29,    30,    31,    32,
-      33,    34,    35,    36,    37,    38,    39,    42,    18,    18,
-      18,    47,    18,    47,    44,    48,    27,    28,    29,    30,
-      31,    32,    33,    34,    35,    36,    37,    38,    39,    44,
-      47,    44,    44,    18,    22,    26,    23,    48,    27,    28,
+      39,    18,    42,    43,    16,    17,    27,    19,    29,    47,
+     170,   171,    27,    28,    29,    30,    31,    32,    33,    34,
+      35,    36,    37,    38,    39,    47,    37,    38,    39,    45,
+      18,    47,    18,    48,    27,    28,    29,    30,    31,    32,
+      33,    34,    35,    36,    37,    38,    39,    16,    17,    47,
+      18,    46,    46,    18,    18,    48,    27,    28,    29,    30,
+      31,    32,    33,    34,    35,    36,    37,    38,    39,    45,
+      42,    18,    47,    47,    18,    18,    22,    48,    27,    28,
       29,    30,    31,    32,    33,    34,    35,    36,    37,    38,
-      39,    44,     6,     8,    23,    21,    56,    46,    27,    28,
+      39,    44,    44,    47,    23,    26,    44,    46,    27,    28,
       29,    30,    31,    32,    33,    34,    35,    36,    37,    38,
       39,    27,    28,    29,    30,    31,    32,    33,    34,    35,
-      36,    37,    38,    39,    45,    58,    42,    27,    28,    29,
+      36,    37,    38,    39,    44,    44,    42,    27,    28,    29,
       30,    31,    32,    33,    34,    35,    36,    37,    38,    39,
       28,    29,    30,    31,    32,    33,    34,    35,    36,    37,
       38,    39,    29,    30,    31,    32,    33,    34,    35,    36,
-      37,    38,    39,   165,    58,    20,    20
+      37,    38,    39,    23,     6,     8,    25,    12,    48,    59,
+      61,   168,    61,    23,    23
   };
 
   const unsigned char
   Parser::yystos_[] =
   {
-       0,     3,    50,    18,     0,    42,    51,    16,    17,    52,
-      55,    18,    53,    54,    53,    16,    17,    19,    43,    56,
-      45,    23,    44,    44,    18,    18,    18,    13,    14,    77,
-      78,    54,    47,    47,    47,    46,    46,    16,    17,    57,
-      58,    57,    57,    18,    18,    23,    48,    48,    48,    58,
-      42,    59,    59,    59,    60,    16,    17,    61,    63,    18,
-      62,    62,     4,     5,     7,     8,     9,    10,    18,    43,
-      59,    64,    65,    66,    67,    68,    69,    74,    23,    44,
-      44,    47,    47,    18,    44,    44,    47,    45,    47,    44,
-      44,    44,    24,    25,    26,    18,    22,    11,    12,    15,
-      36,    40,    47,    69,    73,    74,    75,    76,    77,    78,
-      79,    80,    81,    26,    73,    73,    70,    73,    73,    73,
-      73,    23,    73,    73,    73,    27,    28,    29,    30,    31,
-      32,    33,    34,    35,    36,    37,    38,    39,    48,    73,
-      48,    46,    23,    48,    22,    71,    72,    73,    48,    73,
-      73,    73,    73,    73,    73,    73,    73,    73,    73,    73,
-      73,    73,    59,    23,    73,    23,    48,     6,    73,    72,
-      59,    59
+       0,     3,    50,    18,     0,    42,    51,    16,    17,    19,
+      52,    55,    56,    18,    53,    54,    18,    53,    18,    43,
+      16,    17,    55,    45,    47,    23,    44,    47,    44,    47,
+      18,    18,    13,    14,    77,    78,    16,    17,    57,    58,
+      18,    54,    57,    57,    46,    46,    18,    18,    23,    48,
+      48,    48,    58,    42,    59,    59,    59,    60,    16,    17,
+      61,    63,    18,    62,    62,     4,     5,     7,     8,     9,
+      10,    18,    43,    59,    64,    65,    66,    67,    68,    69,
+      74,    23,    44,    44,    47,    47,    18,    44,    44,    47,
+      45,    47,    44,    44,    44,    24,    25,    26,    18,    22,
+      11,    12,    15,    36,    40,    47,    69,    73,    74,    75,
+      76,    77,    78,    79,    80,    81,    26,    73,    73,    70,
+      73,    73,    73,    73,    23,    73,    73,    73,    27,    28,
+      29,    30,    31,    32,    33,    34,    35,    36,    37,    38,
+      39,    48,    73,    48,    46,    23,    48,    22,    71,    72,
+      73,    48,    73,    73,    73,    73,    73,    73,    73,    73,
+      73,    73,    73,    73,    73,    59,    23,    73,    23,    48,
+       6,    73,    72,    59,    59
   };
 
   const unsigned char
   Parser::yyr1_[] =
   {
-       0,    49,    50,    51,    51,    52,    52,    53,    53,    53,
-      54,    54,    54,    55,    55,    56,    56,    56,    57,    57,
-      57,    58,    58,    59,    60,    60,    61,    61,    62,    62,
-      62,    63,    63,    64,    64,    64,    64,    64,    64,    64,
-      64,    65,    65,    65,    66,    66,    67,    68,    68,    69,
-      69,    70,    70,    70,    71,    71,    71,    72,    72,    73,
-      73,    73,    73,    73,    73,    74,    74,    75,    75,    75,
-      75,    76,    76,    77,    78,    79,    80,    80,    80,    80,
-      80,    80,    80,    80,    80,    80,    80,    80,    80,    81,
-      81
+       0,    49,    50,    51,    51,    52,    52,    53,    53,    54,
+      54,    54,    55,    55,    56,    56,    56,    57,    57,    57,
+      58,    58,    59,    60,    60,    61,    61,    62,    62,    62,
+      63,    63,    64,    64,    64,    64,    64,    64,    64,    64,
+      65,    65,    65,    66,    66,    67,    68,    68,    69,    69,
+      70,    70,    70,    71,    71,    71,    72,    72,    73,    73,
+      73,    73,    73,    73,    74,    74,    75,    75,    75,    75,
+      76,    76,    77,    78,    79,    80,    80,    80,    80,    80,
+      80,    80,    80,    80,    80,    80,    80,    80,    81,    81
   };
 
   const unsigned char
   Parser::yyr2_[] =
   {
-       0,     2,     6,     0,     2,     3,     3,     0,     1,     3,
-       1,     4,     4,     0,     2,     6,     6,     6,     0,     1,
-       3,     2,     2,     4,     0,     2,     3,     3,     0,     1,
-       3,     0,     2,     1,     1,     1,     2,     2,     2,     2,
-       2,     3,     3,     3,     5,     7,     7,     1,     4,     4,
-       6,     0,     1,     3,     0,     1,     3,     1,     1,     1,
-       1,     1,     1,     1,     3,     1,     4,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     3,     3,     3,     3,
-       3,     3,     3,     3,     3,     3,     3,     3,     3,     2,
-       2
+       0,     2,     6,     0,     2,     3,     3,     1,     3,     1,
+       4,     4,     0,     2,     6,     6,     6,     0,     1,     3,
+       2,     2,     4,     0,     2,     3,     3,     0,     1,     3,
+       0,     2,     1,     1,     1,     2,     2,     2,     2,     2,
+       3,     3,     3,     5,     7,     7,     1,     4,     4,     6,
+       0,     1,     3,     0,     1,     3,     1,     1,     1,     1,
+       1,     1,     1,     3,     1,     4,     1,     1,     1,     1,
+       1,     1,     1,     1,     1,     3,     3,     3,     3,     3,
+       3,     3,     3,     3,     3,     3,     3,     3,     2,     2
   };
 
 
@@ -1669,16 +1706,15 @@ namespace decaf {
   const unsigned short
   Parser::yyrline_[] =
   {
-       0,   138,   138,   145,   146,   150,   153,   159,   160,   161,
-     165,   166,   167,   172,   173,   177,   180,   183,   189,   190,
-     191,   195,   196,   200,   205,   206,   210,   211,   214,   215,
-     216,   220,   221,   225,   226,   227,   228,   229,   230,   231,
-     232,   236,   237,   238,   242,   245,   251,   256,   257,   261,
-     264,   270,   271,   272,   276,   277,   278,   282,   283,   287,
-     288,   289,   290,   291,   292,   296,   297,   301,   302,   303,
-     304,   308,   309,   310,   311,   312,   316,   317,   318,   319,
-     320,   321,   322,   323,   324,   325,   326,   327,   328,   332,
-     333
+       0,   138,   138,   146,   149,   156,   160,   167,   172,   179,
+     180,   181,   186,   189,   197,   201,   205,   213,   216,   221,
+     229,   233,   241,   247,   250,   257,   258,   261,   262,   263,
+     267,   268,   272,   273,   274,   275,   276,   277,   278,   279,
+     283,   284,   285,   289,   292,   298,   303,   304,   308,   312,
+     319,   322,   327,   334,   337,   342,   349,   350,   354,   355,
+     356,   357,   358,   359,   363,   364,   368,   369,   370,   371,
+     375,   376,   377,   378,   379,   383,   384,   385,   386,   387,
+     388,   389,   390,   391,   392,   393,   394,   395,   399,   400
   };
 
   // Print the state stack on the debug stream.

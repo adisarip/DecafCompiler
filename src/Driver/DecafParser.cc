@@ -25,9 +25,6 @@ int main(int argc, char *argv[])
 
         cout << "Parsing " << argv[index] << " Started" << endl;
 
-	    //sAstCtx.clearAST();
-        //cout << "AST Cleared." << endl;
-
 	    bool result = sDriver.parse_stream(infile, argv[index]);
 
         cout << "Parsing Over" << endl;
@@ -46,6 +43,5 @@ int main(int argc, char *argv[])
             cout << "Result FALSE" << endl;
         }
 	}
-    //sAstCtx.clearAST();
 }
 
