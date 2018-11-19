@@ -4,3 +4,4 @@ decaf_parser
 decaf
 *.o
 cscope.out
+ir_code_test/

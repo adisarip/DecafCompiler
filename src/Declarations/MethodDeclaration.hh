@@ -5,7 +5,7 @@
 #include <string>
 #include "Ast.hh"
 #include "Visitor.hh"
-#include "ArgumentsList.hh"
+#include "ParametersList.hh"
 #include "BlockStatement.hh"
 using namespace std;
 
@@ -14,19 +14,19 @@ class MethodDeclaration : public AstNode
   public:
     MethodDeclaration(string returnTypeParm,
                       string methodNameParm,
-                      class ArgumentsList* pArgsListParm,
+                      class ParametersList* pArgsListParm,
                       class BlockStatement* pBlockStmtParm);
 
     string getReturnType();
     string getMethodName();
-    ArgumentsList* getArgsListPtr();
+    ParametersList* getParmsListPtr();
     BlockStatement* getBlockStmtPtr();
     virtual void accept(Visitor& vParm);
 
   private:
     string mReturnType; // return type of the function
     string mMethodName; // Name of the function
-    class ArgumentsList* mArgsListPtr; // Function Arguments List
+    class ParametersList* mParmsListPtr; // Function Arguments List
     class BlockStatement* mBlockStmtPtr; // Block Statement / Function code block.
 };
 

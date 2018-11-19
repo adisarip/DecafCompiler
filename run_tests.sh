@@ -11,6 +11,12 @@ echo "Parsing ./test/fib.dcf"
 echo "..."
 echo "..."
 
-echo "Parsing ./test/hanoi.dcf"
+echo "Parsing ./test/hannoi.dcf"
 ./bin/decaf ./test/hannoi.dcf
+
+echo "..."
+echo "..."
+
+echo "Parsing ./test/.dcf"
+./bin/decaf ./test/binary.dcf
 

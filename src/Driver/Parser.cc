@@ -42,7 +42,7 @@
 
 extern union Nodes yylval;
 
-class Program* start = NULL;
+class Program* program = NULL;
 int errors=0;
 
 
@@ -731,7 +731,7 @@ namespace decaf {
   case 14:
 
     {
-            (yylhs.value.pMDecl) = new MethodDeclaration("void", *(yystack_[4].value.pStrValue), (yystack_[2].value.pArgList), (yystack_[0].value.pBlockStmt));
+            (yylhs.value.pMDecl) = new MethodDeclaration("void", *(yystack_[4].value.pStrValue), (yystack_[2].value.pParmList), (yystack_[0].value.pBlockStmt));
         }
 
     break;
@@ -739,7 +739,7 @@ namespace decaf {
   case 15:
 
     {
-            (yylhs.value.pMDecl) = new MethodDeclaration("int", *(yystack_[4].value.pStrValue), (yystack_[2].value.pArgList), (yystack_[0].value.pBlockStmt));
+            (yylhs.value.pMDecl) = new MethodDeclaration("int", *(yystack_[4].value.pStrValue), (yystack_[2].value.pParmList), (yystack_[0].value.pBlockStmt));
         }
 
     break;
@@ -747,7 +747,7 @@ namespace decaf {
   case 16:
 
     {
-            MethodDeclaration("boolean", *(yystack_[4].value.pStrValue), (yystack_[2].value.pArgList), (yystack_[0].value.pBlockStmt));
+            MethodDeclaration("boolean", *(yystack_[4].value.pStrValue), (yystack_[2].value.pParmList), (yystack_[0].value.pBlockStmt));
         }
 
     break;
@@ -755,7 +755,7 @@ namespace decaf {
   case 17:
 
     {
-		(yylhs.value.pArgList) = new ArgumentsList();
+		(yylhs.value.pParmList) = new ParametersList();
 	}
 
     break;
@@ -763,8 +763,8 @@ namespace decaf {
   case 18:
 
     {
-			(yylhs.value.pArgList) = new ArgumentsList();
-			(yylhs.value.pArgList)->add((yystack_[0].value.pArg));
+			(yylhs.value.pParmList) = new ParametersList();
+			(yylhs.value.pParmList)->add((yystack_[0].value.pParm));
 		}
 
     break;
@@ -772,7 +772,7 @@ namespace decaf {
   case 19:
 
     {
-			(yylhs.value.pArgList)->add((yystack_[0].value.pArg));
+			(yylhs.value.pParmList)->add((yystack_[0].value.pParm));
 		}
 
     break;
@@ -780,7 +780,7 @@ namespace decaf {
   case 20:
 
     {
-			(yylhs.value.pArg) = new Argument("int", *(yystack_[0].value.pStrValue));
+			(yylhs.value.pParm) = new Parameter("int", *(yystack_[0].value.pStrValue));
 		}
 
     break;
@@ -788,7 +788,7 @@ namespace decaf {
   case 21:
 
     {
-			(yylhs.value.pArg) = new Argument("boolean", *(yystack_[0].value.pStrValue));
+			(yylhs.value.pParm) = new Parameter("boolean", *(yystack_[0].value.pStrValue));
 		}
 
     break;
@@ -1710,11 +1710,11 @@ namespace decaf {
      180,   181,   186,   189,   197,   201,   205,   213,   216,   221,
      229,   233,   241,   247,   250,   257,   258,   261,   262,   263,
      267,   268,   272,   273,   274,   275,   276,   277,   278,   279,
-     283,   284,   285,   289,   293,   300,   305,   306,   310,   314,
-     321,   324,   329,   336,   339,   344,   351,   352,   356,   357,
-     358,   359,   360,   361,   365,   366,   370,   371,   372,   373,
-     377,   378,   379,   380,   381,   385,   386,   387,   388,   389,
-     390,   391,   392,   393,   394,   395,   396,   397,   401,   402
+     283,   284,   285,   289,   293,   300,   306,   307,   311,   315,
+     322,   325,   330,   337,   340,   345,   352,   353,   357,   358,
+     359,   360,   361,   362,   366,   367,   371,   372,   373,   374,
+     378,   379,   380,   381,   382,   386,   387,   388,   389,   390,
+     391,   392,   393,   394,   395,   396,   397,   398,   402,   403
   };
 
   // Print the state stack on the debug stream.

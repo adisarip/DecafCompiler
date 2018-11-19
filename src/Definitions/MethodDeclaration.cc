@@ -6,11 +6,11 @@ using namespace std;
 
 MethodDeclaration::MethodDeclaration(string returnTypeParm,
                                      string methodNameParm,
-                                     class ArgumentsList* pArgsListParm,
+                                     class ParametersList* pArgsListParm,
                                      class BlockStatement* pBlockStmtParm)
 :mReturnType(returnTypeParm)
 ,mMethodName(methodNameParm)
-,mArgsListPtr(pArgsListParm)
+,mParmsListPtr(pArgsListParm)
 ,mBlockStmtPtr(pBlockStmtParm)
 {
 }
@@ -27,9 +27,9 @@ string MethodDeclaration::getMethodName()
 }
 
 
-ArgumentsList* MethodDeclaration::getArgsListPtr()
+ParametersList* MethodDeclaration::getParmsListPtr()
 {
-    return mArgsListPtr;
+    return mParmsListPtr;
 }
 
 

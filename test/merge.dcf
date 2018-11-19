@@ -6,13 +6,16 @@ class Program
 {
     int a[10];
     int b[10];
-    int N = 10;
+    int N;
+    N = 10;
 
     void merging(int low, int mid, int high)
     {
-        int l1 = low;
-        int l2 = mid+1;
-        int i = low;
+        int l1,l2,i;
+        l1 = low;
+        l2 = mid+1;
+        i = low;
+        
         for l1 <= mid && l2 <= high
         {
             if(a[l1] <= a[l2])

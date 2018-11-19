@@ -5,43 +5,45 @@
 
 class Program
 {
+    int testData[100];
     void main()
     {
-        int N;
+        int i,num,searchValue,N;
+        int first,last,midddle;
+        first = 0;
+        last = N-1;
+        middle = (first + last)/2;
+        
         callout("printf", "Enter a positive integers: ");
-        callout("scanf", "%d", &N);
+        callout("scanf", "%d", N);
 
         callout("printf", "Enter %d random integers in ascending order: ", N);
-        int testData[100];
-        int num;
-        for i=0,N-1
+        for i=0, N-1
         {
-            callout("scanf", "%d", &num);
+            callout("scanf", "%d", num);
             testData[i] = num;
         }
 
-        int searchValue;
         callout("printf", "Enter a number to search: ");
-        callout("scanf", "%d", &searchValue);
+        callout("scanf", "%d", searchValue);
 
-        int first = 0;
-        int last = N-1;
-        int middle = (first + last)/2;
-        int i;
         for i=first,last
         {
             if (testData[middle] < searchValue)
             {
                 first = middle + 1;
             }
-            else if (testData[middle] == searchValue) 
-            {
-                callout("printf", "%d found at location %d.", searchValue, middle+1);
-                break;
-            }
             else
             {
-                last = middle - 1;
+                if (testData[middle] == searchValue) 
+                {
+                    callout("printf", "%d found at location %d.", searchValue, middle+1);
+                    break;
+                }
+                else
+                {
+                    last = middle - 1;
+                }
             }
             middle = (first + last)/2;
             i = first-1; // as i will be incremented automatically, hence adjusting its position

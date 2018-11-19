@@ -1,13 +1,15 @@
 
-#ifndef AST_VISITOR_H
-#define AST_VISITOR_H
+#ifndef LLVM_IR_GENERATOR_H
+#define LLVM_IR_GENERATOR_H
 
 #include "Modules.hh"
 #include "Visitor.hh"
+#include "LLVMConstructs.hh"
 
-class AstVisitor: public Visitor
+class LLVMIRGenerator: public Visitor
 {
   public:
+    // Visitor member functions
     virtual void visit(Program& nodeParm);
     virtual void visit(FieldDeclaration& nodeParm);
     virtual void visit(FieldDeclarationsList& nodeParm);
@@ -31,7 +33,6 @@ class AstVisitor: public Visitor
     virtual void visit(UnaryExpression& nodeParm);
     virtual void visit(BinaryExpression& nodeParm);
     virtual void visit(EnclosedExpression& nodeParm);
-    //virtual void visit(Literal& nodeParm);
     virtual void visit(IntegerLiteral& nodeParm);
     virtual void visit(BooleanLiteral& nodeParm);
     virtual void visit(HexadecimalLiteral& nodeParm);
@@ -42,7 +43,19 @@ class AstVisitor: public Visitor
     virtual void visit(VariableDeclaration& nodeParm);
     virtual void visit(VariableDeclarationsList& nodeParm);
     virtual void visit(VariableLocation& nodeParm);
+
+    // Constructor
+    LLVMIRGenerator();
+
+    inline void logError(std::string errorStringParm)
+    {
+        std::cerr << "[ERROR] " << errorStringParm << std::endl;
+    }
+
+    // data
+    class LLVMConstructs* mLlvmConstructsPtr;
+    llvm::Type* mDeclTypePtr;
 };
 
-#endif /* AST_VISITOR_H */
+#endif /* LLVM_IR_GENERATOR_H */
 

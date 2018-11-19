@@ -14,6 +14,7 @@ DECLRS = ./src/Declarations
 DEFINS = ./src/Definitions
 VISITR = ./src/Visitors
 DRIVER = ./src/Driver
+LLVMIN = /usr/local/opt/llvm/include
 TARGET = decaf
 
 PARSER        = $(DRIVER)/Parser.cc
@@ -36,8 +37,8 @@ DECAF_SRC += $(DEFINS)/MethodDeclarationsList.cc
 DECAF_SRC += $(DEFINS)/Variable.cc
 DECAF_SRC += $(DEFINS)/VariablesList.cc
 DECAF_SRC += $(DEFINS)/VariableLocation.cc
-DECAF_SRC += $(DEFINS)/Argument.cc
-DECAF_SRC += $(DEFINS)/ArgumentsList.cc
+DECAF_SRC += $(DEFINS)/Parameter.cc
+DECAF_SRC += $(DEFINS)/ParametersList.cc
 DECAF_SRC += $(DEFINS)/StatementsList.cc
 DECAF_SRC += $(DEFINS)/BlockStatement.cc
 DECAF_SRC += $(DEFINS)/IfElseStatement.cc
@@ -64,20 +65,21 @@ DECAF_SRC += $(DEFINS)/VariableDeclarationsList.cc
 
 
 DRIVER_SRC  = $(DRIVER)/Driver.cc
+DRIVER_SRC += $(DRIVER)/LLVMConstructs.cc
 DRIVER_SRC += $(DRIVER)/DecafParser.cc
 
-FEATURES_SRC = $(VISITR)/AstVisitor.cc
+FEATURES_SRC = $(VISITR)/LLVMIRGenerator.cc
 
 PARSER_OBJ     := $(OBJDIR)/Parser.o
 SCANNER_OBJ    := $(OBJDIR)/Scanner.o
 DRIVER_OBJECTS := $(DRIVER_SRC:$(DRIVER)/%.cc=$(OBJDIR)/%.o)
 SRC_OBJECTS    := $(DECAF_SRC:$(DEFINS)/%.cc=$(OBJDIR)/%.o)
-FEATURE_OBJS   := $(OBJDIR)/AstVisitor.o
+FEATURE_OBJS   := $(OBJDIR)/LLVMIRGenerator.o
 
-CXX      = g++
-CXXFLAGS = -W -Wall -Wextra -ansi -g -std=c++11
-INCLUDE  = -I./ -I$(VISITR)/ -I$(DECLRS)/ -I$(DRIVER)/
-LDFLAGS  = 
+CXX      = clang++
+CXXFLAGS = -ansi -g -std=c++11
+INCLUDE  = -I./ -I$(VISITR)/ -I$(DECLRS)/ -I$(DRIVER)/ -I$(LLVMIN)/
+LDFLAGS  = `llvm-config --cxxflags --ldflags --system-libs --libs support core irreader mcjit native`
 
 
 ##############################

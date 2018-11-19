@@ -4,14 +4,14 @@
 #include <fstream>
 #include "Driver.hh"
 #include "Modules.hh"
-#include "AstVisitor.hh"
+#include "LLVMIRGenerator.hh"
 using namespace std;
 
 int main(int argc, char *argv[])
 {
     AstContext sAstCtx;
     decaf::Driver sDriver(sAstCtx);
-    AstVisitor sVisitor;
+    LLVMIRGenerator sIRGenerator;
 
     for(int index = 1; index < argc; index++)
     {
@@ -33,9 +33,9 @@ int main(int argc, char *argv[])
             cout << "Parsing " << argv[index] << " Successful" << endl;
             if (sAstCtx.pRoot != NULL )
             {
-                cout << "Traversing the AST ..." << endl;
-                sAstCtx.pRoot->accept(sVisitor);
-                cout << "Traverse AST Complete !!!" << endl; 
+                cout << "Generating IR ..." << endl;
+                sAstCtx.pRoot->accept(sIRGenerator);
+                cout << "IR Generation Complete !!!" << endl; 
             }
         }
         else

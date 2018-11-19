@@ -8,7 +8,7 @@
 
 extern union Nodes yylval;
 
-class Program* start = NULL;
+class Program* program = NULL;
 int errors=0;
 
 %}
@@ -88,8 +88,8 @@ int errors=0;
 %type <pFieldVar> field_declaration_variable
 %type <pMDeclList> method_declaration_list
 %type <pMDecl> method_declaration
-%type <pArgList> parameter_list
-%type <pArg> parameter
+%type <pParmList> parameter_list
+%type <pParm> parameter
 %type <pVarDeclList> variable_declaration_list
 %type <pVarDecl> variable_declaration
 %type <pIdList> id_list
@@ -211,11 +211,11 @@ method_declaration:
 
 parameter_list:
 	{
-		$$ = new ArgumentsList();
+		$$ = new ParametersList();
 	}
 	|	parameter
 		{
-			$$ = new ArgumentsList();
+			$$ = new ParametersList();
 			$$->add($1);
 		}
 	|	parameter_list ',' parameter
@@ -228,11 +228,11 @@ parameter_list:
 parameter:
 		INT ID
 		{
-			$$ = new Argument("int", *$2);
+			$$ = new Parameter("int", *$2);
 		}
 	|	BOOLEAN ID
 		{
-			$$ = new Argument("boolean", *$2);
+			$$ = new Parameter("boolean", *$2);
 		}
 	;
 
@@ -297,7 +297,8 @@ if_conditional_statement:
 	;
 
 for_loop_statement:
-        FOR ID '=' expr ',' expr block_statement {
+        FOR ID '=' expr ',' expr block_statement
+		{
             $$ = new ForStatement(*$2, $4, $6, $7);
         };
 

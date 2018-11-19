@@ -12,8 +12,8 @@
 #include "FieldDeclarationsList.hh"
 #include "MethodDeclaration.hh"
 #include "MethodDeclarationsList.hh"
-#include "Argument.hh"
-#include "ArgumentsList.hh"
+#include "Parameter.hh"
+#include "ParametersList.hh"
 #include "Statement.hh"
 #include "StatementsList.hh"
 #include "BlockStatement.hh"
@@ -59,8 +59,8 @@ union Nodes
     class VariablesList*            pFieldVarList;
     class MethodDeclaration*        pMDecl;
     class MethodDeclarationsList*   pMDeclList;
-    class Argument*                 pArg; // parameter
-    class ArgumentsList*            pArgList; // parameter_list
+    class Parameter*                pParm;
+    class ParametersList*           pParmList;
     class VariableDeclaration*      pVarDecl;
     class VariableDeclarationsList* pVarDeclList;
     class IdentifiersList*          pIdList;

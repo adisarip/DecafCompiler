@@ -11,6 +11,7 @@ Program::Program(string programNameParm,
 ,mFieldsDeclListPtr(pFieldsListParm)
 ,mMethodsDeclListPtr(pMethodsListParm)
 {
+    //mllvmConstructsPtr = new LLVMConstructs();
 }
 
 string Program::getProgamName()
@@ -18,12 +19,12 @@ string Program::getProgamName()
     return mProgamName;
 }
 
-FieldDeclarationsList* Program::getFieldDeclarationsList()
+FieldDeclarationsList* Program::getFieldDeclarationsListPtr()
 {
     return mFieldsDeclListPtr;
 }
 
-MethodDeclarationsList* Program::getMethodDeclarationsList()
+MethodDeclarationsList* Program::getMethodDeclarationsListPtr()
 {
     return mMethodsDeclListPtr;
 }
