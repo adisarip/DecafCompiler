@@ -12,7 +12,7 @@ class BooleanLiteral : public Literal
 {
   public:
     BooleanLiteral(string boolValueParm);
-    bool getValue();
+    string getBoolValue();
     virtual void accept(Visitor& vParm);
 
   private:

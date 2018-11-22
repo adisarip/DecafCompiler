@@ -5,6 +5,7 @@
 #include "Modules.hh"
 #include "Visitor.hh"
 #include "LLVMConstructs.hh"
+using namespace std;
 
 class LLVMIRGenerator: public Visitor
 {
@@ -52,9 +53,11 @@ class LLVMIRGenerator: public Visitor
         std::cerr << "[ERROR] " << errorStringParm << std::endl;
     }
 
+    void dumpIRCode();
+
     // data
     class LLVMConstructs* mLlvmConstructsPtr;
-    llvm::Type* mDeclTypePtr;
+    class Value* mValuePtr;
 };
 
 #endif /* LLVM_IR_GENERATOR_H */

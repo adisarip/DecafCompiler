@@ -22,20 +22,14 @@ int main(int argc, char *argv[])
 		    cerr << "Could not open file: " << argv[index] << endl;
 		    return 0;
 	    }
-
-        cout << "Parsing " << argv[index] << " Started" << endl;
-
-	    bool result = sDriver.parse_stream(infile, argv[index]);
-
-        cout << "Parsing Over" << endl;
+	    
+        bool result = sDriver.parse_stream(infile, argv[index]);
         if (result)
         {
-            cout << "Parsing " << argv[index] << " Successful" << endl;
             if (sAstCtx.pRoot != NULL )
             {
-                cout << "Generating IR ..." << endl;
                 sAstCtx.pRoot->accept(sIRGenerator);
-                cout << "IR Generation Complete !!!" << endl; 
+                sIRGenerator.dumpIRCode();
             }
         }
         else

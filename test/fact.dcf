@@ -4,6 +4,9 @@
 
 class Factorial
 {
+    int globalIntVar;
+    boolean globalBoolVar;
+
     void main()
     {
         int N;

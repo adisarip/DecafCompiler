@@ -5,10 +5,10 @@ using namespace std;
 
 
 CalloutMethodCall:: CalloutMethodCall(string methodNameParm,
-                                      class CalloutArgumentsList* pCalloutArgsListParm)
+                                      CalloutArgumentsList* pCalloutArgsListParm)
 :mCalloutArgsListPtr(pCalloutArgsListParm)
 {
-    mMethodName = methodNameParm;
+    mMethodName = methodNameParm.substr(1, methodNameParm.length()-2);
 }
 
 

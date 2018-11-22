@@ -5,14 +5,16 @@ using namespace std;
 
 
 CalloutArgument::CalloutArgument(string calloutArgStringParm)
-:mCalloutArgString(calloutArgStringParm)
+:mCalloutExprPtr(NULL)
 {
     mArgType = CalloutArgument::STRING;
+    mCalloutArgString = calloutArgStringParm.substr(1, calloutArgStringParm.length()-2);
 }
 
 
 CalloutArgument::CalloutArgument(class Expression* pCalloutExprParm)
-:mCalloutExprPtr(pCalloutExprParm)
+:mCalloutArgString("")
+,mCalloutExprPtr(pCalloutExprParm)
 {
     mArgType = CalloutArgument::EXPRESSION;
 }

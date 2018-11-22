@@ -14,7 +14,8 @@ DECLRS = ./src/Declarations
 DEFINS = ./src/Definitions
 VISITR = ./src/Visitors
 DRIVER = ./src/Driver
-LLVMIN = /usr/local/opt/llvm/include
+LLVM01 = /usr/local/opt/llvm/include
+LLVM02 = /usr/local/opt/llvm/support
 TARGET = decaf
 
 PARSER        = $(DRIVER)/Parser.cc
@@ -77,8 +78,8 @@ SRC_OBJECTS    := $(DECAF_SRC:$(DEFINS)/%.cc=$(OBJDIR)/%.o)
 FEATURE_OBJS   := $(OBJDIR)/LLVMIRGenerator.o
 
 CXX      = clang++
-CXXFLAGS = -ansi -g -std=c++11
-INCLUDE  = -I./ -I$(VISITR)/ -I$(DECLRS)/ -I$(DRIVER)/ -I$(LLVMIN)/
+CXXFLAGS = -ansi -Wall -g -std=c++11
+INCLUDE  = -I./ -I$(VISITR)/ -I$(DECLRS)/ -I$(DRIVER)/ -I$(LLVM01)/ -I$(LLVM02)/
 LDFLAGS  = `llvm-config --cxxflags --ldflags --system-libs --libs support core irreader mcjit native`
 
 

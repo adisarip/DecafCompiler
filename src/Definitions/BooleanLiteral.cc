@@ -9,14 +9,9 @@ BooleanLiteral::BooleanLiteral(string boolValueParm)
     mLiteralType = Literal::BOOLEAN;
 }
 
-bool BooleanLiteral::getValue()
+string BooleanLiteral::getBoolValue()
 {
-    bool sBoolValue = false;
-    if (mBoolValue == "true")
-    {
-        sBoolValue = true;
-    }
-    return sBoolValue;
+    return mBoolValue;
 }
 
 void BooleanLiteral::accept(Visitor& vParm)

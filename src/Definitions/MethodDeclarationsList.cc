@@ -6,7 +6,7 @@ using namespace std;
 
 void MethodDeclarationsList::add(class MethodDeclaration* pMethodDeclParm)
 {
-    mMethodDeclList.push_back(pMethodDeclParm);
+    mMethodDeclList.insert(mMethodDeclList.begin(), pMethodDeclParm);
 }
 
 
