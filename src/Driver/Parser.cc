@@ -647,16 +647,16 @@ namespace decaf {
   case 3:
 
     {
-		(yylhs.value.pFieldList) = new FieldDeclarationsList();
-	}
+        (yylhs.value.pFieldList) = new FieldDeclarationsList();
+    }
 
     break;
 
   case 4:
 
     {
-			(yylhs.value.pFieldList)->add((yystack_[0].value.pField));
-		}
+            (yylhs.value.pFieldList)->add((yystack_[0].value.pField));
+        }
 
     break;
 
@@ -679,17 +679,17 @@ namespace decaf {
   case 7:
 
     {
-			(yylhs.value.pFieldVarList) = new VariablesList();
-			(yylhs.value.pFieldVarList)->add((yystack_[0].value.pFieldVar));
-		}
+            (yylhs.value.pFieldVarList) = new VariablesList();
+            (yylhs.value.pFieldVarList)->add((yystack_[0].value.pFieldVar));
+        }
 
     break;
 
   case 8:
 
     {
-			(yylhs.value.pFieldVarList)->add((yystack_[0].value.pFieldVar));
-		}
+            (yylhs.value.pFieldVarList)->add((yystack_[0].value.pFieldVar));
+        }
 
     break;
 
@@ -714,17 +714,17 @@ namespace decaf {
   case 12:
 
     {
-		(yylhs.value.pMDeclList) = new MethodDeclarationsList();
-	}
+        (yylhs.value.pMDeclList) = new MethodDeclarationsList();
+    }
 
     break;
 
   case 13:
 
     {
-			(yystack_[0].value.pMDeclList)->add((yystack_[1].value.pMDecl));
-			(yylhs.value.pMDeclList) = (yystack_[0].value.pMDeclList);
-		}
+            (yystack_[0].value.pMDeclList)->add((yystack_[1].value.pMDecl));
+            (yylhs.value.pMDeclList) = (yystack_[0].value.pMDeclList);
+        }
 
     break;
 
@@ -755,41 +755,41 @@ namespace decaf {
   case 17:
 
     {
-		(yylhs.value.pParmList) = new ParametersList();
-	}
+        (yylhs.value.pParmList) = new ParametersList();
+    }
 
     break;
 
   case 18:
 
     {
-			(yylhs.value.pParmList) = new ParametersList();
-			(yylhs.value.pParmList)->add((yystack_[0].value.pParm));
-		}
+            (yylhs.value.pParmList) = new ParametersList();
+            (yylhs.value.pParmList)->add((yystack_[0].value.pParm));
+        }
 
     break;
 
   case 19:
 
     {
-			(yylhs.value.pParmList)->add((yystack_[0].value.pParm));
-		}
+            (yylhs.value.pParmList)->add((yystack_[0].value.pParm));
+        }
 
     break;
 
   case 20:
 
     {
-			(yylhs.value.pParm) = new Parameter("int", *(yystack_[0].value.pStrValue));
-		}
+            (yylhs.value.pParm) = new Parameter("int", *(yystack_[0].value.pStrValue));
+        }
 
     break;
 
   case 21:
 
     {
-			(yylhs.value.pParm) = new Parameter("boolean", *(yystack_[0].value.pStrValue));
-		}
+            (yylhs.value.pParm) = new Parameter("boolean", *(yystack_[0].value.pStrValue));
+        }
 
     break;
 
@@ -804,124 +804,160 @@ namespace decaf {
   case 23:
 
     {
-		(yylhs.value.pVarDeclList) = new VariableDeclarationsList();
-	}
+        (yylhs.value.pVarDeclList) = new VariableDeclarationsList();
+    }
 
     break;
 
   case 24:
 
     {
-			(yylhs.value.pVarDeclList)->add((yystack_[0].value.pVarDecl));
-		}
+            (yylhs.value.pVarDeclList)->add((yystack_[0].value.pVarDecl));
+        }
 
     break;
 
   case 25:
 
-    { (yylhs.value.pVarDecl) = new VariableDeclaration("int", (yystack_[1].value.pIdList)); }
+    {
+            (yylhs.value.pVarDecl) = new VariableDeclaration("int", (yystack_[1].value.pIdList));
+        }
 
     break;
 
   case 26:
 
-    { (yylhs.value.pVarDecl) = new VariableDeclaration("boolean", (yystack_[1].value.pIdList)); }
+    {
+            (yylhs.value.pVarDecl) = new VariableDeclaration("boolean", (yystack_[1].value.pIdList));
+        }
 
     break;
 
   case 27:
 
-    { (yylhs.value.pIdList) = new IdentifiersList(); }
+    {
+        (yylhs.value.pIdList) = new IdentifiersList();
+    }
 
     break;
 
   case 28:
 
-    { (yylhs.value.pIdList) = new IdentifiersList(); (yylhs.value.pIdList)->add(*(yystack_[0].value.pStrValue)); }
+    {
+            (yylhs.value.pIdList) = new IdentifiersList(); (yylhs.value.pIdList)->add(*(yystack_[0].value.pStrValue));
+        }
 
     break;
 
   case 29:
 
-    { (yylhs.value.pIdList)->add(*(yystack_[0].value.pStrValue)); }
+    {
+            (yylhs.value.pIdList)->add(*(yystack_[0].value.pStrValue));
+        }
 
     break;
 
   case 30:
 
-    { (yylhs.value.pStmtList) = new StatementsList(); }
+    {
+        (yylhs.value.pStmtList) = new StatementsList();
+    }
 
     break;
 
   case 31:
 
-    { (yylhs.value.pStmtList)->add((yystack_[0].value.pStmt)); }
+    {
+            (yylhs.value.pStmtList)->add((yystack_[0].value.pStmt));
+        }
 
     break;
 
   case 32:
 
-    { (yylhs.value.pStmt) = (yystack_[0].value.pBlockStmt); }
+    {
+            (yylhs.value.pStmt) = (yystack_[0].value.pBlockStmt);
+        }
 
     break;
 
   case 33:
 
-    { (yylhs.value.pStmt) = (yystack_[0].value.pCondStmt); }
+    {
+            (yylhs.value.pStmt) = (yystack_[0].value.pCondStmt);
+        }
 
     break;
 
   case 34:
 
-    { (yylhs.value.pStmt) = (yystack_[0].value.pLoopStmt); }
+    {
+            (yylhs.value.pStmt) = (yystack_[0].value.pLoopStmt);
+        }
 
     break;
 
   case 35:
 
-    { (yylhs.value.pStmt) = (yystack_[1].value.pAssgnStmt); }
+    {
+            (yylhs.value.pStmt) = (yystack_[1].value.pAssgnStmt);
+        }
 
     break;
 
   case 36:
 
-    { (yylhs.value.pStmt) = (yystack_[1].value.pMCall); }
+    {
+            (yylhs.value.pStmt) = (yystack_[1].value.pMCall);
+        }
 
     break;
 
   case 37:
 
-    { (yylhs.value.pStmt) = (yystack_[1].value.pReturnStmt); }
+    {
+            (yylhs.value.pStmt) = (yystack_[1].value.pReturnStmt);
+        }
 
     break;
 
   case 38:
 
-    { (yylhs.value.pStmt) = new BreakStatement(); }
+    {
+            (yylhs.value.pStmt) = new BreakStatement();
+        }
 
     break;
 
   case 39:
 
-    { (yylhs.value.pStmt) = new ContinueStatement(); }
+    {
+            (yylhs.value.pStmt) = new ContinueStatement();
+        }
 
     break;
 
   case 40:
 
-    { (yylhs.value.pAssgnStmt) = new AssignmentStatement("=", (yystack_[2].value.pLocation), (yystack_[0].value.pExpr)); }
+    {
+            (yylhs.value.pAssgnStmt) = new AssignmentStatement("=", (yystack_[2].value.pLocation), (yystack_[0].value.pExpr));
+        }
 
     break;
 
   case 41:
 
-    { (yylhs.value.pAssgnStmt) = new AssignmentStatement("+=", (yystack_[2].value.pLocation), (yystack_[0].value.pExpr)); }
+    {
+            (yylhs.value.pAssgnStmt) = new AssignmentStatement("+=", (yystack_[2].value.pLocation), (yystack_[0].value.pExpr));
+        }
 
     break;
 
   case 42:
 
-    { (yylhs.value.pAssgnStmt) = new AssignmentStatement("-=", (yystack_[2].value.pLocation), (yystack_[0].value.pExpr)); }
+    {
+            (yylhs.value.pAssgnStmt) = new AssignmentStatement("-=", (yystack_[2].value.pLocation), (yystack_[0].value.pExpr));
+        }
 
     break;
 
@@ -937,7 +973,7 @@ namespace decaf {
 
     {
             (yylhs.value.pCondStmt) = new IfElseStatement((yystack_[4].value.pExpr), (yystack_[2].value.pBlockStmt), (yystack_[0].value.pBlockStmt));
-    	}
+        }
 
     break;
 
@@ -951,13 +987,17 @@ namespace decaf {
 
   case 46:
 
-    { (yylhs.value.pReturnStmt) = new ReturnStatement(NULL); }
+    {
+            (yylhs.value.pReturnStmt) = new ReturnStatement(NULL);
+        }
 
     break;
 
   case 47:
 
-    { (yylhs.value.pReturnStmt) = new ReturnStatement((yystack_[0].value.pExpr)); }
+    {
+            (yylhs.value.pReturnStmt) = new ReturnStatement((yystack_[0].value.pExpr));
+        }
 
     break;
 
@@ -980,254 +1020,322 @@ namespace decaf {
   case 50:
 
     {
-		(yylhs.value.pExprList) = new ExpressionsList();
-	}
+        (yylhs.value.pExprList) = new ExpressionsList();
+    }
 
     break;
 
   case 51:
 
     {
-			(yylhs.value.pExprList) = new ExpressionsList();
-			(yylhs.value.pExprList)->add((yystack_[0].value.pExpr));
-		}
+            (yylhs.value.pExprList) = new ExpressionsList();
+            (yylhs.value.pExprList)->add((yystack_[0].value.pExpr));
+        }
 
     break;
 
   case 52:
 
     {
-			(yylhs.value.pExprList)->add((yystack_[0].value.pExpr));
-		}
+            (yylhs.value.pExprList)->add((yystack_[0].value.pExpr));
+        }
 
     break;
 
   case 53:
 
     {
-		(yylhs.value.pCallArgList) = new CalloutArgumentsList();
-	}
+        (yylhs.value.pCallArgList) = new CalloutArgumentsList();
+    }
 
     break;
 
   case 54:
 
     {
-			(yylhs.value.pCallArgList) = new CalloutArgumentsList();
-			(yylhs.value.pCallArgList)->add((yystack_[0].value.pCallArg));
-		}
+            (yylhs.value.pCallArgList) = new CalloutArgumentsList();
+            (yylhs.value.pCallArgList)->add((yystack_[0].value.pCallArg));
+        }
 
     break;
 
   case 55:
 
     {
-			(yylhs.value.pCallArgList)->add((yystack_[0].value.pCallArg));
-		}
+            (yylhs.value.pCallArgList)->add((yystack_[0].value.pCallArg));
+        }
 
     break;
 
   case 56:
 
-    { (yylhs.value.pCallArg) = new CalloutArgument((yystack_[0].value.pExpr)); }
+    {
+            (yylhs.value.pCallArg) = new CalloutArgument((yystack_[0].value.pExpr));
+        }
 
     break;
 
   case 57:
 
-    { (yylhs.value.pCallArg) = new CalloutArgument(*(yystack_[0].value.pStrValue)); }
+    {
+            (yylhs.value.pCallArg) = new CalloutArgument(*(yystack_[0].value.pStrValue));
+        }
 
     break;
 
   case 58:
 
-    { (yylhs.value.pExpr) = (yystack_[0].value.pLocation); }
+    {
+            (yylhs.value.pExpr) = (yystack_[0].value.pLocation);
+        }
 
     break;
 
   case 59:
 
-    { (yylhs.value.pExpr) = (yystack_[0].value.pLit); }
+    {
+            (yylhs.value.pExpr) = (yystack_[0].value.pLit);
+        }
 
     break;
 
   case 60:
 
-    { (yylhs.value.pExpr) = (yystack_[0].value.pMCall); }
+    {
+            (yylhs.value.pExpr) = (yystack_[0].value.pMCall);
+        }
 
     break;
 
   case 61:
 
-    { (yylhs.value.pExpr) = (yystack_[0].value.pBExpr); }
+    {
+            (yylhs.value.pExpr) = (yystack_[0].value.pBExpr);
+        }
 
     break;
 
   case 62:
 
-    { (yylhs.value.pExpr) = (yystack_[0].value.pUExpr); }
+    {
+            (yylhs.value.pExpr) = (yystack_[0].value.pUExpr);
+        }
 
     break;
 
   case 63:
 
-    { (yylhs.value.pExpr) = new EnclosedExpression((yystack_[1].value.pExpr)); }
+    {
+            (yylhs.value.pExpr) = new EnclosedExpression((yystack_[1].value.pExpr));
+        }
 
     break;
 
   case 64:
 
-    { (yylhs.value.pLocation) = new VariableLocation(*(yystack_[0].value.pStrValue)); }
+    {
+            (yylhs.value.pLocation) = new VariableLocation(*(yystack_[0].value.pStrValue));
+        }
 
     break;
 
   case 65:
 
-    { (yylhs.value.pLocation) = new VariableLocation(*(yystack_[3].value.pStrValue), (yystack_[1].value.pExpr)); }
+    {
+            (yylhs.value.pLocation) = new VariableLocation(*(yystack_[3].value.pStrValue), (yystack_[1].value.pExpr));
+        }
 
     break;
 
   case 66:
 
-    { (yylhs.value.pLit) = (yystack_[0].value.pIntLit); }
+    {
+            (yylhs.value.pLit) = (yystack_[0].value.pIntLit);
+        }
 
     break;
 
   case 67:
 
-    { (yylhs.value.pLit) = (yystack_[0].value.pHexLit); }
+    {
+            (yylhs.value.pLit) = (yystack_[0].value.pHexLit);
+        }
 
     break;
 
   case 68:
 
-    { (yylhs.value.pLit) = (yystack_[0].value.pBoolLit); }
+    {
+            (yylhs.value.pLit) = (yystack_[0].value.pBoolLit);
+        }
 
     break;
 
   case 69:
 
-    { (yylhs.value.pLit) = (yystack_[0].value.pCharLit); }
+    {
+            (yylhs.value.pLit) = (yystack_[0].value.pCharLit);
+        }
 
     break;
 
   case 70:
 
-    { (yylhs.value.pBoolLit) = new BooleanLiteral("true"); }
+    {
+            (yylhs.value.pBoolLit) = new BooleanLiteral("true");
+        }
 
     break;
 
   case 71:
 
-    { (yylhs.value.pBoolLit) = new BooleanLiteral("false"); }
+    {
+            (yylhs.value.pBoolLit) = new BooleanLiteral("false");
+        }
 
     break;
 
   case 72:
 
-    { (yylhs.value.pIntLit) = new IntegerLiteral((yystack_[0].value.iValue)); }
+    {
+        (yylhs.value.pIntLit) = new IntegerLiteral((yystack_[0].value.iValue));
+    }
 
     break;
 
   case 73:
 
-    { (yylhs.value.pHexLit) = new HexadecimalLiteral((yystack_[0].value.hexValue)); }
+    {
+        (yylhs.value.pHexLit) = new HexadecimalLiteral((yystack_[0].value.hexValue));
+    }
 
     break;
 
   case 74:
 
-    { (yylhs.value.pCharLit) = new CharacterLiteral((yystack_[0].value.cValue)); }
+    {
+        (yylhs.value.pCharLit) = new CharacterLiteral((yystack_[0].value.cValue));
+    }
 
     break;
 
   case 75:
 
-    { (yylhs.value.pBExpr) = new BinaryExpression("+", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
+    {
+			(yylhs.value.pBExpr) = new BinaryExpression("+", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
+		}
 
     break;
 
   case 76:
 
-    { (yylhs.value.pBExpr) = new BinaryExpression("-", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
+    {
+			(yylhs.value.pBExpr) = new BinaryExpression("-", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
+		}
 
     break;
 
   case 77:
 
-    { (yylhs.value.pBExpr) = new BinaryExpression("*", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
+    {
+			(yylhs.value.pBExpr) = new BinaryExpression("*", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
+		}
 
     break;
 
   case 78:
 
-    { (yylhs.value.pBExpr) = new BinaryExpression("/", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
+    {
+			(yylhs.value.pBExpr) = new BinaryExpression("/", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
+		}
 
     break;
 
   case 79:
 
-    { (yylhs.value.pBExpr) = new BinaryExpression("%", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
+    {
+			(yylhs.value.pBExpr) = new BinaryExpression("%", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
+		}
 
     break;
 
   case 80:
 
-    { (yylhs.value.pBExpr) = new BinaryExpression("<", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
+    {
+			(yylhs.value.pBExpr) = new BinaryExpression("<", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
+		}
 
     break;
 
   case 81:
 
-    { (yylhs.value.pBExpr) = new BinaryExpression(">", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
+    {
+			(yylhs.value.pBExpr) = new BinaryExpression(">", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
+		}
 
     break;
 
   case 82:
 
-    { (yylhs.value.pBExpr) = new BinaryExpression("==", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
+    {
+			(yylhs.value.pBExpr) = new BinaryExpression("==", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
+		}
 
     break;
 
   case 83:
 
-    { (yylhs.value.pBExpr) = new BinaryExpression(">=", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
+    {
+			(yylhs.value.pBExpr) = new BinaryExpression(">=", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
+		}
 
     break;
 
   case 84:
 
-    { (yylhs.value.pBExpr) = new BinaryExpression("<=", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
+    {
+			(yylhs.value.pBExpr) = new BinaryExpression("<=", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
+		}
 
     break;
 
   case 85:
 
-    { (yylhs.value.pBExpr) = new BinaryExpression("!=", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
+    {
+			(yylhs.value.pBExpr) = new BinaryExpression("!=", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
+		}
 
     break;
 
   case 86:
 
-    { (yylhs.value.pBExpr) = new BinaryExpression("&&", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
+    {
+			(yylhs.value.pBExpr) = new BinaryExpression("&&", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
+		}
 
     break;
 
   case 87:
 
-    { (yylhs.value.pBExpr) = new BinaryExpression("||", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr)); }
+    {
+			(yylhs.value.pBExpr) = new BinaryExpression("||", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
+		}
 
     break;
 
   case 88:
 
-    { (yylhs.value.pUExpr) = new UnaryExpression("-", (yystack_[0].value.pExpr)); }
+    {
+			(yylhs.value.pUExpr) = new UnaryExpression("-", (yystack_[0].value.pExpr));
+		}
 
     break;
 
   case 89:
 
-    { (yylhs.value.pUExpr) = new UnaryExpression("!", (yystack_[0].value.pExpr)); }
+    {
+			(yylhs.value.pUExpr) = new UnaryExpression("!", (yystack_[0].value.pExpr));
+		}
 
     break;
 
@@ -1702,15 +1810,15 @@ namespace decaf {
   const unsigned short
   Parser::yyrline_[] =
   {
-       0,   138,   138,   146,   149,   156,   160,   167,   172,   179,
-     180,   181,   186,   189,   197,   201,   205,   213,   216,   221,
-     229,   233,   241,   247,   250,   257,   258,   261,   262,   263,
-     267,   268,   272,   273,   274,   275,   276,   277,   278,   279,
-     283,   284,   285,   289,   293,   300,   306,   307,   311,   315,
-     322,   325,   330,   337,   340,   345,   352,   353,   357,   358,
-     359,   360,   361,   362,   366,   367,   371,   372,   373,   374,
-     378,   379,   380,   381,   382,   386,   387,   388,   389,   390,
-     391,   392,   393,   394,   395,   396,   397,   398,   402,   403
+       0,   138,   138,   145,   148,   154,   158,   164,   169,   176,
+     177,   178,   182,   185,   192,   196,   200,   206,   209,   214,
+     220,   224,   230,   236,   239,   245,   249,   255,   258,   262,
+     268,   271,   277,   281,   285,   289,   293,   297,   301,   305,
+     311,   315,   319,   325,   329,   335,   341,   345,   351,   355,
+     361,   364,   369,   375,   378,   383,   389,   393,   399,   403,
+     407,   411,   415,   419,   425,   429,   435,   439,   443,   447,
+     453,   457,   463,   469,   475,   481,   485,   489,   493,   497,
+     501,   505,   509,   513,   517,   521,   525,   529,   535,   539
   };
 
   // Print the state stack on the debug stream.
@@ -1793,6 +1901,7 @@ namespace decaf {
 
 
 } // decaf
+
 
 
 
