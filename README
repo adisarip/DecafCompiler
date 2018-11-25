@@ -1,4 +1,17 @@
 
+Brief Description:
+==================
+=> Go Through the "DecafSpec.pdf" for details regarding the Decaf Language Specification.
+=> Complete Documentation, Class Hierarchies are available in ./docs folder
+=> Visitor design pattern is used extensively to implement different features like semantic analysis, IR Generation etc.
+
+=> ./src/Declarations/  -> Contains the header (*.hh) files of all the language constructs.
+=> ./src/Definitions/   -> Contains the corresponding definations (*.cc) files
+=> ./src/Visitors/      -> Contains all the Visitor Classes for different features implementation.
+=> ./src/Driver/        -> Contains the scanner.ll parser.yy and other driver files
+
+
+
 DecafCompiler Source Tree:
 ==========================
 .
@@ -115,17 +128,3 @@ DecafCompiler Source Tree:
     └── merge.dcf
 
 8 directories, 103 files
-
-
-=> Go Through the "DecafSpec.pdf" for details regarding the Decaf Language Specification.
-=> Complete Documentation, Class Hierarchies are available in ./docs folder
-=> Visitor design pattern is used extensively to implement different features like semantic analysis, IR Generation etc.
-
-=> ./src/Declarations/  -> Contains the header (*.hh) files of all the language constructs.
-=> ./src/Definitions/   -> Contains the corresponding definations (*.cc) files
-=> ./src/Visitors/      -> Contains all the Visitor Classes for different features implementation.
-=> ./src/Driver/        -> Contains the scanner.ll parser.yy and other driver files
-
-
-
-
