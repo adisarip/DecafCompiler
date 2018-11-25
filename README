@@ -1,0 +1,131 @@
+
+DecafCompiler Source Tree:
+==========================
+.
+├── Makefile
+├── README
+├── bin
+│   └── README
+├── decaf.config
+├── obj
+│   └── README
+├── src
+│   ├── Declarations
+│   │   ├── AssignmentStatement.hh
+│   │   ├── Ast.hh
+│   │   ├── BinaryExpression.hh
+│   │   ├── BlockStatement.hh
+│   │   ├── BooleanLiteral.hh
+│   │   ├── BreakStatement.hh
+│   │   ├── CalloutArgument.hh
+│   │   ├── CalloutArgumentsList.hh
+│   │   ├── CalloutMethodCall.hh
+│   │   ├── CharacterLiteral.hh
+│   │   ├── ContinueStatement.hh
+│   │   ├── EnclosedExpression.hh
+│   │   ├── Expression.hh
+│   │   ├── ExpressionsList.hh
+│   │   ├── FieldDeclaration.hh
+│   │   ├── FieldDeclarationsList.hh
+│   │   ├── ForStatement.hh
+│   │   ├── HexadecimalLiteral.hh
+│   │   ├── IdentifiersList.hh
+│   │   ├── IfElseStatement.hh
+│   │   ├── IntegerLiteral.hh
+│   │   ├── Literal.hh
+│   │   ├── MethodCall.hh
+│   │   ├── MethodDeclaration.hh
+│   │   ├── MethodDeclarationsList.hh
+│   │   ├── Parameter.hh
+│   │   ├── ParametersList.hh
+│   │   ├── Program.hh
+│   │   ├── ReturnStatement.hh
+│   │   ├── Statement.hh
+│   │   ├── StatementsList.hh
+│   │   ├── UnaryExpression.hh
+│   │   ├── UserDefinedMethodCall.hh
+│   │   ├── Variable.hh
+│   │   ├── VariableDeclaration.hh
+│   │   ├── VariableDeclarationsList.hh
+│   │   ├── VariableLocation.hh
+│   │   └── VariablesList.hh
+│   ├── Definitions
+│   │   ├── AssignmentStatement.cc
+│   │   ├── BinaryExpression.cc
+│   │   ├── BlockStatement.cc
+│   │   ├── BooleanLiteral.cc
+│   │   ├── BreakStatement.cc
+│   │   ├── CalloutArgument.cc
+│   │   ├── CalloutArgumentsList.cc
+│   │   ├── CalloutMethodCall.cc
+│   │   ├── CharacterLiteral.cc
+│   │   ├── ContinueStatement.cc
+│   │   ├── EnclosedExpression.cc
+│   │   ├── ExpressionsList.cc
+│   │   ├── FieldDeclaration.cc
+│   │   ├── FieldDeclarationsList.cc
+│   │   ├── ForStatement.cc
+│   │   ├── HexadecimalLiteral.cc
+│   │   ├── IdentifiersList.cc
+│   │   ├── IfElseStatement.cc
+│   │   ├── IntegerLiteral.cc
+│   │   ├── MethodDeclaration.cc
+│   │   ├── MethodDeclarationsList.cc
+│   │   ├── Parameter.cc
+│   │   ├── ParametersList.cc
+│   │   ├── Program.cc
+│   │   ├── ReturnStatement.cc
+│   │   ├── StatementsList.cc
+│   │   ├── UnaryExpression.cc
+│   │   ├── UserDefinedMethodCall.cc
+│   │   ├── Variable.cc
+│   │   ├── VariableDeclaration.cc
+│   │   ├── VariableDeclarationsList.cc
+│   │   ├── VariableLocation.cc
+│   │   └── VariablesList.cc
+│   ├── Driver
+│   │   ├── DecafParser.cc
+│   │   ├── Driver.cc
+│   │   ├── Driver.hh
+│   │   ├── FlexLexer.h
+│   │   ├── LLVMConstructs.cc
+│   │   ├── LLVMConstructs.hh
+│   │   ├── Modules.hh
+│   │   ├── Parser.cc
+│   │   ├── Parser.hh
+│   │   ├── Parser.yy
+│   │   ├── Scanner.cc
+│   │   ├── Scanner.hh
+│   │   ├── Scanner.ll
+│   │   ├── location.hh
+│   │   ├── position.hh
+│   │   └── stack.hh
+│   └── Visitors
+│       ├── AstVisitor.cc
+│       ├── AstVisitor.hh
+│       ├── LLVMIRGenerator.cc
+│       ├── LLVMIRGenerator.hh
+│       └── Visitor.hh
+└── test
+    ├── binary.dcf
+    ├── fact.dcf
+    ├── fib.dcf
+    ├── gcd.dcf
+    ├── hannoi.dcf
+    └── merge.dcf
+
+8 directories, 103 files
+
+
+=> Go Through the "DecafSpec.pdf" for details regarding the Decaf Language Specification.
+=> Complete Documentation, Class Hierarchies are available in ./docs folder
+=> Visitor design pattern is used extensively to implement different features like semantic analysis, IR Generation etc.
+
+=> ./src/Declarations/  -> Contains the header (*.hh) files of all the language constructs.
+=> ./src/Definitions/   -> Contains the corresponding definations (*.cc) files
+=> ./src/Visitors/      -> Contains all the Visitor Classes for different features implementation.
+=> ./src/Driver/        -> Contains the scanner.ll parser.yy and other driver files
+
+
+
+
