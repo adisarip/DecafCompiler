@@ -493,7 +493,7 @@ namespace decaf {
     enum
     {
       yyeof_ = 0,
-      yylast_ = 284,     ///< Last index in yytable_.
+      yylast_ = 269,     ///< Last index in yytable_.
       yynnts_ = 33,  ///< Number of nonterminal symbols.
       yyfinal_ = 4, ///< Termination state number.
       yyterror_ = 1,

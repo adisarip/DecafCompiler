@@ -863,6 +863,12 @@ void LLVMIRGenerator::visit(CalloutMethodCall& nodeParm)
             {
                 return;
             }
+            //else
+            //{
+            //    Instruction *inst = dyn_cast<Instruction>(pArgValue);
+            //    cout << "[DEBUG] CalloutArgument: " << flush;
+            //    outs() << inst << "\n";
+            //}
             sArgValuesList.push_back(pArgValue);
             sArgTypesList.push_back(pArgValue->getType());
         }
@@ -874,6 +880,7 @@ void LLVMIRGenerator::visit(CalloutMethodCall& nodeParm)
                                                     sArgsTypesRef,
                                                     false);
         string sMethodName = nodeParm.getMethodName();
+        //cout << "[DEBUG] MethodName: " << sMethodName << endl;
         Constant* pFuncConst = mLlvmConstructsPtr->mModulePtr->getOrInsertFunction(sMethodName,
                                                                                    pFuncType);
         if (pFuncConst)
@@ -916,6 +923,7 @@ void LLVMIRGenerator::visit(CalloutArgument& nodeParm)
     }
     else if (sCalloutArgString != "")
     {
+        //cout << "[DEBUG] sCalloutArgString: " << sCalloutArgString << endl;
         pValue = mLlvmConstructsPtr->mBuilderPtr->CreateGlobalStringPtr(sCalloutArgString);
     }
     else

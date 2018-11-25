@@ -8,9 +8,10 @@ class FibonacciSeries
         prevValue = 0;
         currValue = 1;
         nextValue = 0;
+        N = 5;
 
         callout("printf", "Enter a positive integer: ");
-        callout("scanf", "%d", N); // get the user input
+        //callout("printf", "N", "M");
         callout("printf", "%d  %d  ", prevValue, currValue); // print the starting value
 
         for count=1, N-2
@@ -21,6 +22,6 @@ class FibonacciSeries
             currValue = nextValue;
             count = count + 1;
         }
-        callout("printf", "\n");
+        //callout("printf", "\n");
     }
 }

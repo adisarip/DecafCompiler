@@ -303,8 +303,8 @@ for_loop_statement:
         };
 
 return_statement:
-		RETURN              { $$ = new ReturnStatement(NULL); }
-	|	RETURN '(' expr ')' { $$ = new ReturnStatement($3); }
+		RETURN      { $$ = new ReturnStatement(NULL); }
+	|	RETURN expr { $$ = new ReturnStatement($2); }
 	;
 
 method_call:
