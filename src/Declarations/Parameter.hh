@@ -10,15 +10,16 @@ using namespace std;
 class Parameter : public AstNode
 {
   public:
-    Parameter(string nameParm,
-             string typeParm);
-    string getName();
+    Parameter(string typeParm,
+              string nameParm);
     string getType();
+    string getName();
     virtual void accept(Visitor& vParm);
 
   private:
-    string mName;
     string mType;
+    string mName;
+    
 };
 
 #endif /* PARAMETER_H */

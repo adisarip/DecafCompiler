@@ -1,33 +1,28 @@
 // Binary Search
-// Input: Enter a list of numbers. Then enter a number to search.
 // Output: print FOUND if the number is present
 //         print NOT FOUND if the number is not there
 
-class Program
+class BinarySearch
 {
     int testData[100];
     void main()
     {
         int i,num,searchValue,N;
-        int first,last,midddle;
-        first = 0;
-        last = N-1;
-        middle = (first + last)/2;
-        
-        callout("printf", "Enter a positive integers: ");
-        callout("scanf", "%d", N);
+        int first,last,middle;
 
-        callout("printf", "Enter %d random integers in ascending order: ", N);
-        for i=0, N-1
+        // Preparing Test Data
+        N = 10;
+        searchValue = 14;
+        for i=0, N
         {
-            callout("scanf", "%d", num);
-            testData[i] = num;
+            testData[i] = i * 2; // 0 2 4 6 8 ...
         }
 
-        callout("printf", "Enter a number to search: ");
-        callout("scanf", "%d", searchValue);
+        first = 0;
+        last = N;
+        middle = (first + last)/2;
 
-        for i=first,last
+        for i=first, last
         {
             if (testData[middle] < searchValue)
             {
@@ -37,7 +32,7 @@ class Program
             {
                 if (testData[middle] == searchValue) 
                 {
-                    callout("printf", "%d found at location %d.", searchValue, middle+1);
+                    callout("printf", "%d found at location %d !!!", searchValue, middle+1);
                     break;
                 }
                 else
@@ -50,7 +45,7 @@ class Program
         }
         if (first > last)
         {
-            callout("printf", "%d Not Found. The is not present in the sequence entered.", searchValue);
+            callout("printf", "%d NOT FOUND !!!", searchValue);
         }
     }
 }

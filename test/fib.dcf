@@ -4,24 +4,19 @@ class FibonacciSeries
 {
     void main ()
     {
-        int N, prevValue, currValue, nextValue;
-        prevValue = 0;
-        currValue = 1;
-        nextValue = 0;
-        N = 5;
+        int N, prev, curr, next;
+        prev = 0;
+        curr = 1;
+        next = 1;
+        N = 10;
 
-        callout("printf", "Enter a positive integer: ");
-        //callout("printf", "N", "M");
-        callout("printf", "%d  %d  ", prevValue, currValue); // print the starting value
-
-        for count=1, N-2
+        callout("printf", "Fibonacci Series upto %d numbers: ", N);
+        for cnt=0, N
         {
-            nextValue = prevValue + currValue;
-            callout("printf", "%d  ", nextValue);
-            prevValue = currValue;
-            currValue = nextValue;
-            count = count + 1;
+            callout("printf", "%d ", curr);
+            prev = curr;
+            curr = next;
+            next = prev + curr;
         }
-        //callout("printf", "\n");
     }
 }

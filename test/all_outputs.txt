@@ -1,0 +1,19 @@
+Factorial (test/fact.dcf):
+==========================
+Factorial of 6 is: 720
+
+
+Fibonacci Serries (test/fib.dcf):
+=================================
+Fibonacci Series upto 10 numbers: 1 1 2 3 5 8 13 21 34 55
+
+
+GCD of 2 numbers (test/gcd.dcf):
+================================
+gcd of 64 and 120 is: 8
+
+
+Solving Tower Of Hannoi (test/hannoi.dcf):
+==========================================
+# Move disk 1 from rod 4 to rod 2 ## Move disk 3 from rod 2 to rod 1 ## Move disk 1 from rod 1 to rod 2 ## Move disk 4 from rod 2 to rod 1 ## Move disk 1 from rod 3 to rod 1 ## Move disk 2 from rod 1 to rod 1 ## Move disk 1 from rod 1 to rod 3 ## Move disk 2 from rod 1 to rod 4 ## Move disk 1 from rod 4 to rod 2 #
+

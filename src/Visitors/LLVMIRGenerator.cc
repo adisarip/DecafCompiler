@@ -173,7 +173,7 @@ void LLVMIRGenerator::visit(MethodDeclaration& nodeParm)
             else
             {
                 mLlvmConstructsPtr->mErrors++;
-                logError("Parameters can only be 'int' or 'boolean'");
+                logError("Parameters can only be 'int' or 'boolean' : " + sParmType);
             }
             sMethodParmNamesList.push_back(sParmName);
             sMethodParmTypesList.push_back(sParmType);
@@ -863,12 +863,6 @@ void LLVMIRGenerator::visit(CalloutMethodCall& nodeParm)
             {
                 return;
             }
-            //else
-            //{
-            //    Instruction *inst = dyn_cast<Instruction>(pArgValue);
-            //    cout << "[DEBUG] CalloutArgument: " << flush;
-            //    outs() << inst << "\n";
-            //}
             sArgValuesList.push_back(pArgValue);
             sArgTypesList.push_back(pArgValue->getType());
         }
@@ -880,7 +874,6 @@ void LLVMIRGenerator::visit(CalloutMethodCall& nodeParm)
                                                     sArgsTypesRef,
                                                     false);
         string sMethodName = nodeParm.getMethodName();
-        //cout << "[DEBUG] MethodName: " << sMethodName << endl;
         Constant* pFuncConst = mLlvmConstructsPtr->mModulePtr->getOrInsertFunction(sMethodName,
                                                                                    pFuncType);
         if (pFuncConst)
@@ -923,7 +916,6 @@ void LLVMIRGenerator::visit(CalloutArgument& nodeParm)
     }
     else if (sCalloutArgString != "")
     {
-        //cout << "[DEBUG] sCalloutArgString: " << sCalloutArgString << endl;
         pValue = mLlvmConstructsPtr->mBuilderPtr->CreateGlobalStringPtr(sCalloutArgString);
     }
     else

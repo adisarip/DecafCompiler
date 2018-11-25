@@ -4,23 +4,23 @@
 using namespace std;
 
 
-Parameter::Parameter(string nameParm,
-                   string typeParm)
-:mName(nameParm)
-,mType(typeParm)
+Parameter::Parameter(string typeParm,
+                     string nameParm)
+:mType(typeParm)
+,mName(nameParm)
 {
-}
-
-
-string Parameter::getName()
-{
-    return mName;
 }
 
 
 string Parameter::getType()
 {
     return mType;
+}
+
+
+string Parameter::getName()
+{
+    return mName;
 }
 
 

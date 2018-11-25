@@ -1,4 +1,6 @@
-class Program
+
+
+class FindGcd
 {
     int gcd(int x, int y)
     {
@@ -21,8 +23,11 @@ class Program
 
     void main()
     {
-        int a;
-        a = gcd(6,12);
-        callout("printf","gcd is %d\n",a);
+        int g, a, b;
+        g = 0;
+        a = 64;
+        b = 120;
+        g = gcd(a,b);
+        callout("printf","gcd of %d and %d is: %d  ", a, b, g);
     }
 }

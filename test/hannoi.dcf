@@ -1,25 +1,26 @@
 // tower of hannoi
 // recursive function to solve tower of hanoi puzzle (with 4 disks)
 
-class Hannoi
+class TowerOfHannoi
 {
     void towerOfHanoi(int n, int from_rod, int to_rod, int aux_rod)
-    { 
-        if (n == 1) 
+    {
+        if (n == 1)
         { 
-            callout ("printf", "\nMove disk 1 from rod %d to rod %d", from_rod, to_rod);
-            return;
-        } 
-        towerOfHanoi(n-1, from_rod, aux_rod, to_rod); 
-        callout("printf", "\n Move disk %d from rod %d to rod %d", n, from_rod, to_rod); 
-        towerOfHanoi(n-1, aux_rod, to_rod, from_rod); 
+            callout ("printf", "# Move disk 1 from rod %d to rod %d #", from_rod, to_rod);
+        }
+        else
+        {
+            towerOfHanoi(n-1, from_rod, aux_rod, to_rod); 
+            callout("printf", "# Move disk %d from rod %d to rod %d #", n, from_rod, to_rod); 
+            towerOfHanoi(n-1, aux_rod, to_rod, from_rod);
+        }
     }
 
     void main()
     {
         int n; // Number of disks
-	n = 4;
-        towerOfHanoi(n, 1, 2, 3);  // 1, 2 and 3 are names of rods 
-        return;
+        n = 4;
+        towerOfHanoi(n, 1, 2, 3);  // 1, 2 and 3 are names of rods
     }
 }
