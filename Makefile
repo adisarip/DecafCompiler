@@ -126,6 +126,14 @@ $(TARGET): $(SRC_OBJECTS) $(DRIVER_OBJECTS) $(FEATURE_OBJS) $(PARSER_OBJ) $(SCAN
 	@echo "$(TARGET) Built Successfully."
 
 clean:
+	@echo "Cleaning the object files."
+	rm -rf core
+	rm -f $(BINDIR)/$(TARGET)
+	rm -f $(OBJDIR)/*.o
+
+
+clean_all:
 	@echo "Cleaning all the object files and binaries."
-	rm -f core
-	rm -f $(OBJDIR)/*.o $(AUTOGEN_FILES)
+	rm -rf core
+	rm -f $(BINDIR)/$(TARGET)
+	rm -f $(OBJDIR)/*.o $(AUTOGEN_FILES) $()
