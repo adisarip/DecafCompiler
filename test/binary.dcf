@@ -9,20 +9,31 @@ class BinarySearch
     {
         int i,num,searchValue,N;
         int first,last,middle;
+        int breakFlag;
 
         // Preparing Test Data
         N = 10;
         searchValue = 14;
         for i=0, N
         {
-            testData[i] = i * 2; // 0 2 4 6 8 ...
+            testData[i] = i * 2; // 0 2 4 6 8 10 12 14 16 18
         }
 
-        first = 0;
-        last = N;
-        middle = (first + last)/2;
+        callout ("printf", "TestData: ");
+        for i=0, N
+        {
+            callout ("printf", "%d ", testData[i]);
+        }
+        callout("printf", " || ");
 
-        for i=first, last
+        first = 0;  // starting index
+        last = N-1; // ending index
+        middle = (first + last)/2;
+        breakFlag = 0;
+
+        callout ("printf", "Searching for %d || ", searchValue);
+
+        for i=first, last+1
         {
             if (testData[middle] < searchValue)
             {
@@ -32,20 +43,26 @@ class BinarySearch
             {
                 if (testData[middle] == searchValue) 
                 {
-                    callout("printf", "%d found at location %d !!!", searchValue, middle+1);
-                    break;
+                    callout("printf", "Found %d at location %d !!!", searchValue, middle+1);
+                    //break;
+                    breakFlag = 1;
                 }
                 else
                 {
                     last = middle - 1;
                 }
             }
+
             middle = (first + last)/2;
-            i = first-1; // as i will be incremented automatically, hence adjusting its position
-        }
-        if (first > last)
-        {
-            callout("printf", "%d NOT FOUND !!!", searchValue);
+            
+            if (breakFlag == 1)
+            {
+                i = last;
+            }
+            else
+            {
+                i = first-1; // as i will be incremented automatically, hence adjusting its position
+            }
         }
     }
 }

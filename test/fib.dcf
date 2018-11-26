@@ -8,7 +8,7 @@ class FibonacciSeries
         prev = 0;
         curr = 1;
         next = 1;
-        N = 10;
+        N = 20;
 
         callout("printf", "Fibonacci Series upto %d numbers: ", N);
         for cnt=0, N

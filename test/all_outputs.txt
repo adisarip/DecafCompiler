@@ -17,3 +17,8 @@ Solving Tower Of Hannoi (test/hannoi.dcf):
 ==========================================
 # Move disk 1 from rod 4 to rod 2 ## Move disk 3 from rod 2 to rod 1 ## Move disk 1 from rod 1 to rod 2 ## Move disk 4 from rod 2 to rod 1 ## Move disk 1 from rod 3 to rod 1 ## Move disk 2 from rod 1 to rod 1 ## Move disk 1 from rod 1 to rod 3 ## Move disk 2 from rod 1 to rod 4 ## Move disk 1 from rod 4 to rod 2 #
 
+
+Binary Search (test/binary.dcf):
+================================
+TestData: 0 2 4 6 8 10 12 14 16 18  || Searching for 14 || Found 14 at location 8 !!!
+
