@@ -163,14 +163,20 @@ Building the Compiler:
 Testing the Compiler:
 =====================
 => There are 5 test programs in the ./test directory.
-=> Each program is designed in such a manner, so that it will test one aspect of the decaf compiler.
+=> Each program is designed to test one major aspect of decaf compiler.
+   Like - If-Else, Loops, User defined Functions, Recursion, Global Parameters etc.
 
 Few Details ...
-=> "fact.dcf"   -> Calculates the factorial of a Number. ()
-=> "fib.dcf"    -> Prints the fibonacci sequence. ()
-=> "gcd.dcf"    -> Calculates the GCD of two numbers. ()
-=> "hannoi.dcf" -> Solves the 'Tower Of Hannoi' problem. ()
-=> "binary.dcf" -> Implementation of a binary search algorithm. ()
+=> "fact.dcf"   -> Calculates the factorial of a Number.
+                   Tests: Loops
+=> "fib.dcf"    -> Prints the fibonacci sequence.
+                   Tests: Loop
+=> "gcd.dcf"    -> Calculates the GCD of two numbers.
+                   Tests: If-Else, User Defined Methods, Function Recursion.
+=> "hannoi.dcf" -> Solves the 'Tower Of Hannoi' problem.
+                   Tests: If-Else, User Defined Methods, Recursion.
+=> "binary.dcf" -> Implementation of a binary search algorithm.
+                   Tests: Global arrays, Loop, IF-Else.
 
 => For now the 'decaf' compiler dumps the LLVM IR on the standard output stream.
 => Thus, to run the any of the above program, just do the following.
