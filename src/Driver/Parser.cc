@@ -1222,120 +1222,120 @@ namespace decaf {
   case 75:
 
     {
-			(yylhs.value.pBExpr) = new BinaryExpression("+", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
-		}
+            (yylhs.value.pBExpr) = new BinaryExpression("+", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
+        }
 
     break;
 
   case 76:
 
     {
-			(yylhs.value.pBExpr) = new BinaryExpression("-", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
-		}
+            (yylhs.value.pBExpr) = new BinaryExpression("-", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
+        }
 
     break;
 
   case 77:
 
     {
-			(yylhs.value.pBExpr) = new BinaryExpression("*", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
-		}
+            (yylhs.value.pBExpr) = new BinaryExpression("*", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
+        }
 
     break;
 
   case 78:
 
     {
-			(yylhs.value.pBExpr) = new BinaryExpression("/", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
-		}
+            (yylhs.value.pBExpr) = new BinaryExpression("/", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
+        }
 
     break;
 
   case 79:
 
     {
-			(yylhs.value.pBExpr) = new BinaryExpression("%", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
-		}
+            (yylhs.value.pBExpr) = new BinaryExpression("%", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
+        }
 
     break;
 
   case 80:
 
     {
-			(yylhs.value.pBExpr) = new BinaryExpression("<", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
-		}
+            (yylhs.value.pBExpr) = new BinaryExpression("<", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
+        }
 
     break;
 
   case 81:
 
     {
-			(yylhs.value.pBExpr) = new BinaryExpression(">", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
-		}
+            (yylhs.value.pBExpr) = new BinaryExpression(">", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
+        }
 
     break;
 
   case 82:
 
     {
-			(yylhs.value.pBExpr) = new BinaryExpression("==", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
-		}
+            (yylhs.value.pBExpr) = new BinaryExpression("==", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
+        }
 
     break;
 
   case 83:
 
     {
-			(yylhs.value.pBExpr) = new BinaryExpression(">=", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
-		}
+            (yylhs.value.pBExpr) = new BinaryExpression(">=", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
+        }
 
     break;
 
   case 84:
 
     {
-			(yylhs.value.pBExpr) = new BinaryExpression("<=", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
-		}
+            (yylhs.value.pBExpr) = new BinaryExpression("<=", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
+        }
 
     break;
 
   case 85:
 
     {
-			(yylhs.value.pBExpr) = new BinaryExpression("!=", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
-		}
+            (yylhs.value.pBExpr) = new BinaryExpression("!=", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
+        }
 
     break;
 
   case 86:
 
     {
-			(yylhs.value.pBExpr) = new BinaryExpression("&&", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
-		}
+            (yylhs.value.pBExpr) = new BinaryExpression("&&", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
+        }
 
     break;
 
   case 87:
 
     {
-			(yylhs.value.pBExpr) = new BinaryExpression("||", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
-		}
+            (yylhs.value.pBExpr) = new BinaryExpression("||", (yystack_[2].value.pExpr), (yystack_[0].value.pExpr));
+        }
 
     break;
 
   case 88:
 
     {
-			(yylhs.value.pUExpr) = new UnaryExpression("-", (yystack_[0].value.pExpr));
-		}
+            (yylhs.value.pUExpr) = new UnaryExpression("-", (yystack_[0].value.pExpr));
+        }
 
     break;
 
   case 89:
 
     {
-			(yylhs.value.pUExpr) = new UnaryExpression("!", (yystack_[0].value.pExpr));
-		}
+            (yylhs.value.pUExpr) = new UnaryExpression("!", (yystack_[0].value.pExpr));
+        }
 
     break;
 

@@ -10,7 +10,6 @@ Brief Description:
 => ./src/Visitors/      -> Contains all the Visitor Classes for different features implementation.
 => ./src/Driver/        -> Contains the scanner.ll parser.yy and other driver files
 => ./test/*.dcf         -> All the test programs written in decaf language.
-=> ./test/*.ir          -> All the LLVM IR representation of the test programs.
 
 => Listed below is the complete source tree of the DecafCompiler.
    The name of each file pretty much explain what it is for.
@@ -124,15 +123,10 @@ Brief Description:
 └── test
     ├── all_outputs.txt
     ├── binary.dcf
-    ├── binary.ir
     ├── fact.dcf
-    ├── fact.ir
     ├── fib.dcf
-    ├── fib.ir
     ├── gcd.dcf
-    ├── gcd.ir
     ├── hannoi.dcf
-    └── hannoi.ir
 
 9 directories, 149 files
 
