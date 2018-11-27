@@ -1,27 +1,29 @@
 
 Brief Description:
 ==================
-=> Go Through the "DecafSpec.pdf" for details regarding the Decaf Language Specification.
-=> Complete Documentation, Class Hierarchies are available in ./docs folder
-=> Visitor design pattern is used extensively to implement different features like semantic analysis, IR Generation etc.
+=> Go Through the "./docs/DecafSpec.pdf" for details regarding the Decaf Language Specification.
+=> Visitor design pattern is used extensively to implement different features like
+   semantic analysis, IR Generation etc.
 
 => ./src/Declarations/  -> Contains the header (*.hh) files of all the language constructs.
 => ./src/Definitions/   -> Contains the corresponding definations (*.cc) files
 => ./src/Visitors/      -> Contains all the Visitor Classes for different features implementation.
 => ./src/Driver/        -> Contains the scanner.ll parser.yy and other driver files
+=> ./test/*.dcf         -> All the test programs written in decaf language.
+=> ./test/*.ir          -> All the LLVM IR representation of the test programs.
 
-
-
-DecafCompiler Source Tree:
-==========================
+=> Listed below is the complete source tree of the DecafCompiler.
+   The name of each file pretty much explain what it is for.
 .
 ├── Makefile
 ├── README
 ├── bin
-│   └── README
-├── decaf.config
+│   ├── README
+│   └── decaf
+├── docs
+│   ├── Decafspec.pdf
+│   └── llvm-essentials.pdf
 ├── obj
-│   └── README
 ├── src
 │   ├── Declarations
 │   │   ├── AssignmentStatement.hh
@@ -120,11 +122,83 @@ DecafCompiler Source Tree:
 │       ├── LLVMIRGenerator.hh
 │       └── Visitor.hh
 └── test
+    ├── all_outputs.txt
     ├── binary.dcf
+    ├── binary.ir
     ├── fact.dcf
+    ├── fact.ir
     ├── fib.dcf
+    ├── fib.ir
     ├── gcd.dcf
+    ├── gcd.ir
     ├── hannoi.dcf
-    └── merge.dcf
+    └── hannoi.ir
 
-8 directories, 103 files
+9 directories, 149 files
+
+
+
+Building the Compiler:
+======================
+=> Pre-requisites:
+   - llvm, clang++, flex & bison.
+   - Make sure you install them in your respective linux/unix boxes.
+   - After installation make the necessary changes with the make include directories
+     by pointing to the right include paths of LLVM libraries and includes.
+
+=> Clone the repository and run
+   - "make clean; make"
+   - This should build the whole project and copy 'decaf' binary in ./bin directory.
+
+=> There are 2 clean targets - 'clean' and 'clean_all'
+
+=> "make clean"
+   - Cleans the obj/ and bin/ directories.
+
+=> "make clean_all"
+   - Cleans obj/ bin/ and the auto-generated parser and scanner files as well.
+
+=> So, if there are source code changes then just run
+   - "make clean; make"
+
+=> If there are changes made in the scanner.ll and Parser.yy files then run
+   - "make clean_all; make"
+
+
+
+Testing the Compiler:
+=====================
+=> There are 5 test programs in the ./test directory.
+=> Each program is designed in such a manner, so that it will test one aspect of the decaf compiler.
+
+Few Details ...
+=> "fact.dcf"   -> Calculates the factorial of a Number. ()
+=> "fib.dcf"    -> Prints the fibonacci sequence. ()
+=> "gcd.dcf"    -> Calculates the GCD of two numbers. ()
+=> "hannoi.dcf" -> Solves the 'Tower Of Hannoi' problem. ()
+=> "binary.dcf" -> Implementation of a binary search algorithm. ()
+
+=> For now the 'decaf' compiler dumps the LLVM IR on the standard output stream.
+=> Thus, to run the any of the above program, just do the following.
+    - Redirect the output of decaf into a file
+    - Use the 'just-in-time' compiler from llvm toolset - "lli" to run the IR generated.
+
+$ ./bin/decaf ./test/xyx.dcf > xyz.ir
+$ lli xyz.ir
+<output>
+
+
+Known Issues / Future Improvements:
+===================================
+=> There is an issue with printing the new line character "\n".
+   Somehow it isn't linked properly with the IR.
+   Thus all the outputs is without any new line character.
+=> There is an issue with reading user input scanf.
+   Thus for testing purposes, the input values are hard-coded into *.dcf itself.
+   Change the input values for different test results.
+=> Planning to add "-o" option to generate the IR, instead of redirection.
+=> "break;" statement is dumping core. Used a workaround to exit out the loop.
+
+Didnt't had enough time before the submission deadline to fix these issues. However, planning to
+work on them post evaluation.
+

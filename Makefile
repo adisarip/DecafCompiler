@@ -136,4 +136,4 @@ clean_all:
 	@echo "Cleaning all the object files and binaries."
 	rm -rf core
 	rm -f $(BINDIR)/$(TARGET)
-	rm -f $(OBJDIR)/*.o $(AUTOGEN_FILES) $()
+	rm -f $(OBJDIR)/*.o $(AUTOGEN_FILES)
