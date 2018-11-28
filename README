@@ -161,7 +161,8 @@ Building the Compiler:
 
 Running "decaf"
 ===============
-decaf <InputFile> [-o <OutputFile>] [-h]
+decaf -i <InputFile> [-o <OutputFile>] [-h]
+   -i : Option to specify the input source file in decaf language.
    -o : Option to specify the output file for the IR generation.
         Default is <inputFile>.ir
    -h : Prints help / usage information.
