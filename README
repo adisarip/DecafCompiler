@@ -184,14 +184,9 @@ Few Details ...
 => "binary.dcf" -> Implementation of a binary search algorithm.
                    Tests: Global arrays, Loop, IF-Else.
 
-=> For now the 'decaf' compiler dumps the LLVM IR on the standard output stream.
-=> Thus, to run the any of the above program, just do the following.
-    - Redirect the output of decaf into a file
+=> Thus, to run the any of the above program, do the following.
+    - Generate the IR using 'decaf' (use -h for help).
     - Use the 'just-in-time' compiler from llvm toolset - "lli" to run the IR generated.
-
-$ ./bin/decaf ./test/xyx.dcf > xyz.ir
-$ lli xyz.ir
-<output>
 
 
 Known Issues / Future Improvements:
