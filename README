@@ -202,7 +202,6 @@ Known Issues / Future Improvements:
 => There is an issue with reading user input scanf.
    Thus for testing purposes, the input values are hard-coded into *.dcf itself.
    Change the input values for different test results.
-=> Planning to add "-o" option to generate the IR, instead of redirection.
 => "break;" statement is dumping core. Used a workaround to exit out the loop.
 
 Didnt't had enough time before the submission deadline to fix these issues. However, planning to
