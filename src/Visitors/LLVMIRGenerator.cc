@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <utility>
+#include <fcntl.h>
 #include "LLVMIRGenerator.hh"
 using namespace std;
 using namespace llvm;
@@ -14,9 +15,21 @@ LLVMIRGenerator::LLVMIRGenerator()
     mLlvmConstructsPtr = new LLVMConstructs();
 }
 
-void LLVMIRGenerator::dumpIRCode()
+void LLVMIRGenerator::dumpIRCode(string outputFileNameParm)
 {
-    mLlvmConstructsPtr->mModulePtr->print(llvm::outs(), NULL);
+    if (outputFileNameParm == "")
+    {
+        mLlvmConstructsPtr->mModulePtr->print(llvm::outs(), NULL);
+    }
+    else
+    {
+        int sOutputFD = open(outputFileNameParm.c_str(),
+                             O_WRONLY | O_CREAT | O_TRUNC,
+                             0644);
+        llvm::raw_ostream* pOut = &outs();
+        pOut = new raw_fd_ostream(sOutputFD, true);
+        mLlvmConstructsPtr->mModulePtr->print(*pOut, NULL);
+    }
 }
 
 void LLVMIRGenerator::visit(Program& nodeParm)

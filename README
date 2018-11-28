@@ -159,6 +159,12 @@ Building the Compiler:
    - "make clean_all; make"
 
 
+Running "decaf"
+===============
+decaf <InputFile> [-o <OutputFile>] [-h]
+   -o : Option to specify the output file for the IR generation.
+        Default is <inputFile>.ir
+   -h : Prints help / usage information.
 
 Testing the Compiler:
 =====================
@@ -168,9 +174,9 @@ Testing the Compiler:
 
 Few Details ...
 => "fact.dcf"   -> Calculates the factorial of a Number.
-                   Tests: Loops
+                   Tests: Loops, If-Else.
 => "fib.dcf"    -> Prints the fibonacci sequence.
-                   Tests: Loop
+                   Tests: Loops.
 => "gcd.dcf"    -> Calculates the GCD of two numbers.
                    Tests: If-Else, User Defined Methods, Function Recursion.
 => "hannoi.dcf" -> Solves the 'Tower Of Hannoi' problem.

@@ -53,7 +53,7 @@ class LLVMIRGenerator: public Visitor
         std::cerr << "[ERROR] " << errorStringParm << std::endl;
     }
 
-    void dumpIRCode();
+    void dumpIRCode(string outputFileNameParm = "");
 
     // data
     class LLVMConstructs* mLlvmConstructsPtr;
